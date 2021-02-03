@@ -1,0 +1,15 @@
+.menu {
+    &__list-item {
+    }
+
+    &__list-item + &__list-item {
+        margin-left: 25px;
+    }
+
+    &__list-link {
+        color: #999;
+        &:hover {
+            color: #00a4e5;
+        }
+    }
+}
