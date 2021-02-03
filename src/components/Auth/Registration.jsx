@@ -29,7 +29,7 @@ const Registration = (props) => {
                 <h2 className="auth__title">Sing Up</h2>
                 <AuthForm inputs={inputs} />
 
-                <NavLink className="auth__link" to="/login" >login</NavLink>
+                <NavLink className="auth__link" to="/login" >Already have login and password? Sign in</NavLink>
 
             </div>
         </div>

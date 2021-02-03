@@ -11,6 +11,7 @@ const AuthForm = (props) => {
             id={input.id}
             label={input.label}
             placeholder={input.placeholder}
+
         />)
 
     return (
@@ -23,6 +24,6 @@ const AuthForm = (props) => {
         </form>
 
     )
-}
+};
 
 export default AuthForm;

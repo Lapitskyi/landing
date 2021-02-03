@@ -11,7 +11,7 @@ const Reset = (props) => {
 
     let inputs = [
 
-        { id: "email", label: "email", placeholder: "email" }
+        { id: "email", label: "email", placeholder: "email", btn:"Reset password"}
 
     ]
 
@@ -29,7 +29,7 @@ const Reset = (props) => {
                 <h2 className="auth__title">Reset password</h2>
                 <AuthForm inputs={inputs} />
 
-                <NavLink className="auth__link" to="/login" >login</NavLink>
+                <NavLink className="auth__link" to="/login" >Already have login and password? Sign in</NavLink>
 
             </div>
         </div>

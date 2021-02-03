@@ -48,7 +48,7 @@ const Header = (props) => {
 
                     <ul className="menu__list">
                         {/* {menuArray} */}
-                        <MenuItem name="Home" link="/" />
+                        <MenuItem name="Home" link="/home" />
                         <MenuItem name="Order" link="/order" />
                         <MenuItem name="Portfolio" link="/portfolio" />
                         <MenuItem name="Login" link="/login" />

@@ -10,7 +10,7 @@ import sprite from "../../assets/spriteSvg/sprite.svg";
 const Login = (props) => {
     let inputs = [
 
-        { id: "email", label: "email", placeholder: "email" },
+        { id: "email", label: "Username or email", placeholder: "email" },
         { id: "password", label: "password", placeholder: "password" }
     ]
 
@@ -27,8 +27,8 @@ const Login = (props) => {
                 <h2 className="auth__title">Sing in</h2>
                 <AuthForm inputs={inputs} />
 
-                <NavLink className="auth__link" to="/reset" >Reset login</NavLink>
-                <NavLink className="auth__link" to="/registration" >Registration</NavLink>
+                <NavLink className="auth__link" to="/reset" >Forgot your password?</NavLink>
+                <NavLink className="auth__link" to="/registration" >Don't have an account yet? Register now</NavLink>
             </div>
         </div>
     )
