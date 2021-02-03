@@ -2,6 +2,7 @@ import React from 'react'
 import AuthForm from './AuthForm/AuthForm'
 import { NavLink } from 'react-router-dom';
 import './Auth.scss'
+import sprite from "../../assets/spriteSvg/sprite.svg";
 
 
 
@@ -17,8 +18,11 @@ const Login = (props) => {
         <div className="login">
             <div className="auth__inner">
                 <button class="auth__btn btn" type="button" >
-                    <img src="" alt="icon" />
+                    <svg className="auth__btn-icon">
+                        <use href={sprite + "#close"}></use>
+                    </svg>
                 </button>
+
 
                 <h2 className="auth__title">Sing in</h2>
                 <AuthForm inputs={inputs} />

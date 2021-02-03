@@ -59,9 +59,9 @@ const Header = (props) => {
                     <ul className="social__list">
                         {/* {socialArray} */}
 
-                        <SocialItem href="mailto:mail@gmail.com" src="" alt="mail" />
-                        <SocialItem href="tel:80000000000" src="" alt="phone" />
-                        <SocialItem href="https://git-scm.com/" src="" alt="github" />
+                        <SocialItem href="mailto:mail@gmail.com" icon="#email" alt="mail" />
+                        <SocialItem href="tel:80000000000" icon="#phone" alt="phone" />
+                        <SocialItem href="https://git-scm.com/" icon="#git" alt="github" />
                     </ul>
 
                 </div>

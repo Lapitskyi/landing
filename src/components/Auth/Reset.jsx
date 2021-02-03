@@ -2,6 +2,7 @@ import React from 'react'
 import AuthForm from './AuthForm/AuthForm'
 import { NavLink } from 'react-router-dom';
 import './Auth.scss';
+import sprite from "../../assets/spriteSvg/sprite.svg";
 
 
 
@@ -19,8 +20,10 @@ const Reset = (props) => {
         <div className="reset">
             <div className="auth__inner">
 
-                <button class="auth__btn btn" type="button" >
-                    <img src="" alt="icon" />
+                <button className="auth__btn btn" type="button">
+                    <svg className="auth__btn-icon">
+                        <use href={sprite + "#close"}></use>
+                    </svg>
                 </button>
 
                 <h2 className="auth__title">Reset password</h2>
