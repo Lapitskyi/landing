@@ -7,36 +7,6 @@ import SocialItem from './SocalItem/SocialItem';
 
 const Header = (props) => {
 
-    // let menu = [
-    //     { id: '1', name: "Home", link: "/" },
-    //     { id: '2', name: "Order", link: "/order" },
-    //     { id: '3', name: "Portfolio", link: "/portfolio" },
-    //     { id: '4', name: "Login", link: "/login" },
-    //     { id: '5', name: "Registration", link: "/registration" },
-    // ];
-
-    // let social = [
-    //     { id: "1", link: "mailto:mail@gmail.com", icon: "", alt: "email" },
-    //     { id: "2", link: "tel:80000000000", icon: "", alt: "phone" },
-    //     { id: "3", link: "https://git-scm.com", icon: "", alt: "github" },
-    // ]
-
-    // let socialArray = social.map((social) =>
-    // let menuArray = menu.map((menu) =>
-    //     <MenuItem
-    //         id={props.id}
-    //         name={props.name}
-    //         path={props.path}
-    //     />)
-
-
-    // <SocialItem
-    //     id={props.id}
-    //     link={props.link}
-    //     icon={props.icon}
-    //     alt={props.alt}
-    // />)
-
 
     return (
         <div className="header">
