@@ -5,11 +5,14 @@ import {NavLink} from 'react-router-dom';
 import './MenuItem.scss';
 
 
+
 const MenuItem = (props) => {
+    const {name, link} = props
+
     return (
         <li className="menu__list-item">
-            <NavLink to={props.link} className="menu__list-link">
-                {props.name}
+            <NavLink to={link} className="menu__list-link">
+                {name}
             </NavLink>
         </li>
     )

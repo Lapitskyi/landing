@@ -8,7 +8,6 @@ import './Auth.scss'
 
 const Registration = (props) => {
 
-
     return (
         <div className="registration">
             <div className="auth__inner">

@@ -7,7 +7,7 @@ const Home = (props) => {
 
     return (
         <div>
-            home
+
 
         </div>
     )

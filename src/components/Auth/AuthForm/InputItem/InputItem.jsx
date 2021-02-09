@@ -5,10 +5,12 @@ import "./InputItem.scss"
 
 const InputItem = (props) => {
 
+    const {label, placeholder} = props;
+
     return (
         <label className="form__label">
-            {props.label}
-            <input className="form__input" type="text" placeholder={props.placeholder}/>
+            {label}
+            <input className="form__input" type="text" placeholder={placeholder}/>
         </label>
     )
 }

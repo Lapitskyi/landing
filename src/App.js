@@ -16,7 +16,7 @@ import {Route} from "react-router-dom"
 const App = (props) => {
     return (
         <div className="app-wrapper">
-            <Header state={props.state.header}/>
+            <Header state={props.state.header} />
             <div className="content">
                 <div className="container">
                     <Route path='/' exact render={() => <Home/>}/>

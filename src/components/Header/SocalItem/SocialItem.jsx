@@ -5,11 +5,13 @@ import './SocialItem.scss';
 
 const SocialItem = (props) => {
 
+    const {link, icon} = props
+
     return (
         <li className="social__list-item">
-            <a className="social__list-link" href={props.link}>
+            <a className="social__list-link" href={link}>
                 <svg className="social__list-icon">
-                    <use href={sprite + props.icon}></use>
+                    <use href={sprite + icon}></use>
                 </svg>
             </a>
         </li>

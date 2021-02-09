@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from "prop-types";
 
 import MenuItem from './MenuItem/MenuItem';
 import SocialItem from './SocalItem/SocialItem';
@@ -46,6 +46,23 @@ const Header = (props) => {
         </div>
     )
 }
+
+
+
+MenuItem.propTypes = {
+    id: PropTypes.number,
+    name: PropTypes.string,
+    link: PropTypes.string
+}
+
+SocialItem.propTypes={
+    id: PropTypes.number,
+    link: PropTypes.string,
+    icon: PropTypes.string,
+    alt: PropTypes.string,
+}
+
+
 
 
 

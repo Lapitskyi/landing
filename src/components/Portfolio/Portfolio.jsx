@@ -5,7 +5,8 @@ import './Portfolio.scss';
 
 const Portfolio = (props) =>{
     return(
-        <div>Portfolio</div>)
+        <div>Portfolio</div>
+    )
 }
 
 
