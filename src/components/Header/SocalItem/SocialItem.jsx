@@ -1,7 +1,8 @@
 import React from 'react'
-import './SocialItem.scss';
-import sprite from "../../../assets/spriteSvg/sprite.svg";
+import PropTypes from 'prop-types'
 
+import sprite from "../../../assets/spriteSvg/sprite.svg";
+import './SocialItem.scss';
 
 const SocialItem = (props) => {
 
@@ -16,5 +17,6 @@ const SocialItem = (props) => {
     )
 }
 
+SocialItem.propTypes = {}
 
 export default SocialItem;

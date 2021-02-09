@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import './Footer.scss';
 
 
@@ -14,5 +16,6 @@ const Footer = () => {
     )
 }
 
+Footer.propTypes = {}
 
 export default Footer;

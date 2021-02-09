@@ -1,0 +1,15 @@
+.auth__btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #999;
+  position: relative;
+  margin-left: auto;
+}
+.auth__btn-icon{
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

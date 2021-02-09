@@ -1,27 +1,26 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import SwiperCore, { Navigation, Pagination } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {Navigation, Pagination} from 'swiper';
+import {Swiper, SwiperSlide} from 'swiper/react';
 
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 
 
-
-
 import './Home.scss';
 
 
-const Home = (props) =>{
-    SwiperCore.use([Navigation, Pagination, ]);
-    return(
+const Home = (props) => {
+    SwiperCore.use([Navigation, Pagination,]);
+    return (
         <div>
             <Swiper
                 spaceBetween={50}
-                slidesPerView={4}
+                slidesPerView={3}
                 navigation
-                pagination={{ clickable: true }}
+                pagination={{clickable: true}}
 
                 onSwiper={(swiper) => console.log(swiper)}
                 onSlideChange={() => console.log('slide change')}
@@ -40,6 +39,6 @@ const Home = (props) =>{
     )
 }
 
-
+Home.propTypes = {}
 
 export default Home;

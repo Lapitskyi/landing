@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import InputItem from './InputItem/InputItem';
 import './AuthForm.scss';
@@ -6,8 +7,9 @@ import './AuthForm.scss';
 
 const AuthForm = (props) => {
 
-    let inputsArray = props.inputs.map((input) =>
+    let inputsArray = props.state.input.map((input) =>
         <InputItem
+            key={input.id}
             id={input.id}
             label={input.label}
             placeholder={input.placeholder}
@@ -19,11 +21,12 @@ const AuthForm = (props) => {
         <form className="form">
             {inputsArray}
 
-
-            <button className="form__btn btn" type="submit"> Send </button>
+            <button className="form__btn btn" type="submit"> {props.state.btn} </button>
         </form>
 
     )
 };
+
+AuthForm.propTypes = {}
 
 export default AuthForm;

@@ -1,40 +1,30 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import AuthForm from './AuthForm/AuthForm'
-import { NavLink } from 'react-router-dom';
+import AuthBtn from "./AuthBtn/AuthBtn";
+import Links from "./AuthLink/Links";
+
 import './Auth.scss';
-import sprite from "../../assets/spriteSvg/sprite.svg";
-
-
 
 const Reset = (props) => {
-
-
-    let inputs = [
-
-        { id: "email", label: "email", placeholder: "email", btn:"Reset password"}
-
-    ]
-
 
     return (
         <div className="reset">
             <div className="auth__inner">
 
-                <button className="auth__btn btn" type="button">
-                    <svg className="auth__btn-icon">
-                        <use href={sprite + "#close"}></use>
-                    </svg>
-                </button>
+                <AuthBtn/>
 
                 <h2 className="auth__title">Reset password</h2>
-                <AuthForm inputs={inputs} />
 
-                <NavLink className="auth__link" to="/login" >Already have login and password? Sign in</NavLink>
+                <AuthForm state={props.state}/>
 
+                <Links state={props.state}/>
             </div>
         </div>
     )
 }
 
+Reset.propTypes = {}
 
 export default Reset;

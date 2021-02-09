@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
 import "./InputCheckbox.scss"
 
@@ -13,5 +14,6 @@ const InputCheckbox = (props) => {
     )
 }
 
+InputCheckbox.propTypes = {}
 
 export default InputCheckbox;

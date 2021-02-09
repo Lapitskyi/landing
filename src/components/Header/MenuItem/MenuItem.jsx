@@ -1,5 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {NavLink} from 'react-router-dom';
+
 import './MenuItem.scss';
 
 
@@ -13,5 +15,7 @@ const MenuItem = (props) => {
     )
 }
 
+
+MenuItem.propTypes = {}
 
 export default MenuItem;

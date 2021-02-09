@@ -1,38 +1,32 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import AuthForm from './AuthForm/AuthForm'
-import { NavLink } from 'react-router-dom';
+import Links from "./AuthLink/Links";
+import AuthBtn from "./AuthBtn/AuthBtn";
+
 import './Auth.scss'
-import sprite from "../../assets/spriteSvg/sprite.svg";
-
-
-
 
 const Login = (props) => {
-    let inputs = [
 
-        { id: "email", label: "Username or email", placeholder: "email" },
-        { id: "password", label: "password", placeholder: "password" }
-    ]
 
     return (
         <div className="login">
             <div className="auth__inner">
-                <button class="auth__btn btn" type="button" >
-                    <svg className="auth__btn-icon">
-                        <use href={sprite + "#close"}></use>
-                    </svg>
-                </button>
 
+                <AuthBtn/>
 
                 <h2 className="auth__title">Sing in</h2>
-                <AuthForm inputs={inputs} />
 
-                <NavLink className="auth__link" to="/reset" >Forgot your password?</NavLink>
-                <NavLink className="auth__link" to="/registration" >Don't have an account yet? Register now</NavLink>
+                <AuthForm state={props.state}/>
+
+                <Links state={props.state}/>
+
             </div>
         </div>
     )
 }
 
+Login.propTypes = {}
 
 export default Login;

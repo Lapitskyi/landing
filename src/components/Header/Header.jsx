@@ -1,34 +1,24 @@
 import React from 'react'
-import './Header.scss';
+import PropTypes from 'prop-types'
+
 import MenuItem from './MenuItem/MenuItem';
 import SocialItem from './SocalItem/SocialItem';
 
-let menu = [
-    {id: '1', name: "Home", link: "/"},
-    {id: '2', name: "Order", link: "/order"},
-    {id: '3', name: "Portfolio", link: "/portfolio"},
-    {id: '4', name: "Login", link: "/login"},
-    {id: '5', name: "Registration", link: "/registration"},
-];
-
-
-let social = [
-    {id: "1", link: "mailto:mail@gmail.com", icon: "#email", alt: "email"},
-    {id: "2", link: "tel:80000000000", icon: "#phone", alt: "phone"},
-    {id: "3", link: "https://git-scm.com", icon: "#git", alt: "github"},
-]
+import './Header.scss';
 
 const Header = (props) => {
 
-    let menuArray = menu.map((menu) =>
+    let menuArray = props.state.menu.map((menu) =>
         <MenuItem
+            key={menu.id}
             id={menu.id}
             name={menu.name}
             link={menu.link}
         />)
 
-    let socialArray = social.map((social) =>
+    let socialArray = props.state.social.map((social) =>
         <SocialItem
+            key={social.id}
             id={social.id}
             link={social.link}
             icon={social.icon}
@@ -57,5 +47,7 @@ const Header = (props) => {
     )
 }
 
+
+Header.propTypes = {}
 
 export default Header;
