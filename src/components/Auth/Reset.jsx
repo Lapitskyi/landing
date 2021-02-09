@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import AuthForm from './AuthForm/AuthForm'
 import AuthBtn from "./AuthBtn/AuthBtn";
@@ -25,6 +24,5 @@ const Reset = (props) => {
     )
 }
 
-Reset.propTypes = {}
 
 export default Reset;

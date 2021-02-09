@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import InputItem from './InputItem/InputItem';
 import './AuthForm.scss';
@@ -27,6 +26,5 @@ const AuthForm = (props) => {
     )
 };
 
-AuthForm.propTypes = {}
 
 export default AuthForm;

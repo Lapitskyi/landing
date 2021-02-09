@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 
 import MenuItem from './MenuItem/MenuItem';
 import SocialItem from './SocalItem/SocialItem';
@@ -48,6 +48,6 @@ const Header = (props) => {
 }
 
 
-Header.propTypes = {}
+
 
 export default Header;

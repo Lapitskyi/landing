@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import AuthForm from './AuthForm/AuthForm'
 import AuthBtn from "./AuthBtn/AuthBtn";
@@ -26,6 +25,6 @@ const Registration = (props) => {
     )
 }
 
-Registration.propTypes = {}
+
 
 export default Registration;

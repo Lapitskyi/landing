@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import "./InputItem.scss"
 
@@ -14,6 +13,5 @@ const InputItem = (props) => {
     )
 }
 
-InputItem.propTypes = {}
 
 export default InputItem;

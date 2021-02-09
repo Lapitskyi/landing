@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import AuthForm from './AuthForm/AuthForm'
 import Links from "./AuthLink/Links";
@@ -27,6 +26,5 @@ const Login = (props) => {
     )
 }
 
-Login.propTypes = {}
 
 export default Login;

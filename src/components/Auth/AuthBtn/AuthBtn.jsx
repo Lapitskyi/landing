@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 
 import './AuthBtn.scss'
 
@@ -17,6 +17,5 @@ const AuthBtn = (props) => {
     )
 }
 
-AuthBtn.propTypes = {}
 
 export default AuthBtn;

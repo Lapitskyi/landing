@@ -1,6 +1,6 @@
 import React from 'react'
 import './Order.scss';
-import PropTypes from 'prop-types'
+
 
 
 
@@ -11,8 +11,5 @@ const Order = (props) =>{
 }
 
 
-Order.propTypes ={
-
-}
 
 export default Order;

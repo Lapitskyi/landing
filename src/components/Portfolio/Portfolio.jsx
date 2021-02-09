@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
 
 import './Portfolio.scss';
 
@@ -8,10 +8,6 @@ const Portfolio = (props) =>{
         <div>Portfolio</div>)
 }
 
-
-Portfolio.propTypes = {
-
-}
 
 
 export default Portfolio;

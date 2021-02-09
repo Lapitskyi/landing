@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import LinksItem from "./LinksItem/LinksItem";
 
@@ -23,6 +22,5 @@ const Links = (props) =>{
     )
 }
 
-Links.propTypes = {}
 
 export default Links;
