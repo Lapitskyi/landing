@@ -19,9 +19,9 @@ const App = (props) => {
             <Header state={props.state.header} />
             <div className="content">
                 <div className="container">
-                    <Route path='/' exact render={() => <Home/>}/>
+                    <Route path='/' exact render={() => <Home state={props.state.homePage}/>}/>
                     <Route path='/order' render={() => <Order/>}/>
-                    <Route path='/portfolio' render={() => <Portfolio/>}/>
+                    <Route path='/portfolio' render={() => <Portfolio state={props.state.portfolioPage}/>}/>
                     <Route path='/login' render={() => <Login state={props.state.formAuth.login}/>}/>
                     <Route path='/registration' render={() => <Registration state={props.state.formAuth.registration}/>}/>
                     <Route path='/reset' render={() => <Reset state={props.state.formAuth.reset}/>}/>

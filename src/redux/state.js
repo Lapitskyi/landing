@@ -48,7 +48,66 @@ let state = {
                 {id: 1, title: "Already have login and password? Sign in", path: '/login'}
             ]
         }
-    }
+    },
+
+    homePage: {
+        title: "Lorem",
+        suptitle: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,temporibus!",
+        text: [
+            {
+                id: 1, text: "  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio ea\n" +
+                    "                    cupiditate sapiente saepe architecto vitae eius odit est, sed vel\n" +
+                    "                    voluptatem voluptatibus pariatur perferendis reprehenderit a hic\n" +
+                    "                    delectus consequatur? Reprehenderit!\n" +
+                    "                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid\n" +
+                    "                    perspiciatis doloribus veniam ut sequi! Quos, eaque illum officiis\n" +
+                    "                    natus debitis autem iste, veniam ut, praesentium recusandae iure\n" +
+                    "                    esse deserunt amet."
+            },
+            {id: 2, text: " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+        ]
+    },
+
+    portfolioPage: [
+        {
+            id: "web",
+            title: "Web",
+            item: [
+                {
+                    id: "1",
+                    img: "https://via.placeholder.com/150",
+                    text: "Web-text",
+                    alt: "Web-photo"
+                },
+                {
+                    id: "1",
+                    img: "https://via.placeholder.com/150",
+                    text: "Web-text",
+                    alt: "Web-photo"
+                },
+            ]
+        },
+        {
+            id: "desing",
+            title: "Desing",
+            item: [
+                {
+                    id: "1",
+                    img: "https://via.placeholder.com/150",
+                    alt: "Desing-photo",
+                    text: "Desing-text",
+                },
+                {
+                    id: "2",
+                    img: "https://via.placeholder.com/150",
+                    alt: "Desing-photo",
+                    text: "Desing-text",
+                },
+            ]
+        }
+
+
+    ]
 }
 
 
