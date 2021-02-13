@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 
 import "./Reviews.scss"
+import ReviewsList from "./ReviewsList/ReviewsList";
 
 
 let Reviews = (props) => {
@@ -14,8 +15,7 @@ let Reviews = (props) => {
         let img = imgReviews.current.src;
         let comment = newReviews.current.value;
 
-        if (comment != '') {
-
+        if (comment !== '') {
             let comments = [...reviews, {img: img, text: comment}];
             setReviews(comments);
         }
@@ -24,13 +24,10 @@ let Reviews = (props) => {
 
     let onchangeReviews = () => {
         let comment = newReviews.current.value;
+        console.log(comment);
     }
 
-    let itemArray =  reviews.map((item) =>
-        <li className="reviews__list-item" >
-            <img src={item.img} alt=""/>
-            {item.text}
-        </li>)
+
 
     return (
         <div className="reviews">
@@ -39,15 +36,12 @@ let Reviews = (props) => {
                 <textarea className="reviews__text"
                           onChange={onchangeReviews}
                           ref={newReviews}
-                          placeholder="Что у вас нового?"/>
+                          placeholder="Leave a review"/>
 
-                <button className="rewievs__btn" onClick={addReviews}>Push</button>
+                <button className="reviews__btn btn" onClick={addReviews}>Push</button>
             </div>
 
-            <ul className="reviews__list">
-                {itemArray}
-
-            </ul>
+            <ReviewsList reviews={reviews}/>
         </div>
     )
 }
