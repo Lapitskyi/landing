@@ -18,7 +18,7 @@ const Links = (props) => {
     )
 
     return (
-        <ul className="auth__link">
+        <ul className="auth-link__list">
             {LinkArray}
         </ul>
     )

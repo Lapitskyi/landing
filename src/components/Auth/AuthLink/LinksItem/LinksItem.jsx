@@ -9,8 +9,8 @@ const LinksItem = (props) => {
     const {path, title } = props;
 
     return (
-        <li className="auth__link-item">
-            <NavLink className="auth__link" to={path}>{title}</NavLink>
+        <li className="auth-link__list-item">
+            <NavLink className="auth-link__list-link" to={path}>{title}</NavLink>
         </li>
     )
 }

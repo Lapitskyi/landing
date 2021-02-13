@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from "prop-types";
 
 import './Home.scss';
+import Reviews from "./Rewievs/Reviews";
 
 
 const Home = (props) => {
@@ -15,15 +16,19 @@ const Home = (props) => {
     )
 
     return (
-        <div className="home__inner">
-            <h1 className="home__title">{title}</h1>
-            <h2 className="home__suptitle">{suptitle}</h2>
+        <>
+            <div className="home__inner">
+                <h1 className="home__title">{title}</h1>
+                <h2 className="home__suptitle">{suptitle}</h2>
 
-            <div className="home__text">
-                {textArray}
+                <div className="home__text">
+                    {textArray}
+                </div>
+
             </div>
+            <Reviews/>
+        </>
 
-        </div>
     )
 }
 

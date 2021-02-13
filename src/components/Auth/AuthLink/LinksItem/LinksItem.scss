@@ -1,4 +1,9 @@
-.auth__link-item {
+.auth-link__list-item  + .auth-link__list-item {
+  margin-top: 10px;
+}
+
+
+.auth-link__list-link {
   color: #000000;
   font-size: 12px;
 
@@ -8,8 +13,5 @@
   }
 }
 
-.auth__link-item  + .auth__link-item {
-  margin-top: 10px;
-}
 
 
