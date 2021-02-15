@@ -1,10 +1,17 @@
 .footer {
     grid-area: footer;
 
+
     &__inner {
         display: grid;
         align-items: center;
         justify-content: center;
         padding: 15px 0;
+        background-color: #00a4e5;
     }
+}
+
+.copyright{
+    margin-top: 5px;
+    text-align: center;
 }

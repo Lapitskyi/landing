@@ -10,6 +10,10 @@ const Footer = () => {
                 <div className="footer__inner">
                     Footer
                  </div>
+                <div className="copyright">
+                            <div>Copyright © 2021 React Intemship </div>
+
+                </div>
             </div>
         </div>
     )

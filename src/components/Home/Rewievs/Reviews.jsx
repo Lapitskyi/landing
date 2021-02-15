@@ -1,47 +1,56 @@
 import React, {useState} from "react"
+import ReviewsList from "./ReviewsList/ReviewsList";
 
 import "./Reviews.scss"
-import ReviewsList from "./ReviewsList/ReviewsList";
 
 
 let Reviews = (props) => {
 
-    const [reviews, setReviews] = useState([]);
+    const [user, setUser] = useState({img: "https://via.placeholder.com/200"})
+    const [reviews, setReviews] = useState([{
+        img: "https://via.placeholder.com/150",
+        text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"
+    }]);
 
     let newReviews = React.createRef();
     let imgReviews = React.createRef();
 
-    let addReviews = () => {
+    let addReviews = (e) => {
+        e.preventDefault()
         let img = imgReviews.current.src;
-        let comment = newReviews.current.value;
+        let review = newReviews.current.value;
 
-        if (comment !== '') {
-            let comments = [...reviews, {img: img, text: comment}];
-            setReviews(comments);
+        if (review !== '') {
+            let rev = [...reviews, {img: img, text: review}];
+            setReviews(rev);
         }
         newReviews.current.value = '';
     }
 
     let onchangeReviews = () => {
-        let comment = newReviews.current.value;
-        console.log(comment);
+        let review = newReviews.current.value;
+        console.log(review);
     }
-
 
 
     return (
         <div className="reviews">
-            <div className="reviews__inner">
-                <img className="reviews__img" src="https://via.placeholder.com/150" alt="icon user" ref={imgReviews}/>
-                <textarea className="reviews__text"
-                          onChange={onchangeReviews}
-                          ref={newReviews}
-                          placeholder="Leave a review"/>
-
-                <button className="reviews__btn btn" onClick={addReviews}>Push</button>
-            </div>
+            <h2 className="reviews__title">Review</h2>
 
             <ReviewsList reviews={reviews}/>
+
+            <div className="reviews__inner">
+                <img className="reviews__img" src={user.img} alt="icon user" ref={imgReviews}/>
+
+                <form className="reviews__form">
+                  <textarea className="reviews__text"
+                            onChange={onchangeReviews}
+                            ref={newReviews}
+                            placeholder="Leave a review"/>
+
+                    <button className="reviews__btn btn" onClick={addReviews}>Add</button>
+                </form>
+            </div>
         </div>
     )
 }
