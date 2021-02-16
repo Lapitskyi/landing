@@ -16,31 +16,22 @@ let TableItem = (props) => {
     )
 }
 
-let biographyArray = [
-    {id: 1, year: 2018, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
-    {id: 2, year: 2019, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit"},
-    {id: 3, year: 2020, text: "Lorem ipsum, dolor sit amet"},
-    {id: 4, year: 2021, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
-];
 
 let Biography = (props) => {
 
-    let [biography, setBiography] = useState(biographyArray);
+    let [biography, setBiography] = useState(props.biographyArr);
 
-    let itemTable = biographyArray.map((item)=>
-    <TableItem
-    key={item.id}
-    id={item.id}
-    year={item.year}
-    text={item.text}
-    />)
 
     const addTable = () => {
-        console.log("addTable")
+        let biographyAdd = [... props.biographyArr];
+        setBiography(biographyAdd );
     }
 
     const removeTable = () => {
-        console.log("removeTable")
+       let biographyDel = [...biography];
+        biographyDel.pop();
+        setBiography(biographyDel);
+
     }
     const onSort = () => {
         console.log("onSort")
@@ -58,7 +49,13 @@ let Biography = (props) => {
                 </tr>
                 </thead>
                 <tbody>
-                {itemTable}
+                {biography.map((item) =>
+                    <TableItem
+                        key={item.id}
+                        id={item.id}
+                        year={item.year}
+                        text={item.text}
+                    />)}
                 </tbody>
             </table>
 
