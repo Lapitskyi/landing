@@ -17,18 +17,26 @@ let TableItem = (props) => {
 }
 
 
+let biographyArray = [
+    {id: 1, year: 2018, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
+    {id: 2, year: 2019, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit"},
+    {id: 3, year: 2020, text: "Lorem ipsum, dolor sit amet"},
+    {id: 4, year: 2021, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
+];
+
+
+
 let Biography = (props) => {
 
-    let [biography, setBiography] = useState(props.biographyArr);
+    let [biography, setBiography] = useState(biographyArray);
 
 
     const addTable = () => {
-        let biographyAdd = [... props.biographyArr];
-        setBiography(biographyAdd );
+        console.log("addTable")
     }
 
     const removeTable = () => {
-       let biographyDel = [...biography];
+        let biographyDel = [...biography];
         biographyDel.pop();
         setBiography(biographyDel);
 
