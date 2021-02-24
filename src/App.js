@@ -10,6 +10,7 @@ import Portfolio from "./components/Portfolio/Portfolio"
 import Login from './components/Auth/Login';
 import Registration from './components/Auth/Registration';
 import Reset from './components/Auth/Reset';
+import About from "./components/About/About";
 
 import {Route} from "react-router-dom"
 
@@ -19,20 +20,18 @@ const App = (props) => {
             <Header state={props.state.header} />
             <div className="content">
                 <div className="container">
-                    <Route path='/' exact render={() => <Home state={props.state.homePage}/>}/>
+                    <Route path='/' exact render={() => <Home />}/>
+                    <Route path='/about' render={() => <About state={props.state.aboutPage}/>}/>
                     <Route path='/order' render={() => <Order/>}/>
                     <Route path='/portfolio' render={() => <Portfolio state={props.state.portfolioPage}/>}/>
                     <Route path='/login' render={() => <Login state={props.state.formAuth.login}/>}/>
                     <Route path='/registration' render={() => <Registration state={props.state.formAuth.registration}/>}/>
                     <Route path='/reset' render={() => <Reset state={props.state.formAuth.reset}/>}/>
-
                 </div>
-
             </div>
             <Footer/>
         </div>
     )
-
 }
 
 export default App;

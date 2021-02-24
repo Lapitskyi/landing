@@ -4,26 +4,33 @@ import PropTypes from "prop-types";
 import s from "./Biography.module.scss"
 
 
-let TableItem = (props) => {
-    return (
-        <tr>
-            <td>{props.id}</td>
-            <td>{props.year}</td>
-            <td>
-                {props.text}
-            </td>
-        </tr>
-    )
-}
-
-
 let biographyArray = [
-    {id: 1, year: 2018, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
-    {id: 2, year: 2019, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit"},
-    {id: 3, year: 2020, text: "Lorem ipsum, dolor sit amet"},
-    {id: 4, year: 2021, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"},
-];
-
+        {
+            id: 1,
+            year: 2018,
+            info: [
+                {id: 1, text: "Lorem ipsum. Non,eveniet!"},
+                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+            ]
+        },
+        {
+            id: 2,
+            year: 2019,
+            info: [
+                {id: 1, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit."},
+                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+            ]
+        },
+        {
+            id: 3,
+            year: 2020,
+            info: [
+                {id: 1, text: "Lorem ipsum, dolor  Non,eveniet!"},
+                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+            ]
+        },
+    ]
+;
 
 
 let Biography = (props) => {
@@ -32,17 +39,18 @@ let Biography = (props) => {
 
 
     const addTable = () => {
-        console.log("addTable")
+        let b = [...biography, {id: 4, year: 2000, info: []}];
+        setBiography(b)
     }
 
     const removeTable = () => {
-        let biographyDel = [...biography];
-        biographyDel.pop();
-        setBiography(biographyDel);
+        let b = [...biography];
+        b.pop();
+        setBiography(b)
 
     }
-    const onSort = () => {
-        console.log("onSort")
+    const onSort = (e) => {
+
     }
 
     return (
@@ -58,12 +66,18 @@ let Biography = (props) => {
                 </thead>
                 <tbody>
                 {biography.map((item) =>
-                    <TableItem
-                        key={item.id}
-                        id={item.id}
-                        year={item.year}
-                        text={item.text}
-                    />)}
+                    <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.year}</td>
+                        <td>
+                            {item.info.map((info)=>
+                            <div key={info.id}>
+                               {info.text}
+                            </div>
+                            )}
+                        </td>
+                    </tr>
+                )}
                 </tbody>
             </table>
 
@@ -71,14 +85,13 @@ let Biography = (props) => {
                 <button onClick={addTable}>Добавить</button>
                 <button onClick={removeTable}>Удалить</button>
             </div>
-
         </div>
 
     )
 }
 
 
-TableItem.propTypes = {
+Biography.propTypes = {
     id: PropTypes.number,
     year: PropTypes.number,
     text: PropTypes.string

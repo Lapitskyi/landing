@@ -2,10 +2,11 @@ let state = {
     header: {
         menu: [
             {id: 1, name: "Home", link: "/"},
-            {id: 2, name: "Order", link: "/order"},
-            {id: 3, name: "Portfolio", link: "/portfolio"},
-            {id: 4, name: "Login", link: "/login"},
-            {id: 5, name: "Registration", link: "/registration"}
+            {id: 2, name: "About", link: "/about"},
+            {id: 3, name: "Order", link: "/order"},
+            {id: 4, name: "Portfolio", link: "/portfolio"},
+            {id: 5, name: "Login", link: "/login"},
+            {id: 6, name: "Registration", link: "/registration"}
         ],
         social: [
             {id: 1, link: "mailto:mail@gmail.com", icon: "#email", alt: "email"},
@@ -50,7 +51,7 @@ let state = {
         }
     },
 
-    homePage: {
+    aboutPage: {
         title: "Lorem",
         suptitle: " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam,temporibus!",
         text: [

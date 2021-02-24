@@ -1,10 +1,10 @@
 import React from "react"
 import PropTypes from "prop-types";
 
-import "./About.scss"
+import "./AboutItem.scss"
 
 
-let About = (props) =>{
+let AboutItem = (props) =>{
 
     const {title, suptitle, text} = props.state;
 
@@ -29,10 +29,10 @@ let About = (props) =>{
     )
 }
 
-About.propTypes = {
+AboutItem.propTypes = {
     title: PropTypes.string,
     suptitle: PropTypes.string,
     text: PropTypes.string
 }
 
-export default About;
+export default AboutItem;
