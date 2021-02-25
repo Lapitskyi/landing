@@ -82,8 +82,8 @@ let Biography = (props) => {
             </table>
 
             <div className={s.btn__box}>
-                <button onClick={addTable}>Добавить</button>
-                <button onClick={removeTable}>Удалить</button>
+                <button className={s.btn} onClick={addTable}>Добавить</button>
+                <button className={s.btn} onClick={removeTable}>Удалить</button>
             </div>
         </div>
 

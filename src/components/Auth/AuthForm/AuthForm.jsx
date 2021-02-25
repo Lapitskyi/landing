@@ -1,35 +1,30 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-import InputItem from './InputItem/InputItem';
 import './AuthForm.scss';
 
 
 const AuthForm = (props) => {
 
-    let inputsArray = props.state.input.map((input) =>
-        <InputItem
-            key={input.id}
-            id={input.id}
-            label={input.label}
-            placeholder={input.placeholder}
-
-        />)
-
     return (
-
         <form className="form">
-            {inputsArray}
+            {props.auth.input.map((input) =>
+                <label className="form__label" key={input.id}>
+                    {input.label}
+                    <input className="form__input" type={input.type} placeholder={input.placeholder}/>
+                </label>
+            )}
 
-            <button className="form__btn btn" type="submit"> {props.state.btn} </button>
+            <button className="form__btn btn" type="submit"> {props.auth.btn} </button>
         </form>
 
     )
 };
 
-InputItem.propTypes = {
+AuthForm.propTypes = {
     id: PropTypes.string,
     label: PropTypes.string,
+    type: PropTypes.string,
     placeholder: PropTypes.string
 
 }

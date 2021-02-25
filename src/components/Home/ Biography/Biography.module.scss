@@ -37,12 +37,12 @@ td {
 }
 
 
-button{
+.btn{
   padding: 12px 30px;
   background-color: green;
 }
 
-button+button{
+.btn+.btn{
   margin-left: 50px;
   background-color: red;
 }

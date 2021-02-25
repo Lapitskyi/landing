@@ -6,9 +6,26 @@ import SocialItem from './SocalItem/SocialItem';
 
 import './Header.scss';
 
-const Header = (props) => {
 
-    let menuArray = props.state.menu.map((menu) =>
+let header = {
+    menu: [
+        {id: 1, name: "Home", link: "/"},
+        {id: 2, name: "About", link: "/about"},
+        {id: 3, name: "Order", link: "/order"},
+        {id: 4, name: "Portfolio", link: "/portfolio"},
+        {id: 5, name: "Login", link: "/login"},
+        {id: 6, name: "Registration", link: "/registration"}
+    ],
+    social: [
+        {id: 1, link: "mailto:mail@gmail.com", icon: "#email", alt: "email"},
+        {id: 2, link: "tel:80000000000", icon: "#phone", alt: "phone"},
+        {id: 3, link: "https://git-scm.com", icon: "#git", alt: "github"}
+    ]
+};
+
+
+const Header = (props) => {
+    let menuArray = header.menu.map((menu) =>
         <MenuItem
             key={menu.id}
             id={menu.id}
@@ -16,7 +33,7 @@ const Header = (props) => {
             link={menu.link}
         />)
 
-    let socialArray = props.state.social.map((social) =>
+    let socialArray = header.social.map((social) =>
         <SocialItem
             key={social.id}
             id={social.id}
@@ -48,21 +65,18 @@ const Header = (props) => {
 }
 
 
-
 MenuItem.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     link: PropTypes.string
 }
 
-SocialItem.propTypes={
+SocialItem.propTypes = {
     id: PropTypes.number,
     link: PropTypes.string,
     icon: PropTypes.string,
     alt: PropTypes.string,
 }
-
-
 
 
 export default Header;

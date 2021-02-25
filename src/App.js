@@ -14,19 +14,21 @@ import About from "./components/About/About";
 
 import {Route} from "react-router-dom"
 
+import LoginContainer from "./components/Auth/LoginContainer";
+
 const App = (props) => {
     return (
         <div className="app-wrapper">
-            <Header state={props.state.header} />
+            <Header  />
             <div className="content">
                 <div className="container">
                     <Route path='/' exact render={() => <Home />}/>
-                    <Route path='/about' render={() => <About state={props.state.aboutPage}/>}/>
+                    <Route path='/about' render={() => <About />}/>
                     <Route path='/order' render={() => <Order/>}/>
-                    <Route path='/portfolio' render={() => <Portfolio state={props.state.portfolioPage}/>}/>
-                    <Route path='/login' render={() => <Login state={props.state.formAuth.login}/>}/>
-                    <Route path='/registration' render={() => <Registration state={props.state.formAuth.registration}/>}/>
-                    <Route path='/reset' render={() => <Reset state={props.state.formAuth.reset}/>}/>
+                    <Route path='/portfolio' render={() => <Portfolio />}/>
+                    <Route path='/login' render={() => <LoginContainer />}/>
+                    <Route path='/registration' render={() => <Registration />}/>
+                    <Route path='/reset' render={() => <Reset />}/>
                 </div>
             </div>
             <Footer/>

@@ -1,30 +1,25 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-import LinksItem from "./LinksItem/LinksItem";
 
 import "./Links.scss"
+import {NavLink} from "react-router-dom";
 
 
 const Links = (props) => {
-
-    let LinkArray = props.state.link.map((link) =>
-        <LinksItem
-            key={link.id}
-            id={link.id}
-            title={link.title}
-            path={link.path}
-        />
-    )
-
     return (
         <ul className="auth-link__list">
-            {LinkArray}
+            {
+                props.auth.link.map((link) =>
+                    <li className="auth-link__list-item" key={link.id}>
+                        <NavLink className="auth-link__list-link" to={link.path}>{link.title}</NavLink>
+                    </li>
+                )}
         </ul>
     )
 }
 
-LinksItem.propTypes = {
+Links.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string,
     path: PropTypes.string

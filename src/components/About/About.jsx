@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './About.scss';
-import Reviews from "./Rewievs/Reviews";
-import AboutItem from "./About/AboutItem";
+
+import ReviewsContainer from "./Rewievs/ReviewsContainer";
+import AboutItemContainer from "./About/AboutItemContainer";
 
 
 
@@ -14,11 +14,11 @@ const About = (props) => {
     return (
         <>
             <section>
-                <AboutItem state={props.state}/>
+                <AboutItemContainer />
             </section>
 
             <section>
-                <Reviews/>
+                <ReviewsContainer/>
             </section>
 
         </>

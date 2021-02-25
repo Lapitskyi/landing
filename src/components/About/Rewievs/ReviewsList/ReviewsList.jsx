@@ -1,25 +1,29 @@
 import React from "react"
-import ReviewsItem from "./ReviewsItem/ReviewsItem";
-
 
 import "../Reviews.scss"
+import PropTypes from "prop-types";
 
 
 let ReviewsList = (props) => {
 
-    let itemArray = props.reviews.map((item, index) =>
-        <ReviewsItem
-            key={index.toString()}
-            img={item.img}
-            text={item.text}
-        />
-    )
-
     return (
-            <ul className="reviews__list ">
-                {itemArray}
-            </ul>
+        <ul className="reviews__list ">
+            {
+                props.reviews.map((item) =>
+                    <li className="reviews__list-item" key={item.id}>
+                        <img className="reviews__list-img" src={item.img} alt="icon user"/>
+                        <p className="reviews__list-text">{item.text}</p>
+                    </li>
+                )
+            }
+        </ul>
     )
+}
+
+ReviewsList.propTypes = {
+    id: PropTypes.number,
+    img: PropTypes.string,
+    text: PropTypes.string
 }
 
 
