@@ -7,39 +7,44 @@ import s from "./Biography.module.scss"
 let biographyArray = [
         {
             id: 1,
-            year: 2018,
+            name: "FullName1",
             info: [
-                {id: 1, text: "Lorem ipsum. Non,eveniet!"},
-                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+                {id: "address", text: "Lorem ipsum. Non,eveniet!"},
+                {id: "phone", text: "8(050)000-00-00"},
+                {id: "email", text: "mail@mail.com"}
             ]
         },
         {
             id: 2,
-            year: 2019,
+            name: "FullName2",
             info: [
-                {id: 1, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit."},
-                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+                {id: "address", text: "Lorem ipsum. Non,eveniet!"},
+                {id: "phone", text: "8(050)000-00-00"},
+                {id: "email", text: "mail@mail.com"}
             ]
         },
         {
             id: 3,
-            year: 2020,
+            name: "FullName3",
             info: [
-                {id: 1, text: "Lorem ipsum, dolor  Non,eveniet!"},
-                {id: 2, text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,eveniet!"}
+                {id: "address", text: "Lorem ipsum. Non,eveniet!"},
+                {id: "phone", text: "8(050)000-00-00"},
+                {id: "email", text: "mail@mail.com"}
             ]
         },
+
     ]
 ;
 
 
 let Biography = (props) => {
 
-    let [biography, setBiography] = useState(biographyArray);
+    const [biography, setBiography] = useState(biographyArray);
+
 
 
     const addTable = () => {
-        let b = [...biography, {id: 4, year: 2000, info: []}];
+        let b = [...biography, {id: "", name: "", info: [{id: "", text: ""}, {id: "", text: ""}, {id: "", text: ""}]}];
         setBiography(b)
     }
 
@@ -49,33 +54,35 @@ let Biography = (props) => {
         setBiography(b)
 
     }
-    const onSort = (e) => {
+    const onSort = () => {
+
 
     }
 
     return (
         <div className={s.inner}>
             <table>
-                <caption>Биография</caption>
+                <caption>Biography</caption>
                 <thead>
                 <tr>
-                    <th>№ п/п</th>
-                    <th onClick={onSort}>Год</th>
-                    <th>Информация</th>
+                    <th rowSpan="2" onClick={onSort}>№</th>
+                    <th rowSpan="2">FIO</th>
+                    <th colSpan="3">Information</th>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>Phone</td>
+                    <td>Email</td>
                 </tr>
                 </thead>
                 <tbody>
                 {biography.map((item) =>
                     <tr key={item.id}>
                         <td>{item.id}</td>
-                        <td>{item.year}</td>
-                        <td>
-                            {item.info.map((info)=>
-                            <div key={info.id}>
-                               {info.text}
-                            </div>
-                            )}
-                        </td>
+                        <td>{item.name}</td>
+                        {item.info.map((info) =>
+                            <td key={info.id}>{info.text}</td>
+                        )}
                     </tr>
                 )}
                 </tbody>

@@ -4,7 +4,10 @@ let RESET = 'RESET';
 
 
 let initialState = {
-    login: { },
+    login:[
+        {id:"email", input: ""},
+        {id:"password", input: ""}
+    ] ,
 
     registration: {},
 

@@ -4,7 +4,6 @@
 }
 
 table {
-
   border: 1px solid grey;
   border-collapse: collapse;
 
@@ -15,17 +14,17 @@ caption{
 }
 
 th {
-  border: 1px solid grey;
   padding: 10px;
+  border: 1px solid #A9E2CC;
 }
+
 th:last-child{
   width: 500px;
 }
-
 td {
-  border: 1px solid grey;
-  padding: 10px;
-
+  font-size: 0.8em;
+  padding: 5px 7px;
+  border: 1px solid #A9E2CC;
 }
 
 

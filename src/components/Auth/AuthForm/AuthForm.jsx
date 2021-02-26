@@ -6,12 +6,18 @@ import './AuthForm.scss';
 
 const AuthForm = (props) => {
 
+    let onInputText =()=>{};
+
     return (
         <form className="form">
             {props.auth.input.map((input) =>
                 <label className="form__label" key={input.id}>
                     {input.label}
-                    <input className="form__input" type={input.type} placeholder={input.placeholder}/>
+                    <input className="form__input"
+                           type={input.type}
+                           placeholder={input.placeholder}
+                           onChange={onInputText}
+                           value=""/>
                 </label>
             )}
 
@@ -19,7 +25,7 @@ const AuthForm = (props) => {
         </form>
 
     )
-};
+}
 
 AuthForm.propTypes = {
     id: PropTypes.string,
