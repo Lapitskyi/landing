@@ -1,8 +1,7 @@
 import React, {useState} from "react"
-import PropTypes from "prop-types";
 
 import s from "./Biography.module.scss"
-import './FormBIography.scss'
+
 
 
 let biographyArray = [
@@ -45,15 +44,16 @@ let Biography = (props) => {
 
     const onNewText = (e, id) => {
         setBiography([
-                ...biography.map((item) => {
-                        if (item.id === id) {
-                            return {...item, name: addNewText}
-                        }
-                        return item
+            ...biography.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item, name: addNewText
                     }
-                )
-            ]
-        )
+                }
+                return item
+            })
+        ]);
+        // setAddNewText("");
         console.log(id)
     }
 
@@ -67,18 +67,18 @@ let Biography = (props) => {
                 {id: "3", text: ""}
             ]
         };
-        let b = [...biography, newBiography]
-        setBiography(b)
+        setBiography([
+            ...biography, newBiography
+        ])
 
         console.log("Старый обьект", biography)
-        console.log("Новый обьект", b)
     }
 
     const removeTable = () => {
+
         let b = [...biography];
         b.pop();
         setBiography(b)
-
         console.log("Старый обьект", biography)
         console.log("Новый обьект", b)
 
@@ -87,7 +87,6 @@ let Biography = (props) => {
         let s = [...biography]
         s.sort((a, b) => a.id > b.id ? -1 : 1)
         setBiography(s)
-
 
         console.log("Старый обьект", biography)
         console.log("Новый обьект", s)
@@ -132,7 +131,7 @@ let Biography = (props) => {
                                     type="text"
                                     placeholder=""
                                     value={item.name}
-                                    onChange={(e) => onNewText(setAddNewText(e.target.value, item.id))}
+                                    onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id))}
                                 />
                             </td>
                             {item.info.map((info) =>
@@ -146,31 +145,18 @@ let Biography = (props) => {
                                 </td>
                             )}
                         </tr>
-                    )
-                }
+                    )}
                 </tbody>
             </table>
 
 
             <div className={s.btn__box}>
-
-
-                <button className={s.btn} onClick={() => {
-                    addTable(props.index)
-                }}>Добавить
-                </button>
+                <button className={s.btn} onClick={addTable}>Добавить</button>
                 <button className={s.btn} onClick={removeTable}>Удалить</button>
             </div>
         </div>
-
     )
 }
 
-
-Biography.propTypes = {
-    id: PropTypes.number,
-    year: PropTypes.number,
-    text: PropTypes.string
-}
 
 export default Biography;
