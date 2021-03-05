@@ -53,11 +53,18 @@ let Biography = (props) => {
 
 
     const onNewText = (e, id) => {
-        let text = addNewText
-
-
+        setBiography([
+            ...biography.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item, name: addNewText
+                    }
+                }
+                return item
+            })
+        ]);
         // setAddNewText("");
-        console.log(id)
+
     }
 
     const addTable = () => {
@@ -145,14 +152,14 @@ let Biography = (props) => {
 
                             {editMode &&
                             <>
-                                <td   autoFocus={true}
-                                      onBlur={deactivateEditMode}>
+                                <td autoFocus={true}
+                                    onBlur={deactivateEditMode}>
                                     <input
                                         type="text"
                                         placeholder=""
                                         value={item.name}
 
-                                        onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id))}
+                                        onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id), (item.name))}
                                     />
                                 </td>
                                 {item.info.map((info) =>
