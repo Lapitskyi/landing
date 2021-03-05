@@ -3,7 +3,6 @@ import React, {useState} from "react"
 import s from "./Biography.module.scss"
 
 
-
 let biographyArray = [
         {
             id: 1,
@@ -41,18 +40,22 @@ let Biography = (props) => {
 
     const [biography, setBiography] = useState(biographyArray);
     const [addNewText, setAddNewText] = useState('');
+    const [editMode, setEdinMode] = useState(false);
+
+
+    const activateEditMode = () => {
+        setEdinMode(true);
+    }
+
+    const deactivateEditMode = () => {
+        setEdinMode(false);
+    }
+
 
     const onNewText = (e, id) => {
-        setBiography([
-            ...biography.map((item) => {
-                if (item.id === id) {
-                    return {
-                        ...item, name: addNewText
-                    }
-                }
-                return item
-            })
-        ]);
+        let text = addNewText
+
+
         // setAddNewText("");
         console.log(id)
     }
@@ -126,24 +129,45 @@ let Biography = (props) => {
                     biography.map((item) =>
                         <tr key={item.id}>
                             <td> {item.id} </td>
-                            <td>
-                                <input
-                                    type="text"
-                                    placeholder=""
-                                    value={item.name}
-                                    onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id))}
-                                />
-                            </td>
-                            {item.info.map((info) =>
-                                <td key={info.id}>
+
+                            {!editMode &&
+                            <>
+                                <td onDoubleClick={activateEditMode}>
+                                    {item.name}
+                                </td>
+                                {item.info.map((info) =>
+                                    <td key={info.id} onDoubleClick={activateEditMode}>
+                                        {info.text}
+                                    </td>
+                                )}
+                            </>
+                            }
+
+                            {editMode &&
+                            <>
+                                <td   autoFocus={true}
+                                      onBlur={deactivateEditMode}>
                                     <input
                                         type="text"
                                         placeholder=""
-                                        value={info.text}
-                                        onChange={onNewText}
+                                        value={item.name}
+
+                                        onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id))}
                                     />
                                 </td>
-                            )}
+                                {item.info.map((info) =>
+                                    <td key={info.id}>
+                                        <input
+                                            type="text"
+                                            placeholder=""
+                                            value={info.text}
+                                            autoFocus={true}
+                                            onChange={onNewText}
+                                        />
+                                    </td>
+                                )}
+                            </>
+                            }
                         </tr>
                     )}
                 </tbody>
