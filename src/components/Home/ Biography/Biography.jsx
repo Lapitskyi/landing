@@ -9,6 +9,7 @@ import TableHeader from "./TableHeader/TableHeader";
 let biographyArray = [
         {
             id: 1,
+            done: false,
             name: "FullName1",
             info: [
                 {id: 1, text: "Text_1"},
@@ -18,6 +19,7 @@ let biographyArray = [
         },
         {
             id: 2,
+            done: false,
             name: "FullName2",
             info: [
                 {id: 1, text: "Text_2"},
@@ -25,25 +27,6 @@ let biographyArray = [
                 {id: 3, text: "2_mail@mail.com"}
             ]
         },
-        {
-            id: 3,
-            name: "FullName3",
-            info: [
-                {id: 1, text: "Text_3"},
-                {id: 2, text: "8(333)333-33-33"},
-                {id: 3, text: "3_mail@mail.com"}
-            ]
-        },
-        {
-            id: 4,
-            name: "FullName4",
-            info: [
-                {id: 1, text: "Text_4"},
-                {id: 2, text: "8(444)444-44-44"},
-                {id: 3, text: "4_mail@mail.com"}
-            ]
-        },
-
     ]
 ;
 
@@ -64,6 +47,23 @@ let Biography = (props) => {
         setEdinMode(false);
     }
 
+    const onCheckedChange = (id) => {
+        setBiography([
+            ...biography.map((item) => {
+                if (item.id === id) {
+                    if (item.done === true) {
+                        return {...item, done: false}
+                    } else if (item.id === id) {
+                        if (item.done === false) {
+                            return {...item, done: true}
+                        }
+                    }
+                }
+                return item
+            })
+        ]);
+    }
+
 
     const updateText = (id, addNewText) => {
         // setBiography([
@@ -82,6 +82,7 @@ let Biography = (props) => {
         let newBiography = {
             id: biography.length + 1,
             name: "",
+            done: false,
             info: [
                 {id: "1", text: ""},
                 {id: "2", text: ""},
@@ -93,12 +94,10 @@ let Biography = (props) => {
         ])
     }
 
-    const removeTable = () => {
-        let b = [...biography];
-        b.pop();
-        setBiography(b)
-        console.log("Старый обьект", biography)
-        console.log("Новый обьект", b)
+    const deleteItemTable = () => {
+        setBiography([
+            ...biography.filter((item) => item.done === false)
+        ])
 
     }
     const onSort = () => {
@@ -112,34 +111,39 @@ let Biography = (props) => {
         <div className={s.inner}>
             <table>
                 <thead>
-                    <TableHeader
+                <TableHeader
                     onSort={onSort}
-                    />
+                />
                 </thead>
 
                 <tbody>
                 {!editMode &&
-                    biography.map((item) =>
-                        <TableItem
-                            activateEditMode={activateEditMode}
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            info={item.info}
-                        />
-                    )
+                biography.map((item) =>
+                    <TableItem
+                        activateEditMode={activateEditMode}
+                        onCheckedChange={onCheckedChange}
+                        key={item.id}
+                        done={item.done}
+                        id={item.id}
+                        name={item.name}
+                        info={item.info}
+                    />
+                )
                 }
                 {editMode &&
-                    biography.map((item) =>
-                        <TableItemInput
-                            deactivateEditMode={deactivateEditMode}
-                            setAddText={setAddText}
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            info={item.info}
-                        />
-                    )
+                biography.map((item) =>
+                    <TableItemInput
+                        deactivateEditMode={deactivateEditMode}
+                        onCheckedChange={onCheckedChange}
+
+                        setAddText={setAddText}
+                        key={item.id}
+                        done={item.done}
+                        id={item.id}
+                        name={item.name}
+                        info={item.info}
+                    />
+                )
                 }
 
                 </tbody>
@@ -148,7 +152,7 @@ let Biography = (props) => {
 
             <div className={s.btn__box}>
                 <button className={s.btn} onClick={addTable}>Добавить</button>
-                <button className={s.btn} onClick={removeTable}>Удалить</button>
+                <button className={s.btn} onClick={(e) => {deleteItemTable(e)}}>Удалить</button>
             </div>
         </div>
     )

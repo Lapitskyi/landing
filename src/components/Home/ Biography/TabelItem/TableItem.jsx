@@ -2,13 +2,24 @@ import React from 'react';
 
 
 const TableItem = (props) => {
-    const {id, name, info} = props;
+
 
     return (
-        <tr onDoubleClick={(e)=>{props.activateEditMode(id)}}>
-            <td> {id}</td>
-            <td> {name}</td>
-            {info.map((info) =>
+        <tr onDoubleClick={(e) => {
+            props.activateEditMode(props.id)
+        }}>
+            <td>
+                <input type="checkbox"
+                       checked={props.done}
+                       onChange={() => {
+                           props.onCheckedChange(props.id)
+                       }}
+                />
+
+                {props.id}
+            </td>
+            <td> {props.name}</td>
+            {props.info.map((info) =>
                 <td key={info.id}>
                     {info.text}
                 </td>

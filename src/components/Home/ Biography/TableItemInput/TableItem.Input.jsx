@@ -6,7 +6,14 @@ const TableItemInput = (props) => {
 
     return (
         <tr onDoubleClick={props.deactivateEditMode}>
-            <td> {id}</td>
+            <td>
+                <input type="checkbox"
+                       checked={props.done}
+                       onChange={() => {
+                           props.onCheckedChange(props.id)
+                       }}
+                />
+                {id}</td>
             <td>
                 <input
                     type="text"
