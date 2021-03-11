@@ -65,17 +65,18 @@ let Biography = (props) => {
     }
 
 
-    const updateText = (id, addNewText) => {
-        // setBiography([
-        //     ...biography.map((item) => {
-        //         if (item.id === id) {
-        //             return {
-        //                 ...item, name:addNewText
-        //             }
-        //         }
-        //         return item
-        //     })
-        // ]);
+    const updateText = (id) => {
+
+        setBiography([
+            ...biography.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item, name: addText
+                    }
+                }
+                return item
+            })
+        ]);
     }
 
     const addTable = () => {
@@ -152,7 +153,10 @@ let Biography = (props) => {
 
             <div className={s.btn__box}>
                 <button className={s.btn} onClick={addTable}>Добавить</button>
-                <button className={s.btn} onClick={(e) => {deleteItemTable(e)}}>Удалить</button>
+                <button className={s.btn} onClick={(e) => {
+                    deleteItemTable(e)
+                }}>Удалить
+                </button>
             </div>
         </div>
     )
