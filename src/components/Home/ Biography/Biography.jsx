@@ -1,6 +1,9 @@
 import React, {useState} from "react"
 
 import s from "./Biography.module.scss"
+import TableItem from "./TabelItem/TableItem";
+import TableItemInput from "./TableItemInput/TableItem.Input";
+import TableHeader from "./TableHeader/TableHeader";
 
 
 let biographyArray = [
@@ -31,6 +34,15 @@ let biographyArray = [
                 {id: 3, text: "3_mail@mail.com"}
             ]
         },
+        {
+            id: 4,
+            name: "FullName4",
+            info: [
+                {id: 1, text: "Text_4"},
+                {id: 2, text: "8(444)444-44-44"},
+                {id: 3, text: "4_mail@mail.com"}
+            ]
+        },
 
     ]
 ;
@@ -39,32 +51,31 @@ let biographyArray = [
 let Biography = (props) => {
 
     const [biography, setBiography] = useState(biographyArray);
-    const [addNewText, setAddNewText] = useState('');
+    const [addText, setAddText] = useState('');
     const [editMode, setEdinMode] = useState(false);
 
 
-    const activateEditMode = () => {
+    const activateEditMode = (id) => {
         setEdinMode(true);
+        updateText(id)
     }
 
-    const deactivateEditMode = () => {
+    const deactivateEditMode = (id) => {
         setEdinMode(false);
     }
 
 
-    const onNewText = (e, id) => {
-        setBiography([
-            ...biography.map((item) => {
-                if (item.id === id) {
-                    return {
-                        ...item, name: addNewText
-                    }
-                }
-                return item
-            })
-        ]);
-        // setAddNewText("");
-
+    const updateText = (id, addNewText) => {
+        // setBiography([
+        //     ...biography.map((item) => {
+        //         if (item.id === id) {
+        //             return {
+        //                 ...item, name:addNewText
+        //             }
+        //         }
+        //         return item
+        //     })
+        // ]);
     }
 
     const addTable = () => {
@@ -80,12 +91,9 @@ let Biography = (props) => {
         setBiography([
             ...biography, newBiography
         ])
-
-        console.log("Старый обьект", biography)
     }
 
     const removeTable = () => {
-
         let b = [...biography];
         b.pop();
         setBiography(b)
@@ -94,89 +102,46 @@ let Biography = (props) => {
 
     }
     const onSort = () => {
-        let s = [...biography]
-        s.sort((a, b) => a.id > b.id ? -1 : 1)
-        setBiography(s)
-
-        console.log("Старый обьект", biography)
-        console.log("Новый обьект", s)
+        setBiography([
+            ...biography.sort((a, b) => a.id - b.id ? -1 : 1)
+        ])
     }
 
 
     return (
         <div className={s.inner}>
             <table>
-                <caption>Biography</caption>
                 <thead>
-                <tr>
-                    <th rowSpan="2" onClick={() => {
-                        onSort('id')
-                    }}>№
-                    </th>
-                    <th rowSpan="2">FIO</th>
-                    <th colSpan="3">Information</th>
-                </tr>
-                <tr>
-                    <td onClick={() => {
-                        onSort('address')
-                    }}>Address
-                    </td>
-                    <td onClick={() => {
-                        onSort('phone')
-                    }}>Phone
-                    </td>
-                    <td onClick={() => {
-                        onSort('email')
-                    }}>Email
-                    </td>
-                </tr>
+                    <TableHeader
+                    onSort={onSort}
+                    />
                 </thead>
+
                 <tbody>
-                {
+                {!editMode &&
                     biography.map((item) =>
-                        <tr key={item.id}>
-                            <td> {item.id} </td>
+                        <TableItem
+                            activateEditMode={activateEditMode}
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            info={item.info}
+                        />
+                    )
+                }
+                {editMode &&
+                    biography.map((item) =>
+                        <TableItemInput
+                            deactivateEditMode={deactivateEditMode}
+                            setAddText={setAddText}
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            info={item.info}
+                        />
+                    )
+                }
 
-                            {!editMode &&
-                            <>
-                                <td onDoubleClick={activateEditMode}>
-                                    {item.name}
-                                </td>
-                                {item.info.map((info) =>
-                                    <td key={info.id} onDoubleClick={activateEditMode}>
-                                        {info.text}
-                                    </td>
-                                )}
-                            </>
-                            }
-
-                            {editMode &&
-                            <>
-                                <td autoFocus={true}
-                                    onBlur={deactivateEditMode}>
-                                    <input
-                                        type="text"
-                                        placeholder=""
-                                        value={item.name}
-
-                                        onChange={(e) => onNewText(setAddNewText(e.target.value), (item.id), (item.name))}
-                                    />
-                                </td>
-                                {item.info.map((info) =>
-                                    <td key={info.id}>
-                                        <input
-                                            type="text"
-                                            placeholder=""
-                                            value={info.text}
-                                            autoFocus={true}
-                                            onChange={onNewText}
-                                        />
-                                    </td>
-                                )}
-                            </>
-                            }
-                        </tr>
-                    )}
                 </tbody>
             </table>
 
