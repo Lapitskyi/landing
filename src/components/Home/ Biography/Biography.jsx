@@ -10,7 +10,7 @@ let biographyArray = [
         {
             id: 1,
             done: false,
-            name: "FullName1",
+            name: "a",
             info: [
                 {id: 1, text: "Text_1"},
                 {id: 2, text: "8(111)111-11-11"},
@@ -20,13 +20,23 @@ let biographyArray = [
         {
             id: 2,
             done: false,
-            name: "FullName2",
+            name: "g",
             info: [
                 {id: 1, text: "Text_2"},
                 {id: 2, text: "8(222)222-22-22"},
                 {id: 3, text: "2_mail@mail.com"}
             ]
         },
+    {
+        id: 3,
+        done: false,
+        name: "b",
+        info: [
+            {id: 1, text: "Text_1"},
+            {id: 2, text: "8(111)111-11-11"},
+            {id: 3, text: "1_mail@mail.com"}
+        ]
+    },
     ]
 ;
 
@@ -66,7 +76,6 @@ let Biography = (props) => {
 
 
     const updateText = (id) => {
-
         setBiography([
             ...biography.map((item) => {
                 if (item.id === id) {
@@ -101,9 +110,16 @@ let Biography = (props) => {
         ])
 
     }
-    const onSort = () => {
+    const onSort = (text, e) => {
+
         setBiography([
-            ...biography.sort((a, b) => a.id - b.id ? -1 : 1)
+            ...biography.sort((a, b) => {
+                if (text === 'id') {
+                    return a.id - b.id ? -1 : 1
+                } else if (text === 'name') {
+                    return a.name < b.name? -1 :1 ;
+                }
+            })
         ])
     }
 

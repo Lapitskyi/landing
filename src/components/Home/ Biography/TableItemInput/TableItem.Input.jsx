@@ -13,7 +13,8 @@ const TableItemInput = (props) => {
                            props.onCheckedChange(props.id)
                        }}
                 />
-                {id}</td>
+                {id}
+            </td>
             <td>
                 <input
                     type="text"
