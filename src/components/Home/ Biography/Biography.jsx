@@ -10,9 +10,12 @@ let biographyArray = [
         {
             id: 1,
             done: false,
-            name: "a",
+            fullName: "Давосу Сиворту",
             info: [
-                {id: 1, text: "Text_1"},
+                {
+                    id: 1,
+                    text: "Десница короля Станниса Баратеона, советник Короля Севера - Джона Сноу (начиная с 6 сезона сериала"
+                },
                 {id: 2, text: "8(111)111-11-11"},
                 {id: 3, text: "1_mail@mail.com"}
             ]
@@ -20,23 +23,43 @@ let biographyArray = [
         {
             id: 2,
             done: false,
-            name: "g",
+            fullName: "Джон Сноу",
             info: [
-                {id: 1, text: "Text_2"},
+                {
+                    id: 1, text: "Лорд-командующий Ночного Дозора\n" +
+                        "Лорд Винтерфелла и Король Севера"
+                },
                 {id: 2, text: "8(222)222-22-22"},
                 {id: 3, text: "2_mail@mail.com"}
             ]
         },
-    {
-        id: 3,
-        done: false,
-        name: "b",
-        info: [
-            {id: 1, text: "Text_1"},
-            {id: 2, text: "8(111)111-11-11"},
-            {id: 3, text: "1_mail@mail.com"}
-        ]
-    },
+        {
+            id: 3,
+            fullName: "Сандора Клигана",
+            done: false,
+            info: [
+                {
+                    id: "1",
+                    text: "телохранитель Джоффри Баратеона (до событий книги «Буря мечей» и до третьего сезона сериала)"
+                },
+                {id: "2", text: ""},
+                {id: "3", text: ""}
+            ]
+        },
+        {
+            id: 4,
+            fullName: "Тирион Ланнистер",
+            done: false,
+            info: [
+                {
+                    id: "1",
+                    text: "Десница Короля (в «Битве Королей»), Мастер над монетой (в «Буре мечей»), советник Дейенерис Таргариен (в 5-м сезоне сериала «Игра престолов»), Десница Королевы Дейенерис Таргариен (в 6-м сезоне сериала), Десница короля Брандона Старка (в 8-м сезоне сериала)"
+                },
+                {id: "2", text: ""},
+                {id: "3", text: ""}
+            ]
+        },
+
     ]
 ;
 
@@ -44,13 +67,11 @@ let biographyArray = [
 let Biography = (props) => {
 
     const [biography, setBiography] = useState(biographyArray);
-    const [addText, setAddText] = useState('');
     const [editMode, setEdinMode] = useState(false);
 
 
     const activateEditMode = (id) => {
         setEdinMode(true);
-        updateText(id)
     }
 
     const deactivateEditMode = (id) => {
@@ -74,24 +95,25 @@ let Biography = (props) => {
         ]);
     }
 
-
-    const updateText = (id) => {
+    const updateText = (text, id, idInfo) => {
+        console.log(text, id, idInfo)
         setBiography([
             ...biography.map((item) => {
                 if (item.id === id) {
-                    return {
-                        ...item, name: addText
-                    }
+                    return {...item, fullName: text}
                 }
-                return item
-            })
+
+
+                return item;
+            }),
         ]);
     }
 
-    const addTable = () => {
+    const addTable = (id) => {
+
         let newBiography = {
             id: biography.length + 1,
-            name: "",
+            fullName: "",
             done: false,
             info: [
                 {id: "1", text: ""},
@@ -111,13 +133,12 @@ let Biography = (props) => {
 
     }
     const onSort = (text, e) => {
-
         setBiography([
             ...biography.sort((a, b) => {
                 if (text === 'id') {
                     return a.id - b.id ? -1 : 1
-                } else if (text === 'name') {
-                    return a.name < b.name? -1 :1 ;
+                } else if (text === 'fullName') {
+                    return a.fullName > b.fullName ? -1 : 1;
                 }
             })
         ])
@@ -142,7 +163,7 @@ let Biography = (props) => {
                         key={item.id}
                         done={item.done}
                         id={item.id}
-                        name={item.name}
+                        fullName={item.fullName}
                         info={item.info}
                     />
                 )
@@ -152,12 +173,12 @@ let Biography = (props) => {
                     <TableItemInput
                         deactivateEditMode={deactivateEditMode}
                         onCheckedChange={onCheckedChange}
+                        updateText={updateText}
 
-                        setAddText={setAddText}
                         key={item.id}
                         done={item.done}
                         id={item.id}
-                        name={item.name}
+                        fullName={item.fullName}
                         info={item.info}
                     />
                 )
@@ -168,7 +189,10 @@ let Biography = (props) => {
 
 
             <div className={s.btn__box}>
-                <button className={s.btn} onClick={addTable}>Добавить</button>
+                <button className={s.btn} onClick={() => {
+                    addTable()
+                }}>Добавить
+                </button>
                 <button className={s.btn} onClick={(e) => {
                     deleteItemTable(e)
                 }}>Удалить

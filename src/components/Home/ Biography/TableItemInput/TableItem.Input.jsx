@@ -2,13 +2,13 @@ import React from 'react';
 
 
 const TableItemInput = (props) => {
-    const {id, name, info} = props;
+    const {id, fullName, info, done} = props;
 
     return (
         <tr onDoubleClick={props.deactivateEditMode}>
             <td>
                 <input type="checkbox"
-                       checked={props.done}
+                       checked={done}
                        onChange={() => {
                            props.onCheckedChange(props.id)
                        }}
@@ -18,10 +18,10 @@ const TableItemInput = (props) => {
             <td>
                 <input
                     type="text"
-                    placeholder=""
-                    value={name}
+                    placeholder="fullName"
+                    value={fullName}
                     onChange={(e) => {
-                        props.setAddText(e.target.value)
+                        props.updateText(e.target.value, props.id)
                     }}
                 />
             </td>
@@ -32,7 +32,7 @@ const TableItemInput = (props) => {
                         placeholder=""
                         value={info.text}
                         onChange={(e) => {
-                            props.setAddText(e.target.value)
+                            props.updateText(e.target.value, props.id, info.id)
                         }}
                     />
                 </td>

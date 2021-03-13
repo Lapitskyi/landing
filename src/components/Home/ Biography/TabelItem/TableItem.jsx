@@ -18,7 +18,7 @@ const TableItem = (props) => {
 
                 {props.id}
             </td>
-            <td> {props.name}</td>
+            <td> {props.fullName}</td>
             {props.info.map((info) =>
                 <td key={info.id}>
                     {info.text}

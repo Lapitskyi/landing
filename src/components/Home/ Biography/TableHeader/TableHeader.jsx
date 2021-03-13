@@ -14,13 +14,13 @@ const TableHeader = (props) => {
                 </th>
                 <th>
                     <div className={s.table__headerText}>FIO</div>
-                    <button className={s.table__headerBtn} onClick={(e)=>{props.onSort('name',e)}}>
+                    <button className={s.table__headerBtn} onClick={(e)=>{props.onSort('fullName',e)}}>
                         <img className={s.table__headerBtnIcon} src={arrows} alt="arrows"/>
                     </button>
                 </th>
                 <th>
-                    <div className={s.table__headerText}>Address</div>
-                    <button className={s.table__headerBtn} onClick={(e)=>{props.onSort('address',e)}}>
+                    <div className={s.table__headerText}>Position</div>
+                    <button className={s.table__headerBtn} onClick={(e)=>{props.onSort('position',e)}}>
                         <img className={s.table__headerBtnIcon} src={arrows} alt="arrows"/>
                     </button>
                 </th>
