@@ -13,11 +13,11 @@ let biographyArray = [
             fullName: "Давосу Сиворту",
             info: [
                 {
-                    id: 1,
+                    id: "text",
                     text: "Десница короля Станниса Баратеона, советник Короля Севера - Джона Сноу (начиная с 6 сезона сериала"
                 },
-                {id: 2, text: "8(111)111-11-11"},
-                {id: 3, text: "1_mail@mail.com"}
+                {id: "phone", text: "8(111)111-11-11"},
+                {id: "email", text: "1_mail@mail.com"}
             ]
         },
         {
@@ -26,11 +26,11 @@ let biographyArray = [
             fullName: "Джон Сноу",
             info: [
                 {
-                    id: 1, text: "Лорд-командующий Ночного Дозора\n" +
+                    id: "text", text: "Лорд-командующий Ночного Дозора\n" +
                         "Лорд Винтерфелла и Король Севера"
                 },
-                {id: 2, text: "8(222)222-22-22"},
-                {id: 3, text: "2_mail@mail.com"}
+                {id: 'phone', text: "8(222)222-22-22"},
+                {id: 'email', text: "2_mail@mail.com"}
             ]
         },
         {
@@ -39,11 +39,11 @@ let biographyArray = [
             done: false,
             info: [
                 {
-                    id: "1",
+                    id: "text",
                     text: "телохранитель Джоффри Баратеона (до событий книги «Буря мечей» и до третьего сезона сериала)"
                 },
-                {id: "2", text: ""},
-                {id: "3", text: ""}
+                {id: "phone", text: ""},
+                {id: "email", text: ""}
             ]
         },
         {
@@ -52,11 +52,11 @@ let biographyArray = [
             done: false,
             info: [
                 {
-                    id: "1",
+                    id: "text",
                     text: "Десница Короля (в «Битве Королей»), Мастер над монетой (в «Буре мечей»), советник Дейенерис Таргариен (в 5-м сезоне сериала «Игра престолов»), Десница Королевы Дейенерис Таргариен (в 6-м сезоне сериала), Десница короля Брандона Старка (в 8-м сезоне сериала)"
                 },
-                {id: "2", text: ""},
-                {id: "3", text: ""}
+                {id: "phone", text: ""},
+                {id: "email", text: ""}
             ]
         },
 
@@ -102,8 +102,12 @@ let Biography = (props) => {
                 if (item.id === id) {
                     return {...item, fullName: text}
                 }
-
-
+                item.info.map((info) => {
+                    if (info.id === idInfo) {
+                        return {...info, text:text}
+                    }
+                    return info
+                })
                 return item;
             }),
         ]);
@@ -116,9 +120,9 @@ let Biography = (props) => {
             fullName: "",
             done: false,
             info: [
-                {id: "1", text: ""},
-                {id: "2", text: ""},
-                {id: "3", text: ""}
+                {id: "text", text: ""},
+                {id: "phone", text: ""},
+                {id: "email", text: ""}
             ]
         };
         setBiography([

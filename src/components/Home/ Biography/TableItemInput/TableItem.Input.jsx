@@ -32,7 +32,7 @@ const TableItemInput = (props) => {
                         placeholder=""
                         value={info.text}
                         onChange={(e) => {
-                            props.updateText(e.target.value, props.id, info.id)
+                            props.updateText(e.target.value,  info.id)
                         }}
                     />
                 </td>
