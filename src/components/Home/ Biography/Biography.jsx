@@ -142,8 +142,10 @@ let Biography = (props) => {
                 if (text === 'id') {
                     return a.id - b.id ? -1 : 1
                 } else if (text === 'fullName') {
-                    return a.fullName > b.fullName ? -1 : 1;
+                    return a.fullName > b.fullName ? -1 : 1 || a.fullName < b.fullName ? -1 : 1 ;
+
                 }
+
             })
         ])
     }
