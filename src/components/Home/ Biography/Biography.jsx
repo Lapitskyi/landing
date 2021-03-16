@@ -1,8 +1,7 @@
 import React, {useState} from "react"
 
 import s from "./Biography.module.scss"
-import TableItem from "./TabelItem/TableItem";
-import TableItemInput from "./TableItemInput/TableItem.Input";
+
 import TableHeader from "./TableHeader/TableHeader";
 
 
@@ -95,16 +94,16 @@ let Biography = (props) => {
         ]);
     }
 
-    const updateText = (text, id, idInfo) => {
-        console.log(text, id, idInfo)
+    const updateText = (text, id) => {
+        console.log(text, id)
         setBiography([
             ...biography.map((item) => {
                 if (item.id === id) {
                     return {...item, fullName: text}
                 }
                 item.info.map((info) => {
-                    if (info.id === idInfo) {
-                        return {...info, text:text}
+                    if (info.id === id) {
+                        return {...info, text: text}
                     }
                     return info
                 })
@@ -114,7 +113,6 @@ let Biography = (props) => {
     }
 
     const addTable = (id) => {
-
         let newBiography = {
             id: biography.length + 1,
             fullName: "",
@@ -129,7 +127,6 @@ let Biography = (props) => {
             ...biography, newBiography
         ])
     }
-
     const deleteItemTable = () => {
         setBiography([
             ...biography.filter((item) => item.done === false)
@@ -142,10 +139,8 @@ let Biography = (props) => {
                 if (text === 'id') {
                     return a.id - b.id ? -1 : 1
                 } else if (text === 'fullName') {
-                    return a.fullName > b.fullName ? -1 : 1 || a.fullName < b.fullName ? -1 : 1 ;
-
+                    return a.fullName > b.fullName ? -1 : 1 || a.fullName < b.fullName ? -1 : 1;
                 }
-
             })
         ])
     }
@@ -161,34 +156,52 @@ let Biography = (props) => {
                 </thead>
 
                 <tbody>
-                {!editMode &&
-                biography.map((item) =>
-                    <TableItem
-                        activateEditMode={activateEditMode}
-                        onCheckedChange={onCheckedChange}
-                        key={item.id}
-                        done={item.done}
-                        id={item.id}
-                        fullName={item.fullName}
-                        info={item.info}
-                    />
-                )
-                }
-                {editMode &&
-                biography.map((item) =>
-                    <TableItemInput
-                        deactivateEditMode={deactivateEditMode}
-                        onCheckedChange={onCheckedChange}
-                        updateText={updateText}
+                {
+                    biography.map((item) =>
+                        <tr key={item.id}
+                            onDoubleClick={activateEditMode}
+                            onBlur={deactivateEditMode}
+                        >
+                            <td>
+                                <input type="checkbox"
+                                       checked={item.done}
+                                       onChange={() => {
+                                           onCheckedChange(item.id)
+                                       }}
+                                />
+                                {item.id}
+                            </td>
+                            <td>
+                                {!editMode ? item.fullName
+                                    : <input
+                                        type="text"
+                                        placeholder="fullName"
+                                        value={item.fullName}
+                                        onChange={(e) => {
+                                            updateText(e.target.value, item.id)
+                                        }}
+                                    />
+                                }
+                            </td>
 
-                        key={item.id}
-                        done={item.done}
-                        id={item.id}
-                        fullName={item.fullName}
-                        info={item.info}
-                    />
-                )
-                }
+                            {item.info.map((info) =>
+                                <td key={info.id}>
+                                    {!editMode ? info.text
+                                        : <input
+                                            type="text"
+                                            placeholder="fullName"
+                                            value={info.text}
+                                            onChange={(e,) => {
+                                                updateText(e.target.value, info.id)
+                                            }}
+                                        />
+
+                                    }
+                                </td>
+                            )}
+
+                        </tr>
+                    )}
 
                 </tbody>
             </table>
@@ -207,6 +220,5 @@ let Biography = (props) => {
         </div>
     )
 }
-
 
 export default Biography;
