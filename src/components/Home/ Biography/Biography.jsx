@@ -64,10 +64,8 @@ let biographyArray = [
 
 
 let Biography = (props) => {
-
     const [biography, setBiography] = useState(biographyArray);
     const [editMode, setEdinMode] = useState(false);
-
 
     const activateEditMode = (id) => {
         setEdinMode(true);
@@ -81,13 +79,7 @@ let Biography = (props) => {
         setBiography([
             ...biography.map((item) => {
                 if (item.id === id) {
-                    if (item.done === true) {
-                        return {...item, done: false}
-                    } else if (item.id === id) {
-                        if (item.done === false) {
-                            return {...item, done: true}
-                        }
-                    }
+                    return {...item, done: !!item.done === false}
                 }
                 return item
             })
@@ -95,15 +87,16 @@ let Biography = (props) => {
     }
 
     const updateText = (text, id) => {
-        console.log(text, id)
+
         setBiography([
-            ...biography.map((item) => {
+           ...biography.map((item) => {
                 if (item.id === id) {
                     return {...item, fullName: text}
                 }
+
                 item.info.map((info) => {
                     if (info.id === id) {
-                        return {...info, text: text}
+                        return {...info, text: info.text=text}
                     }
                     return info
                 })
@@ -145,6 +138,12 @@ let Biography = (props) => {
         ])
     }
 
+    const DragEndDrop = (e, id) => {
+        console.log(e);
+
+
+    }
+
 
     return (
         <div className={s.inner}>
@@ -161,6 +160,10 @@ let Biography = (props) => {
                         <tr key={item.id}
                             onDoubleClick={activateEditMode}
                             onBlur={deactivateEditMode}
+                            onDragStart={(e) => {
+                                DragEndDrop(e, item.id)
+                            }}
+                            draggable="true"
                         >
                             <td>
                                 <input type="checkbox"
@@ -192,7 +195,7 @@ let Biography = (props) => {
                                             placeholder="fullName"
                                             value={info.text}
                                             onChange={(e,) => {
-                                                updateText(e.target.value, info.id)
+                                                updateText(e.target.value,  info.id)
                                             }}
                                         />
 
