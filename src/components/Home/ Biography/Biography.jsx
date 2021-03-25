@@ -131,21 +131,24 @@ let Biography = (props) => {
         setCurrentItem(item)
     }
 
-    const dragEndLeaveItem = (e) => {
-        e.target.style.background = 'white'
+    const dragEndLeaveItem = (e, td) => {
+            e.target.style.boxShadow = 'none'
     }
 
-    const dragOverItem = (e) => {
+    const dragOverItem = (e, td) => {
         e.preventDefault()
-        e.target.style.background = 'lightgray'
+        e.target.style.boxShadow = '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
     }
 
     const dropItem = (e, table, item) => {
         e.preventDefault()
-
+        if (e.target.style.boxShadow ) {
+            e.target.style.boxShadow = 'none'
+        }
         let itemIndex = currentTable.indexOf(currentItem);
         currentTable.splice(itemIndex, 1);
         let dropIndex = table.indexOf(item);
+
         table.splice(dropIndex + 1, 0, currentItem);
 
 
@@ -183,9 +186,9 @@ let Biography = (props) => {
                             draggable
 
                             onDragStart={(e) => dragStartItem(e, biography, item)}
-                            onDragLeave={(e) => dragEndLeaveItem(e)}
-                            onDragEnd={(e) => dragEndLeaveItem(e)}
-                            onDragOver={(e) => dragOverItem(e)}
+                            onDragLeave={(e) => dragEndLeaveItem(e, item)}
+                            onDragEnd={(e) => dragEndLeaveItem(e, item)}
+                            onDragOver={(e) => dragOverItem(e, item)}
                             onDrop={(e) => dropItem(e, biography, item)}
 
                         >
