@@ -27,7 +27,8 @@ let biographyArray = [
             fullName: "Почему он используется?",
             info: [
                 {
-                    id: "text", text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты)."
+                    id: "text",
+                    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты)."
                 },
                 {id: 'phone', text: "8(222)222-22-22"},
                 {id: 'email', text: "2_mail@mail.com"}
@@ -58,8 +59,11 @@ let Biography = (props) => {
     const [biography, setBiography] = useState(biographyArray);
     const [editMode, setEditMode] = useState(false);
 
-    const activateEditMode = (id) => {
+    const [currentTable, setCurrentTable] = useState(null)
+    const [currentItem, setCurrentItem] = useState(null);
 
+
+    const activateEditMode = (id) => {
         setEditMode(true)
     }
 
@@ -79,23 +83,12 @@ let Biography = (props) => {
     }
 
     const updateText = (text, id) => {
-
-
         setBiography([
-            ...biography.map((item) => {
-                if (item.id === id) {
-                    return {...item, fullName: text}
-                }
-                item.info.map((info) => {
-                    if (info.id === id) {
-
-                        return {...info, text: info.text = text}
-                    }
-                    return info
-                })
-
-                return item;
-            }),
+            ...biography.map(item =>
+                (item.id === id) ? {...item, fullName: text} : item ||
+                    (item.info.map(info =>
+                        (info.id === id) ? {...info, text: info.text = text} : info
+                    )))
         ]);
     }
 
@@ -132,8 +125,44 @@ let Biography = (props) => {
         ])
     }
 
-    const DragEndDrop = (e, id) => {
-        console.log(e);
+
+    const dragStartItem = (e, table, item) => {
+        setCurrentTable(table)
+        setCurrentItem(item)
+    }
+
+    const dragEndLeaveItem = (e) => {
+        e.target.style.background = 'white'
+    }
+
+    const dragOverItem = (e) => {
+        e.preventDefault()
+        e.target.style.background = 'lightgray'
+    }
+
+    const dropItem = (e, table, item) => {
+        e.preventDefault()
+
+        let itemIndex = currentTable.indexOf(currentItem);
+        currentTable.splice(itemIndex, 1);
+        let dropIndex = table.indexOf(item);
+        table.splice(dropIndex + 1, 0, currentItem);
+
+
+        setBiography([
+            ...biography.map(items => {
+                    if (items.id === table.id) {
+                        return table
+                    }
+                    if (items.id === currentTable.id) {
+                        return currentTable
+                    }
+                    return items
+                }
+            )
+        ])
+
+
     }
 
 
@@ -151,6 +180,13 @@ let Biography = (props) => {
                         <tr key={item.id}
                             onDoubleClick={activateEditMode}
                             onBlur={deactivateEditMode}
+                            draggable
+
+                            onDragStart={(e) => dragStartItem(e, biography, item)}
+                            onDragLeave={(e) => dragEndLeaveItem(e)}
+                            onDragEnd={(e) => dragEndLeaveItem(e)}
+                            onDragOver={(e) => dragOverItem(e)}
+                            onDrop={(e) => dropItem(e, biography, item)}
 
                         >
                             <ItemCheckbox
