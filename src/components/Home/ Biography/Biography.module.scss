@@ -3,8 +3,12 @@
   width: 700px;
   margin: 0 auto;
 }
-td input{
+td textarea{
+  width: 200px;
   border: 1px solid red;
+  resize: none;
+
+  min-height: 200px;
 }
 
 table {
@@ -20,8 +24,6 @@ caption {
 }
 
 th {
-
-
   padding: 10px;
   border: 1px solid #A9E2CC;
   background-color: #999999;

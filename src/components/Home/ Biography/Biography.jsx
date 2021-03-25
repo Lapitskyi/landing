@@ -3,17 +3,19 @@ import React, {useState} from "react"
 import s from "./Biography.module.scss"
 
 import TableHeader from "./TableHeader/TableHeader";
+import Item from "./Item/Item";
+import ItemCheckbox from "./Item/ItemCheckbox";
 
 
 let biographyArray = [
         {
             id: 1,
             done: false,
-            fullName: "Давосу Сиворту",
+            fullName: "Что такое Lorem Ipsum?",
             info: [
                 {
                     id: "text",
-                    text: "Десница короля Станниса Баратеона, советник Короля Севера - Джона Сноу (начиная с 6 сезона сериала"
+                    text: "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."
                 },
                 {id: "phone", text: "8(111)111-11-11"},
                 {id: "email", text: "1_mail@mail.com"}
@@ -22,11 +24,10 @@ let biographyArray = [
         {
             id: 2,
             done: false,
-            fullName: "Джон Сноу",
+            fullName: "Почему он используется?",
             info: [
                 {
-                    id: "text", text: "Лорд-командующий Ночного Дозора\n" +
-                        "Лорд Винтерфелла и Король Севера"
+                    id: "text", text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты)."
                 },
                 {id: 'phone', text: "8(222)222-22-22"},
                 {id: 'email', text: "2_mail@mail.com"}
@@ -34,30 +35,20 @@ let biographyArray = [
         },
         {
             id: 3,
-            fullName: "Сандора Клигана",
+            fullName: "Откуда он появился?",
             done: false,
             info: [
                 {
                     id: "text",
-                    text: "телохранитель Джоффри Баратеона (до событий книги «Буря мечей» и до третьего сезона сериала)"
+                    text: "Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32\n" +
+                        "\n" +
+                        "Классический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год."
                 },
                 {id: "phone", text: ""},
                 {id: "email", text: ""}
             ]
         },
-        {
-            id: 4,
-            fullName: "Тирион Ланнистер",
-            done: false,
-            info: [
-                {
-                    id: "text",
-                    text: "Десница Короля (в «Битве Королей»), Мастер над монетой (в «Буре мечей»), советник Дейенерис Таргариен (в 5-м сезоне сериала «Игра престолов»), Десница Королевы Дейенерис Таргариен (в 6-м сезоне сериала), Десница короля Брандона Старка (в 8-м сезоне сериала)"
-                },
-                {id: "phone", text: ""},
-                {id: "email", text: ""}
-            ]
-        },
+
 
     ]
 ;
@@ -65,14 +56,15 @@ let biographyArray = [
 
 let Biography = (props) => {
     const [biography, setBiography] = useState(biographyArray);
-    const [editMode, setEdinMode] = useState(false);
+    const [editMode, setEditMode] = useState(false);
 
     const activateEditMode = (id) => {
-        setEdinMode(true);
+
+        setEditMode(true)
     }
 
     const deactivateEditMode = (id) => {
-        setEdinMode(false);
+        setEditMode(false);
     }
 
     const onCheckedChange = (id) => {
@@ -88,18 +80,20 @@ let Biography = (props) => {
 
     const updateText = (text, id) => {
 
+
         setBiography([
-           ...biography.map((item) => {
+            ...biography.map((item) => {
                 if (item.id === id) {
                     return {...item, fullName: text}
                 }
-
                 item.info.map((info) => {
                     if (info.id === id) {
-                        return {...info, text: info.text=text}
+
+                        return {...info, text: info.text = text}
                     }
                     return info
                 })
+
                 return item;
             }),
         ]);
@@ -140,8 +134,6 @@ let Biography = (props) => {
 
     const DragEndDrop = (e, id) => {
         console.log(e);
-
-
     }
 
 
@@ -153,59 +145,39 @@ let Biography = (props) => {
                     onSort={onSort}
                 />
                 </thead>
-
                 <tbody>
                 {
-                    biography.map((item) =>
+                    biography.map(item =>
                         <tr key={item.id}
                             onDoubleClick={activateEditMode}
                             onBlur={deactivateEditMode}
-                            onDragStart={(e) => {
-                                DragEndDrop(e, item.id)
-                            }}
-                            draggable="true"
+
                         >
-                            <td>
-                                <input type="checkbox"
-                                       checked={item.done}
-                                       onChange={() => {
-                                           onCheckedChange(item.id)
-                                       }}
+                            <ItemCheckbox
+                                onCheckedChange={onCheckedChange}
+                                done={item.done}
+                                id={item.id}
+                            />
+
+                            <Item
+                                editMode={editMode}
+                                val={item.fullName}
+                                id={item.id}
+                                updateText={updateText}
+
+                            />
+                            {item.info.map(info =>
+                                <Item
+                                    editMode={editMode}
+                                    key={info.id}
+                                    id={info.id}
+                                    val={info.text}
+                                    updateText={updateText}
                                 />
-                                {item.id}
-                            </td>
-                            <td>
-                                {!editMode ? item.fullName
-                                    : <input
-                                        type="text"
-                                        placeholder="fullName"
-                                        value={item.fullName}
-                                        onChange={(e) => {
-                                            updateText(e.target.value, item.id)
-                                        }}
-                                    />
-                                }
-                            </td>
-
-                            {item.info.map((info) =>
-                                <td key={info.id}>
-                                    {!editMode ? info.text
-                                        : <input
-                                            type="text"
-                                            placeholder="fullName"
-                                            value={info.text}
-                                            onChange={(e,) => {
-                                                updateText(e.target.value,  info.id)
-                                            }}
-                                        />
-
-                                    }
-                                </td>
                             )}
-
                         </tr>
-                    )}
-
+                    )
+                }
                 </tbody>
             </table>
 
