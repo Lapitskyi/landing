@@ -1,16 +1,16 @@
 import React from "react";
 
-const Item = (props) =>{
+const Item = ({editMode, val , updateText }) =>{
     return(
         <td>
-            {!props.editMode ? (props.val)
+            {!editMode ? (val)
                 : <textarea
 
                     type="text"
                     placeholder="text"
-                    value={props.val}
+                    value={val}
                     onChange={(e) => {
-                        props.updateText(e.target.value, props.id)
+                        updateText(e.target.value)
                     }}
                 />
             }

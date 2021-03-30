@@ -36,8 +36,8 @@ let biographyArray = [
         },
         {
             id: 3,
-            fullName: "Откуда он появился?",
             done: false,
+            fullName: "Откуда он появился?",
             info: [
                 {
                     id: "text",
@@ -65,6 +65,7 @@ let Biography = (props) => {
 
     const activateEditMode = (id) => {
         setEditMode(true)
+
     }
 
     const deactivateEditMode = (id) => {
@@ -82,14 +83,24 @@ let Biography = (props) => {
         ]);
     }
 
-    const updateText = (text, id) => {
+    const updateFullName = (id, text) => {
         setBiography([
             ...biography.map(item =>
-                (item.id === id) ? {...item, fullName: text} : item ||
-                    (item.info.map(info =>
-                        (info.id === id) ? {...info, text: info.text = text} : info
-                    )))
+                (item.id === id) ? {...item, fullName: text} : item
+            )
         ]);
+    }
+
+    const updateInfo = (id, idInfo, text) => {
+        setBiography([
+            ...biography.map(item => {
+                if (item.id == id) {
+                    item.info.map(info =>
+                        (info.id === idInfo) ? {...info, text: info.text = text} : info)
+                }
+                return item
+            })
+        ])
     }
 
     const addTable = (id) => {
@@ -125,32 +136,29 @@ let Biography = (props) => {
         ])
     }
 
-
     const dragStartItem = (e, table, item) => {
-        setCurrentTable(table)
         setCurrentItem(item)
+        setCurrentTable(table)
     }
 
-    const dragEndLeaveItem = (e, td) => {
-            e.target.style.boxShadow = 'none'
+    const dragEndLeaveItem = (e) => {
+        e.target.style.boxShadow = 'none'
     }
 
     const dragOverItem = (e, td) => {
-        e.preventDefault()
-        e.target.style.boxShadow = '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)'
+        e.preventDefault();
+        e.target.style.boxShadow = '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)';
     }
 
     const dropItem = (e, table, item) => {
         e.preventDefault()
-        if (e.target.style.boxShadow ) {
+        if (e.target.style.boxShadow) {
             e.target.style.boxShadow = 'none'
         }
         let itemIndex = currentTable.indexOf(currentItem);
         currentTable.splice(itemIndex, 1);
         let dropIndex = table.indexOf(item);
-
         table.splice(dropIndex + 1, 0, currentItem);
-
 
         setBiography([
             ...biography.map(items => {
@@ -164,8 +172,6 @@ let Biography = (props) => {
                 }
             )
         ])
-
-
     }
 
 
@@ -186,8 +192,8 @@ let Biography = (props) => {
                             draggable
 
                             onDragStart={(e) => dragStartItem(e, biography, item)}
-                            onDragLeave={(e) => dragEndLeaveItem(e, item)}
-                            onDragEnd={(e) => dragEndLeaveItem(e, item)}
+                            onDragLeave={(e) => dragEndLeaveItem(e)}
+                            onDragEnd={(e) => dragEndLeaveItem(e)}
                             onDragOver={(e) => dragOverItem(e, item)}
                             onDrop={(e) => dropItem(e, biography, item)}
 
@@ -202,7 +208,7 @@ let Biography = (props) => {
                                 editMode={editMode}
                                 val={item.fullName}
                                 id={item.id}
-                                updateText={updateText}
+                                updateText={(newText) => updateFullName(item.id, newText)}
 
                             />
                             {item.info.map(info =>
@@ -211,7 +217,7 @@ let Biography = (props) => {
                                     key={info.id}
                                     id={info.id}
                                     val={info.text}
-                                    updateText={updateText}
+                                    updateText={(newText) => updateInfo(item.id, info.id, newText)}
                                 />
                             )}
                         </tr>

@@ -1,16 +1,16 @@
 import React from "react";
 
 
-const ItemCheckbox = (props) => {
+const ItemCheckbox = ({id, done, onCheckedChange}) => {
     return (
         <td>
             <input type="checkbox"
-                   checked={props.done}
+                   checked={done}
                    onChange={() => {
-                       props.onCheckedChange(props.id)
+                       onCheckedChange(id)
                    }}
             />
-            {props.id}
+            {id}
         </td>
     )
 }
