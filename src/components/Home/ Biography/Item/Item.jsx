@@ -5,7 +5,6 @@ const Item = ({editMode, val , updateText }) =>{
         <td>
             {!editMode ? (val)
                 : <textarea
-
                     type="text"
                     placeholder="text"
                     value={val}

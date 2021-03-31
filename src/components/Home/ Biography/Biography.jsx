@@ -58,23 +58,17 @@ let biographyArray = [
 let Biography = (props) => {
     const [biography, setBiography] = useState(biographyArray);
     const [editMode, setEditMode] = useState(false);
-
     const [currentTable, setCurrentTable] = useState(null)
     const [currentItem, setCurrentItem] = useState(null);
 
 
     const activateEditMode = (id) => {
-        setEditMode(true)
-
-    }
-
-    const deactivateEditMode = (id) => {
-        setEditMode(false);
+        setEditMode(!!editMode === false)
     }
 
     const onCheckedChange = (id) => {
         setBiography([
-            ...biography.map((item) => {
+            biography.map((item) => {
                 if (item.id === id) {
                     return {...item, done: !!item.done === false}
                 }
@@ -85,7 +79,7 @@ let Biography = (props) => {
 
     const updateFullName = (id, text) => {
         setBiography([
-            ...biography.map(item =>
+            biography.map(item =>
                 (item.id === id) ? {...item, fullName: text} : item
             )
         ]);
@@ -93,7 +87,7 @@ let Biography = (props) => {
 
     const updateInfo = (id, idInfo, text) => {
         setBiography([
-            ...biography.map(item => {
+            biography.map(item => {
                 if (item.id == id) {
                     item.info.map(info =>
                         (info.id === idInfo) ? {...info, text: info.text = text} : info)
@@ -103,7 +97,8 @@ let Biography = (props) => {
         ])
     }
 
-    const addTable = (id) => {
+    const addTable = (arr) => {
+
         let newBiography = {
             id: biography.length + 1,
             fullName: "",
@@ -120,7 +115,7 @@ let Biography = (props) => {
     }
     const deleteItemTable = () => {
         setBiography([
-            ...biography.filter((item) => item.done === false)
+            biography.filter((item) => item.done === false)
         ])
 
     }
@@ -161,7 +156,7 @@ let Biography = (props) => {
         table.splice(dropIndex + 1, 0, currentItem);
 
         setBiography([
-            ...biography.map(items => {
+            biography.map(items => {
                     if (items.id === table.id) {
                         return table
                     }
@@ -188,9 +183,7 @@ let Biography = (props) => {
                     biography.map(item =>
                         <tr key={item.id}
                             onDoubleClick={activateEditMode}
-                            onBlur={deactivateEditMode}
                             draggable
-
                             onDragStart={(e) => dragStartItem(e, biography, item)}
                             onDragLeave={(e) => dragEndLeaveItem(e)}
                             onDragEnd={(e) => dragEndLeaveItem(e)}
@@ -229,7 +222,7 @@ let Biography = (props) => {
 
             <div className={s.btn__box}>
                 <button className={s.btn} onClick={() => {
-                    addTable()
+                    addTable(biography)
                 }}>Добавить
                 </button>
                 <button className={s.btn} onClick={(e) => {
