@@ -67,26 +67,26 @@ let Biography = (props) => {
     }
 
     const onCheckedChange = (id) => {
-        setBiography([
+        setBiography(
             biography.map((item) => {
                 if (item.id === id) {
                     return {...item, done: !!item.done === false}
                 }
                 return item
             })
-        ]);
+        );
     }
 
     const updateFullName = (id, text) => {
-        setBiography([
+        setBiography(
             biography.map(item =>
                 (item.id === id) ? {...item, fullName: text} : item
             )
-        ]);
+        );
     }
 
     const updateInfo = (id, idInfo, text) => {
-        setBiography([
+        setBiography(
             biography.map(item => {
                 if (item.id == id) {
                     item.info.map(info =>
@@ -94,10 +94,10 @@ let Biography = (props) => {
                 }
                 return item
             })
-        ])
+        )
     }
 
-    const addTable = (arr) => {
+    const addTable = () => {
 
         let newBiography = {
             id: biography.length + 1,
@@ -114,9 +114,9 @@ let Biography = (props) => {
         ])
     }
     const deleteItemTable = () => {
-        setBiography([
+        setBiography(
             biography.filter((item) => item.done === false)
-        ])
+        )
 
     }
     const onSort = (text, e) => {
@@ -155,7 +155,7 @@ let Biography = (props) => {
         let dropIndex = table.indexOf(item);
         table.splice(dropIndex + 1, 0, currentItem);
 
-        setBiography([
+        setBiography(
             biography.map(items => {
                     if (items.id === table.id) {
                         return table
@@ -166,7 +166,7 @@ let Biography = (props) => {
                     return items
                 }
             )
-        ])
+        )
     }
 
 
@@ -221,10 +221,7 @@ let Biography = (props) => {
 
 
             <div className={s.btn__box}>
-                <button className={s.btn} onClick={() => {
-                    addTable(biography)
-                }}>Добавить
-                </button>
+                <button className={s.btn} onClick={addTable}>Добавить</button>
                 <button className={s.btn} onClick={(e) => {
                     deleteItemTable(e)
                 }}>Удалить
