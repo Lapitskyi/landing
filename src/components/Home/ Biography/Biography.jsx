@@ -62,18 +62,15 @@ let Biography = (props) => {
     const [currentItem, setCurrentItem] = useState(null);
 
 
-    const activateEditMode = (id) => {
+    const activateEditMode = () => {
         setEditMode(!!editMode === false)
     }
 
     const onCheckedChange = (id) => {
         setBiography(
-            biography.map((item) => {
-                if (item.id === id) {
-                    return {...item, done: !!item.done === false}
-                }
-                return item
-            })
+            biography.map((item) =>
+                (item.id === id) ? {...item, done: !!item.done === false} : item
+            )
         );
     }
 
@@ -98,7 +95,6 @@ let Biography = (props) => {
     }
 
     const addTable = () => {
-
         let newBiography = {
             id: biography.length + 1,
             fullName: "",
@@ -113,6 +109,7 @@ let Biography = (props) => {
             ...biography, newBiography
         ])
     }
+
     const deleteItemTable = () => {
         setBiography(
             biography.filter((item) => item.done === false)
@@ -156,19 +153,13 @@ let Biography = (props) => {
         table.splice(dropIndex + 1, 0, currentItem);
 
         setBiography(
-            biography.map(items => {
-                    if (items.id === table.id) {
-                        return table
-                    }
-                    if (items.id === currentTable.id) {
-                        return currentTable
-                    }
-                    return items
-                }
+            biography.map(items =>
+                (items.id === table.id) ? {table} :
+                    (items.id === currentTable.id) ? {currentTable}
+                        : items
             )
         )
     }
-
 
     return (
         <div className={s.inner}>
