@@ -14,6 +14,7 @@ const storeTable = {
                 {
                     id: 1,
                     done: false,
+                    dragAndDrop:false,
                     heading: "Name",
                     fullName: "Что такое Lorem Ipsum?",
                     info: [
@@ -29,6 +30,7 @@ const storeTable = {
                 {
                     id: 2,
                     done: false,
+                    dragAndDrop:false,
                     heading: "Name",
                     fullName: "Почему он используется?",
                     info: [
@@ -44,6 +46,7 @@ const storeTable = {
                 {
                     id: 3,
                     done: false,
+                    dragAndDrop:false,
                     heading:"Name",
                     fullName: "Откуда он появился?",
                     info: [

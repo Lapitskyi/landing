@@ -6,8 +6,8 @@ const HeaderTable = ({tableHeadlines, ...props}) => {
 
     return (
         <>
-            <tr className="table__tr">
-                <th className="table__th">
+            <tr className="table__tr ">
+                <th className="table__th table__th-header">
                     <div className="table__header-title">№</div>
                     <button className="table__header-btn"
                             onClick={(e) => {
@@ -19,7 +19,7 @@ const HeaderTable = ({tableHeadlines, ...props}) => {
 
                 <>
                     {tableHeadlines.map(item =>
-                        <th className="table__th" key={item.id}>
+                        <th className="table__th table__th-header" key={item.id}>
                             <div className="table__header-title">{item.id}</div>
                             <button className="table__header-btn"
                                     onClick={(e) => {

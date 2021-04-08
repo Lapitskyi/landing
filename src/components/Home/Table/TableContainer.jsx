@@ -38,7 +38,7 @@ const TableContainer = (props) => {
     const updateInfo = (id, idInfo, text) => {
         setTableItem(
             tableItem.map(item => {
-                if (item.id == id) {
+                if (item.id === id) {
                     item.info.map(info =>
                         (info.id === idInfo) ? {...info, text: info.text = text} : info)
                 }
@@ -87,19 +87,17 @@ const TableContainer = (props) => {
     }
 
     const dragEndLeaveItem = (e) => {
-        e.target.style.boxShadow = 'none'
+        currentItem.dragAndDrop = false
     }
 
     const dragOverItem = (e, td) => {
         e.preventDefault();
-        e.target.style.boxShadow = '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)';
+            currentItem.dragAndDrop = true
     }
 
     const dropItem = (e, table, item) => {
         e.preventDefault()
-        if (e.target.style.boxShadow) {
-            e.target.style.boxShadow = 'none'
-        }
+
         let itemIndex = currentTable.indexOf(currentItem);
         currentTable.splice(itemIndex, 1);
         let dropIndex = table.indexOf(item);
@@ -107,8 +105,7 @@ const TableContainer = (props) => {
 
         setTableItem(
             table.map(items =>
-                (items.id === table.id) ? {table} :
-                    (items.id === currentTable.id) ? {currentTable}
+                (items.id === currentTable.id) ? {currentTable}
                         : items
             )
         )

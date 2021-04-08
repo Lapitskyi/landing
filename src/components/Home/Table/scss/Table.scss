@@ -10,6 +10,7 @@
 
   &__tr {
 
+
   }
 
   &__th {
@@ -18,21 +19,29 @@
     background-color: #999999;
   }
 
+  &__th-header {
+
+
+  }
+
   &__td {
+    min-width: 40px;
+    max-width: 620px;
     font-size: 0.8em;
-    padding: 5px 7px;
+    padding: 5px;
     border: 1px solid #333;
   }
 
   &__td textarea {
-    width: 200px;
+    width: 100%;
     border: 1px solid red;
     resize: none;
-    min-height: 200px;
+    min-height: 50px;
   }
 
 
   &__header-title {
+    display: inline-block;
 
   }
 
@@ -97,6 +106,6 @@
 
 }
 
-.item__boxShadow {
+.dragAndDrop{
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
