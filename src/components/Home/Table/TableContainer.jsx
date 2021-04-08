@@ -7,7 +7,7 @@ const TableContainer = (props) => {
 
     const [tableItem, setTableItem] = useState(tableBody);
     const [editMode, setEditMode] = useState(false);
-    const [currentTable, setCurrentTable] = useState(null)
+
     const [currentItem, setCurrentItem] = useState(null);
 
     useEffect(() => {
@@ -81,9 +81,8 @@ const TableContainer = (props) => {
         ])
     }
 
-    const dragStartItem = (e, table, item) => {
+    const dragStartItem = (e, item) => {
         setCurrentItem(item)
-        setCurrentTable(table)
     }
 
     const dragEndLeaveItem = (e) => {
@@ -95,18 +94,18 @@ const TableContainer = (props) => {
             currentItem.dragAndDrop = true
     }
 
-    const dropItem = (e, table, item) => {
+    const dropItem = (e, item) => {
         e.preventDefault()
-
-        let itemIndex = currentTable.indexOf(currentItem);
-        currentTable.splice(itemIndex, 1);
-        let dropIndex = table.indexOf(item);
-        table.splice(dropIndex + 1, 0, currentItem);
+        currentItem.dragAndDrop = false
+        let itemIndex = tableItem.indexOf(currentItem);
+        tableItem.splice(itemIndex, 1);
+        let dropIndex = tableItem.indexOf(item);
+        tableItem.splice(dropIndex + 1, 0, currentItem);
 
         setTableItem(
-            table.map(items =>
-                (items.id === currentTable.id) ? {currentTable}
-                        : items
+            tableItem.map(items =>
+                (items.id === tableItem.id) ? {...tableItem}
+                        : {...items}
             )
         )
     }

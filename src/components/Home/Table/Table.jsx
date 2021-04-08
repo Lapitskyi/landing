@@ -26,11 +26,11 @@ const Table = (props) => {
                             key={item.id}
                             onDoubleClick={props.activateEditMode}
                             draggable
-                            onDragStart={(e) => props.dragStartItem(e, props.tableItem, item)}
+                            onDragStart={(e) => props.dragStartItem(e, item)}
                             onDragLeave={(e) => props.dragEndLeaveItem(e)}
                             onDragEnd={(e) => props.dragEndLeaveItem(e)}
                             onDragOver={(e) => props.dragOverItem(e, item)}
-                            onDrop={(e) => props.dropItem(e, props.tableItem, item)}
+                            onDrop={(e) => props.dropItem(e,item)}
                         >
                             <CheckboxTable
                                 onCheckedChange={props.onCheckedChange}
