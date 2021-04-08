@@ -1,10 +1,5 @@
 import React, {useState} from "react"
-
-import s from "./Biography.module.scss"
-
-import TableHeader from "./TableHeader/TableHeader";
-import Item from "./Item/Item";
-import ItemCheckbox from "./Item/ItemCheckbox";
+import Table from "./Table";
 
 
 let biographyArray = [
@@ -55,7 +50,7 @@ let biographyArray = [
 ;
 
 
-let Biography = (props) => {
+const TableContainer = (props) => {
     const [biography, setBiography] = useState(biographyArray);
     const [editMode, setEditMode] = useState(false);
     const [currentTable, setCurrentTable] = useState(null)
@@ -161,65 +156,22 @@ let Biography = (props) => {
         )
     }
 
-    return (
-        <div className={s.inner}>
-            <table>
-                <thead>
-                <TableHeader
-                    onSort={onSort}
-                />
-                </thead>
-                <tbody>
-                {
-                    biography.map(item =>
-                        <tr key={item.id}
-                            onDoubleClick={activateEditMode}
-                            draggable
-                            onDragStart={(e) => dragStartItem(e, biography, item)}
-                            onDragLeave={(e) => dragEndLeaveItem(e)}
-                            onDragEnd={(e) => dragEndLeaveItem(e)}
-                            onDragOver={(e) => dragOverItem(e, item)}
-                            onDrop={(e) => dropItem(e, biography, item)}
+    return <Table activateEditMode={activateEditMode}
+                  onCheckedChange={onCheckedChange}
+                  updateFullName={updateFullName}
+                  updateInfo={updateInfo}
+                  addTable={addTable}
+                  deleteItemTable={deleteItemTable}
+                  onSort={onSort}
+                  dragStartItem={dragStartItem}
+                  dragEndLeaveItem={dragEndLeaveItem}
+                  dragOverItem={dragOverItem}
+                  dropItem={dropItem}
+                  biography={biography}
+                  editMode={editMode}
 
-                        >
-                            <ItemCheckbox
-                                onCheckedChange={onCheckedChange}
-                                done={item.done}
-                                id={item.id}
-                            />
+    />
 
-                            <Item
-                                editMode={editMode}
-                                val={item.fullName}
-                                id={item.id}
-                                updateText={(newText) => updateFullName(item.id, newText)}
-
-                            />
-                            {item.info.map(info =>
-                                <Item
-                                    editMode={editMode}
-                                    key={info.id}
-                                    id={info.id}
-                                    val={info.text}
-                                    updateText={(newText) => updateInfo(item.id, info.id, newText)}
-                                />
-                            )}
-                        </tr>
-                    )
-                }
-                </tbody>
-            </table>
-
-
-            <div className={s.btn__box}>
-                <button className={s.btn} onClick={addTable}>Добавить</button>
-                <button className={s.btn} onClick={(e) => {
-                    deleteItemTable(e)
-                }}>Удалить
-                </button>
-            </div>
-        </div>
-    )
 }
 
-export default Biography;
+export default TableContainer;

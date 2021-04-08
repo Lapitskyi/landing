@@ -2,18 +2,18 @@ import React from 'react'
 
 import './Home.scss';
 
-import Biography from "./ Biography/Biography";
+
+import TableContainer from "./Table/TableContainer";
 
 
 
 
 
 const Home = (props) => {
-
     return (
         <>
             <section>
-                <Biography />
+                <TableContainer />
             </section>
 
         </>

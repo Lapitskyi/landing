@@ -1,6 +1,6 @@
 import React from "react";
 
-const Item = ({editMode, val , updateText }) =>{
+const CellTable = ({editMode, val , updateText }) =>{
     return(
         <td>
             {!editMode ? (val)
@@ -18,4 +18,4 @@ const Item = ({editMode, val , updateText }) =>{
     )
 }
 
-export default Item;
+export default CellTable;
