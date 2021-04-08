@@ -1,60 +1,18 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import Table from "./Table";
 
 
-let biographyArray = [
-        {
-            id: 1,
-            done: false,
-            fullName: "Что такое Lorem Ipsum?",
-            info: [
-                {
-                    id: "text",
-                    text: "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum."
-                },
-                {id: "phone", text: "8(111)111-11-11"},
-                {id: "email", text: "1_mail@mail.com"}
-            ]
-        },
-        {
-            id: 2,
-            done: false,
-            fullName: "Почему он используется?",
-            info: [
-                {
-                    id: "text",
-                    text: "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты)."
-                },
-                {id: 'phone', text: "8(222)222-22-22"},
-                {id: 'email', text: "2_mail@mail.com"}
-            ]
-        },
-        {
-            id: 3,
-            done: false,
-            fullName: "Откуда он появился?",
-            info: [
-                {
-                    id: "text",
-                    text: "Многие думают, что Lorem Ipsum - взятый с потолка псевдо-латинский набор слов, но это не совсем так. Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, \"consectetur\", и занялся его поисками в классической латинской литературе. В результате он нашёл неоспоримый первоисточник Lorem Ipsum в разделах 1.10.32 и 1.10.33 книги \"de Finibus Bonorum et Malorum\" (\"О пределах добра и зла\"), написанной Цицероном в 45 году н.э. Этот трактат по теории этики был очень популярен в эпоху Возрождения. Первая строка Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", происходит от одной из строк в разделе 1.10.32\n" +
-                        "\n" +
-                        "Классический текст Lorem Ipsum, используемый с XVI века, приведён ниже. Также даны разделы 1.10.32 и 1.10.33 \"de Finibus Bonorum et Malorum\" Цицерона и их английский перевод, сделанный H. Rackham, 1914 год."
-                },
-                {id: "phone", text: ""},
-                {id: "email", text: ""}
-            ]
-        },
-
-
-    ]
-;
-
-
 const TableContainer = (props) => {
-    const [biography, setBiography] = useState(biographyArray);
+    const {tableBody, tableHeadlines} = props.storeTable.state.tableArray;
+
+    const [tableItem, setTableItem] = useState(tableBody);
     const [editMode, setEditMode] = useState(false);
     const [currentTable, setCurrentTable] = useState(null)
     const [currentItem, setCurrentItem] = useState(null);
+
+    useEffect(() => {
+        setTableItem(tableBody)
+    }, [tableBody])
 
 
     const activateEditMode = () => {
@@ -62,24 +20,24 @@ const TableContainer = (props) => {
     }
 
     const onCheckedChange = (id) => {
-        setBiography(
-            biography.map((item) =>
+        setTableItem(
+            tableItem.map((item) =>
                 (item.id === id) ? {...item, done: !!item.done === false} : item
             )
         );
     }
 
     const updateFullName = (id, text) => {
-        setBiography(
-            biography.map(item =>
+        setTableItem(
+            tableItem.map(item =>
                 (item.id === id) ? {...item, fullName: text} : item
             )
         );
     }
 
     const updateInfo = (id, idInfo, text) => {
-        setBiography(
-            biography.map(item => {
+        setTableItem(
+            tableItem.map(item => {
                 if (item.id == id) {
                     item.info.map(info =>
                         (info.id === idInfo) ? {...info, text: info.text = text} : info)
@@ -90,8 +48,8 @@ const TableContainer = (props) => {
     }
 
     const addTable = () => {
-        let newBiography = {
-            id: biography.length + 1,
+        let newTable = {
+            id: tableItem.length + 1,
             fullName: "",
             done: false,
             info: [
@@ -100,21 +58,21 @@ const TableContainer = (props) => {
                 {id: "email", text: ""}
             ]
         };
-        setBiography([
-            ...biography, newBiography
+        setTableItem([
+            ...tableItem, newTable
         ])
     }
 
     const deleteItemTable = () => {
-        setBiography(
-            biography.filter((item) => item.done === false)
+        setTableItem(
+            tableItem.filter((item) => item.done === false)
         )
 
     }
     const onSort = (text, e) => {
-        setBiography([
-            ...biography.sort((a, b) => {
-                if (text === 'id') {
+        setTableItem([
+            ...tableItem.sort((a, b) => {
+                if (text === 'id' || text === 'phone') {
                     return a.id - b.id ? -1 : 1
                 } else if (text === 'fullName') {
                     return a.fullName > b.fullName ? -1 : 1 || a.fullName < b.fullName ? -1 : 1;
@@ -147,8 +105,8 @@ const TableContainer = (props) => {
         let dropIndex = table.indexOf(item);
         table.splice(dropIndex + 1, 0, currentItem);
 
-        setBiography(
-            biography.map(items =>
+        setTableItem(
+            table.map(items =>
                 (items.id === table.id) ? {table} :
                     (items.id === currentTable.id) ? {currentTable}
                         : items
@@ -167,9 +125,9 @@ const TableContainer = (props) => {
                   dragEndLeaveItem={dragEndLeaveItem}
                   dragOverItem={dragOverItem}
                   dropItem={dropItem}
-                  biography={biography}
                   editMode={editMode}
-
+                  tableItem={tableItem}
+                  tableHeadlines={tableHeadlines}
     />
 
 }

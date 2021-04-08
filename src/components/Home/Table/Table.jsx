@@ -1,5 +1,5 @@
 import React from "react";
-// import s from "./scss/Table.module.scss";
+
 import "./scss/Table.scss";
 
 import HeaderTable from "./ItemTable/HeaderTable";
@@ -12,23 +12,25 @@ const Table = (props) => {
 
     return (
         <div className="inner">
-            <table>
+            <table className="table">
                 <thead>
                 <HeaderTable
+                    tableHeadlines={props.tableHeadlines}
                     onSort={props.onSort}
                 />
                 </thead>
                 <tbody>
                 {
-                    props.biography.map(item =>
-                        <tr key={item.id}
+                    props.tableItem.map(item =>
+                        <tr className="table__tr"
+                            key={item.id}
                             onDoubleClick={props.activateEditMode}
                             draggable
-                            onDragStart={(e) => props.dragStartItem(e, props.biography, item)}
+                            onDragStart={(e) => props.dragStartItem(e, props.tableItem, item)}
                             onDragLeave={(e) => props.dragEndLeaveItem(e)}
                             onDragEnd={(e) => props.dragEndLeaveItem(e)}
                             onDragOver={(e) => props.dragOverItem(e, item)}
-                            onDrop={(e) => props.dropItem(e, props.biography, item)}
+                            onDrop={(e) => props.dropItem(e, props.tableItem, item)}
                         >
                             <CheckboxTable
                                 onCheckedChange={props.onCheckedChange}

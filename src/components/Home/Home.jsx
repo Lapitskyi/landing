@@ -13,7 +13,7 @@ const Home = (props) => {
     return (
         <>
             <section>
-                <TableContainer />
+                <TableContainer storeTable={props.storeTable}/>
             </section>
 
         </>

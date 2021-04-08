@@ -2,7 +2,7 @@ import React from "react";
 
 const CellTable = ({editMode, val , updateText }) =>{
     return(
-        <td>
+        <td className="table__td">
             {!editMode ? (val)
                 : <textarea
                     type="text"

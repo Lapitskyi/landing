@@ -17,12 +17,13 @@ import {Route} from "react-router-dom"
 import LoginContainer from "./components/Auth/LoginContainer";
 
 const App = (props) => {
+
     return (
         <div className="app-wrapper">
             <Header  />
             <div className="content">
                 <div className="container">
-                    <Route path='/' exact render={() => <Home />}/>
+                    <Route path='/' exact render={() => <Home storeTable={props.storeTable}/>}/>
                     <Route path='/about' render={() => <About />}/>
                     <Route path='/order' render={() => <Order/>}/>
                     <Route path='/portfolio' render={() => <Portfolio />}/>
