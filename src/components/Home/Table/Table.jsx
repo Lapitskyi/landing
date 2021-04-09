@@ -22,7 +22,7 @@ const Table = (props) => {
                 <tbody>
                 {
                     props.tableItem.map(item =>
-                        <tr className="table__tr"
+                        <tr className={item.dragAndDrop === true ? "drag" : "table__tr"}
                             key={item.id}
                             onDoubleClick={props.activateEditMode}
                             draggable
@@ -30,7 +30,7 @@ const Table = (props) => {
                             onDragLeave={(e) => props.dragEndLeaveItem(e)}
                             onDragEnd={(e) => props.dragEndLeaveItem(e)}
                             onDragOver={(e) => props.dragOverItem(e, item)}
-                            onDrop={(e) => props.dropItem(e,item)}
+                            onDrop={(e) => props.dropItem(e, item)}
                         >
                             <CheckboxTable
                                 onCheckedChange={props.onCheckedChange}

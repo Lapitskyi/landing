@@ -83,37 +83,29 @@ const TableContainer = (props) => {
 
     const dragStartItem = (e, item) => {
         setCurrentItem({...item})
+
     }
     const dragEndLeaveItem = (e) => {
-        setCurrentItem(
-            {...currentItem, dragAndDrop: false}
+        setTableItem(
+            tableItem.map(items =>
+                    (items.dragAndDrop === true)?{...items, dragAndDrop:items.dragAndDrop= false} : items
+            )
         )
     }
-    const dragOverItem = (e, td) => {
+    const dragOverItem = (e, item) => {
         e.preventDefault();
-        setCurrentItem(
-            {
-                ...currentItem, dragAndDrop: true,
-            },
-
+        setTableItem(
+            tableItem.map(items =>
+                (items.id === item.id)?{...items, dragAndDrop:items.dragAndDrop= true} : items
+            )
         )
-
-
     }
     const dropItem = (e, item) => {
         e.preventDefault()
 
-        let itemIndex = tableItem.indexOf(currentItem);
-        tableItem.splice(itemIndex, 1);
-        let dropIndex = tableItem.indexOf(item);
-        tableItem.splice(dropIndex + 1, 0, currentItem);
+        console.log('drop', item)
 
-        setTableItem(
-            tableItem.map(items =>
-                (items.id === tableItem.id) ? {items}
-                    : {...items, dragAndDrop: false}
-            )
-        )
+
     }
 
     return <Table activateEditMode={activateEditMode}
