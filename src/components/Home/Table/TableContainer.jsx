@@ -106,9 +106,9 @@ const TableContainer = (props) => {
         setTableItem(
             tableItem.map(items => {
                     if (items.id === item.id) {
-                        return {...items, id: currentItem.id}
+                        return {...currentItem}
                     } else if (items.id === currentItem.id) {
-                        return {...items, id: item.id}
+                        return { ...item}
                     }
                     return items
                 }
