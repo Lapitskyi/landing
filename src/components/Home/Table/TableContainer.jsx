@@ -82,13 +82,13 @@ const TableContainer = (props) => {
     }
 
     const dragStartItem = (e, item) => {
-        setCurrentItem({...item})
+        setCurrentItem(item)
 
     }
     const dragEndLeaveItem = (e) => {
         setTableItem(
             tableItem.map(items =>
-                    (items.dragAndDrop === true)?{...items, dragAndDrop:items.dragAndDrop= false} : items
+                (items.dragAndDrop === true) ? {...items, dragAndDrop: items.dragAndDrop = false} : items
             )
         )
     }
@@ -96,15 +96,24 @@ const TableContainer = (props) => {
         e.preventDefault();
         setTableItem(
             tableItem.map(items =>
-                (items.id === item.id)?{...items, dragAndDrop:items.dragAndDrop= true} : items
+                (items.id === item.id) ? {...items, dragAndDrop: items.dragAndDrop = true} : items
             )
         )
     }
     const dropItem = (e, item) => {
         e.preventDefault()
 
-        console.log('drop', item)
-
+        setTableItem(
+            tableItem.map(items => {
+                    if (items.id === item.id) {
+                        return {...items, id: currentItem.id}
+                    } else if (items.id === currentItem.id) {
+                        return {...items, id: item.id}
+                    }
+                    return items
+                }
+            )
+        )
 
     }
 
