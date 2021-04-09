@@ -82,21 +82,27 @@ const TableContainer = (props) => {
     }
 
     const dragStartItem = (e, item) => {
-        setCurrentItem(item)
+        setCurrentItem({...item})
     }
-
     const dragEndLeaveItem = (e) => {
-        currentItem.dragAndDrop = false
+        setCurrentItem(
+            {...currentItem, dragAndDrop: false}
+        )
     }
-
     const dragOverItem = (e, td) => {
         e.preventDefault();
-            currentItem.dragAndDrop = true
-    }
+        setCurrentItem(
+            {
+                ...currentItem, dragAndDrop: true,
+            },
 
+        )
+
+
+    }
     const dropItem = (e, item) => {
         e.preventDefault()
-        currentItem.dragAndDrop = false
+
         let itemIndex = tableItem.indexOf(currentItem);
         tableItem.splice(itemIndex, 1);
         let dropIndex = tableItem.indexOf(item);
@@ -104,8 +110,8 @@ const TableContainer = (props) => {
 
         setTableItem(
             tableItem.map(items =>
-                (items.id === tableItem.id) ? {...tableItem}
-                        : {...items}
+                (items.id === tableItem.id) ? {items}
+                    : {...items, dragAndDrop: false}
             )
         )
     }
