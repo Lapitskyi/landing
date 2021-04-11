@@ -83,7 +83,6 @@ const TableContainer = (props) => {
 
     const dragStartItem = (e, item) => {
         setCurrentItem(item)
-
     }
     const dragEndLeaveItem = (e) => {
         setTableItem(
@@ -102,7 +101,6 @@ const TableContainer = (props) => {
     }
     const dropItem = (e, item) => {
         e.preventDefault()
-
         setTableItem(
             tableItem.map(items => {
                     if (items.id === item.id) {
@@ -114,7 +112,6 @@ const TableContainer = (props) => {
                 }
             )
         )
-
     }
 
     return <Table activateEditMode={activateEditMode}

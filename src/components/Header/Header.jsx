@@ -5,6 +5,7 @@ import MenuItem from './MenuItem/MenuItem';
 import SocialItem from './SocalItem/SocialItem';
 
 import './Header.scss';
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 
 let header = {
@@ -53,6 +54,8 @@ const Header = (props) => {
                     <ul className="menu__list">
                         {menuArray}
                     </ul>
+
+                    <ThemeToggle/>
 
                     <ul className="social__list">
                         {socialArray}
