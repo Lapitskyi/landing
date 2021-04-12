@@ -1,14 +1,12 @@
 import React, {useState} from "react";
 import './scss/ThemeToggle.scss';
-import sprite from "../../assets/spriteSvg/sprite.svg"
+import sprite from "../../../assets/spriteSvg/sprite.svg"
 
 
-const ThemeToggle = () => {
+const ThemeToggle = (props) => {
 
-    const [theme, setTheme] = useState(false)
-
-    const onThemeToggle = () => {
-        setTheme(!!theme === false)
+    const onThemeToggle = (theme) => {
+        props.updateTheme(theme)
     }
 
     return (
@@ -16,8 +14,8 @@ const ThemeToggle = () => {
             <input className="theme__input"
                    type="checkbox"
                    id="checkbox"
-                   checked={theme}
-                   onClick={(e) => onThemeToggle(e)}
+                   checked={props.theme}
+                   onClick={() => onThemeToggle(props.theme)}
             />
             <label className="theme__label" for="checkbox">
 

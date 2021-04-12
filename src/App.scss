@@ -1,18 +1,41 @@
 .app-wrapper {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
 
-    grid-template-areas:
+  grid-template-areas:
         "header"
         "main"
         "footer";
-    max-width: 1920px;
-    margin: 0 auto;
-    overflow: hidden;
-    min-height: 100vh;
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #ffffff;
 }
 
 .content {
-    grid-area: main;
+  grid-area: main;
+}
+
+.app-wrapper__white{
+  background: #ffffff;
+  transition: background 0.2s linear;
+}
+
+.app-wrapper__dark {
+
+  background: #111111;
+  color: #ffffff;
+  transition: background 0.2s linear;
+  a {
+    color: #ffffff;;
+  }
+
+  .social__list-icon {
+    fill: #ffffff;;
+  }
+  .drag{
+    box-shadow: 0 14px 28px rgba(255, 255, 255, 0.25), 0 10px 10px rgba(255, 255, 255, 0.22);
+  }
 }
