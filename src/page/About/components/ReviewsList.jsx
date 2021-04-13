@@ -1,6 +1,6 @@
 import React from "react"
 
-import "../../../scss/Reviews.scss"
+import "../scss/Reviews.scss"
 import PropTypes from "prop-types";
 
 

@@ -1,8 +1,8 @@
 import React from "react"
-import ReviewsList from "./ReviewsList/ReviewsList";
-import userPhoto from "../../../../assets/images/userPhoto.svg"
+import ReviewsList from "./ReviewsList";
+import userPhoto from "../../../assets/images/userPhoto.svg"
 
-import "../../scss/Reviews.scss"
+import "../scss/Reviews.scss"
 
 
 let Reviews = (props) => {

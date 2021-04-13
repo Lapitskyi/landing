@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types";
 
-import "../../scss/AboutItem.scss"
+import "../scss/AboutItem.scss"
 
 
 let AboutItem = (props) =>{

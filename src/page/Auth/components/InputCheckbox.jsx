@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "../../../scss/InputCheckbox.scss"
+import "../scss/InputCheckbox.scss"
 
 
 

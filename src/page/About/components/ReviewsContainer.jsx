@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux";
 import Reviews from "./Reviews";
-import {addReviewAC, newReviewTextAC, setReviewsAC} from "../../../../redux/about-reducer";
+import {addReviewAC, newReviewTextAC, setReviewsAC} from "../../../redux/about-reducer";
 
 
 let mapStateToProps = (state) => {

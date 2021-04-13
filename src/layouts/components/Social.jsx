@@ -1,6 +1,6 @@
 import React from "react";
 import "../scss/Social.scss";
-import sprite from "../../../assets/spriteSvg/sprite.svg";
+import sprite from "../../assets/spriteSvg/sprite.svg";
 
 
 

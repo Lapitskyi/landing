@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from "prop-types";
 
-import '../../scss/AuthForm.scss';
+import '../scss/AuthForm.scss';
 
 
 const AuthForm = (props) => {

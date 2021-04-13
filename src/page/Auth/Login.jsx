@@ -5,7 +5,7 @@ import AuthLinks from "./components/AuthLinks";
 import ButtonClose from "../../components/ButtonClose/ButtonClose";
 
 import './scss/Auth.scss'
-import AuthForm from "./components/AuthForm/AuthForm";
+import AuthForm from "./components/AuthForm";
 
 
 

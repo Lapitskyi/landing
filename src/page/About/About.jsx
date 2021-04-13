@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-import ReviewsContainer from "./components/Rewievs/ReviewsContainer";
-import AboutItemContainer from "./components/About/AboutItemContainer";
+import ReviewsContainer from "./components/ReviewsContainer";
+import AboutItemContainer from "./components/AboutItemContainer";
 
 
 

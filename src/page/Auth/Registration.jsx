@@ -1,6 +1,6 @@
 import React from 'react'
 
-import AuthForm from './components/AuthForm/AuthForm'
+import AuthForm from './components/AuthForm'
 import ButtonClose from "../../components/ButtonClose/ButtonClose";
 import AuthLinks from "./components/AuthLinks";
 

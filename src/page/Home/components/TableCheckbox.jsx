@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const CheckboxTable = ({id, done, onCheckedChange}) => {
+const TableCheckbox = ({id, done, onCheckedChange}) => {
     return (
         <td className="table__td">
             <input type="checkbox"
@@ -15,4 +15,4 @@ const CheckboxTable = ({id, done, onCheckedChange}) => {
     )
 }
 
-export default CheckboxTable;
+export default TableCheckbox;

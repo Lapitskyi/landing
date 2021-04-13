@@ -1,8 +1,8 @@
 import React from 'react';
-import '../../../scss/Table.scss'
-import arrows from '../../../../../assets/icon/arrows.png'
+import '../scss/Table.scss'
+import arrows from '../../../assets/icon/arrows.png'
 
-const HeaderTable = ({tableHeadlines, ...props}) => {
+const TableHeader = ({tableHeadlines, ...props}) => {
 
     return (
         <>
@@ -35,4 +35,4 @@ const HeaderTable = ({tableHeadlines, ...props}) => {
     )
 }
 
-export default HeaderTable;
+export default TableHeader;

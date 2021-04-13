@@ -1,11 +1,11 @@
 import React from "react";
 
-import "../../scss/Table.scss";
+import "../scss/Table.scss";
 
-import HeaderTable from "./ItemTable/HeaderTable";
-import CellTable from "./ItemTable/CellTable";
-import CheckboxTable from "./ItemTable/CheckboxTable";
-import sprite from "../../../../assets/spriteSvg/sprite.svg";
+import TableHeader from "./TableHeader";
+import TableCell from "./TableCell";
+import TableCheckbox from "./TableCheckbox";
+import sprite from "../../../assets/spriteSvg/sprite.svg";
 
 
 const Table = (props) => {
@@ -14,7 +14,7 @@ const Table = (props) => {
         <div className="inner">
             <table className="table">
                 <thead>
-                <HeaderTable
+                <TableHeader
                     tableHeadlines={props.tableHeadlines}
                     onSort={props.onSort}
                 />
@@ -32,13 +32,13 @@ const Table = (props) => {
                             onDragOver={(e) => props.dragOverItem(e, item)}
                             onDrop={(e) => props.dropItem(e, item)}
                         >
-                            <CheckboxTable
+                            <TableCheckbox
                                 onCheckedChange={props.onCheckedChange}
                                 done={item.done}
                                 id={item.id}
                             />
 
-                            <CellTable
+                            <TableCell
                                 editMode={props.editMode}
                                 val={item.fullName}
                                 id={item.id}
@@ -46,7 +46,7 @@ const Table = (props) => {
 
                             />
                             {item.info.map(info =>
-                                <CellTable
+                                <TableCell
                                     editMode={props.editMode}
                                     key={info.id}
                                     id={info.id}

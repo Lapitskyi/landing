@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from "prop-types";
-import './scss/Header.scss';
-import ThemeToggle from "./components/ThemeToggle";
+import '../scss/Header.scss';
+import ThemeToggle from "./ThemeToggle";
 
-import Menu from "./components/Menu";
-import Social from "./components/Social";
+import Menu from "./Menu";
+import Social from "./Social";
 
 let header = {
     menu: [
