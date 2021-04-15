@@ -6,11 +6,11 @@ import "../scss/AuthLinks.scss"
 import {NavLink} from "react-router-dom";
 
 
-const AuthLinks = (props) => {
+const AuthLinks = ({auth:{link}}) => {
     return (
         <ul className="auth-link__list">
             {
-                props.auth.link.map((link) =>
+                link.map((link) =>
                     <li className="auth-link__list-item" key={link.id}>
                         <NavLink className="auth-link__list-link" to={link.path}>{link.title}</NavLink>
                     </li>

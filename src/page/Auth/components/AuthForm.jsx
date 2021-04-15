@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 import '../scss/AuthForm.scss';
 
 
-const AuthForm = (props) => {
+const AuthForm = ({auth: {input, btn}}) => {
 
-    let onInputText =()=>{};
+    let onInputText = () => {
+    };
 
     return (
         <form className="form">
-            {props.auth.input.map((input) =>
+            {input.map((input) =>
                 <label className="form__label" key={input.id}>
                     {input.label}
                     <input className="form__input"
@@ -21,7 +22,7 @@ const AuthForm = (props) => {
                 </label>
             )}
 
-            <button className="form__btn btn" type="submit"> {props.auth.btn} </button>
+            <button className="form__btn btn" type="submit"> {btn} </button>
         </form>
 
     )
