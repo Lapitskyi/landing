@@ -5,7 +5,7 @@ import ThemeToggle from "./ThemeToggle";
 
 import Menu from "./Menu";
 import Social from "./Social";
-import Lang from "./Lang";
+import LangText from "./LangText";
 
 let header = {
     menu: [
@@ -38,7 +38,7 @@ const Header = (props) => {
                     <ThemeToggle updateTheme={props.updateTheme}
                                  theme={props.theme}/>
 
-                    <Lang/>
+                    <LangText/>
 
                     <Social social={header.social}/>
 

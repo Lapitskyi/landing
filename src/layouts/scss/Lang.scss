@@ -16,6 +16,11 @@
         overflow: visible;
         max-height: 100%;
       }
+
+      .lang__item + .lang__item {
+        margin-top: 10px;
+      }
+
     }
   }
 
@@ -28,19 +33,16 @@
     max-height: 0;
   }
 
-  &__item + &__item {
-    margin-top: 10px;
-  }
-
 
   &__item.active {
     overflow: visible;
     max-height: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   &__img {
     display: block;
     width: 18px;
-
   }
 }
