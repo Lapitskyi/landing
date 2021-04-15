@@ -16,12 +16,12 @@ const LangText = () => {
                 (item.id !== id) ? {...item, lang: false} : item)
         )
     }
-
-
+    const a = lang.filter(item => item.lang);
+    const b = lang.filter(item => !item.lang);
     return (
         <div className="lang">
             <ul className="lang__list ">
-                {lang.map(item =>
+                {[...a, ...b].map(item =>
                     <li className={item.lang === false ? `lang__item ` : `lang__item active`}
                         key={item.id}
                         onClick={() => onSwitchLanguage(item.id)}
