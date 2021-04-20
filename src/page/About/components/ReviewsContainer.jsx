@@ -1,30 +1,16 @@
-import React from "react"
-import {connect} from "react-redux";
-import Reviews from "./Reviews";
-import {addReviewAC, newReviewTextAC, setReviewsAC} from "../../../redux/about-reducer";
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { connect } from 'react-redux';
+import Reviews from './Reviews';
+import { addReview, newReviewText, setReviews } from '../../../redux/about-reducer';
 
+const mapStateToProps = (aboutPage) => ({
+  reviews: aboutPage.reviews,
+  reviewText: aboutPage.reviewText
+});
 
-let mapStateToProps = (state) => {
-
-    return {
-        reviews: state.aboutPage.reviews,
-        reviewText: state.aboutPage.reviewText
-    }
-};
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        newReviewsText: (text) => {
-            dispatch(newReviewTextAC(text));
-        },
-        addReviews: (userImg) => {
-            dispatch(addReviewAC(userImg))
-        },
-        setReviews: (reviews) =>{
-            dispatch(setReviewsAC(reviews))
-        }
-    }
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
+export default connect(mapStateToProps, {
+  newReviewText,
+  addReview,
+  setReviews
+})(Reviews);

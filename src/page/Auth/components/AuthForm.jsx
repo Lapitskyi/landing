@@ -1,40 +1,52 @@
-import React from 'react'
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import '../scss/AuthForm.scss';
 
+const AuthForm = ({
+  auth: {
+    input,
+    btnText
+  }
+}) => {
+  const onInputText = () => {
+  };
 
-const AuthForm = ({auth: {input, btn}}) => {
+  return (
+    <form className="form">
+      {input.map((item) => (
+        <label className="form__label" key={item.id} htmlFor={item.id}>
+          {item.label}
+          <input
+            id={item.id}
+            className="form__input"
+            type={item.type}
+            placeholder={item.placeholder}
+            onChange={onInputText}
+            value=""
+          />
+        </label>
+      ))}
+      <button
+        className="form__btn btn"
+        type="submit"
+      >
+        {btnText}
+      </button>
+    </form>
+  );
+};
 
-    let onInputText = () => {
-    };
-
-    return (
-        <form className="form">
-            {input.map((input) =>
-                <label className="form__label" key={input.id}>
-                    {input.label}
-                    <input className="form__input"
-                           type={input.type}
-                           placeholder={input.placeholder}
-                           onChange={onInputText}
-                           value=""/>
-                </label>
-            )}
-
-            <button className="form__btn btn" type="submit"> {btn} </button>
-        </form>
-
-    )
-}
+AuthForm.defaultProps = {
+  auth: {},
+  input: [],
+  btnText: ''
+};
 
 AuthForm.propTypes = {
-    id: PropTypes.string,
-    label: PropTypes.string,
-    type: PropTypes.string,
-    placeholder: PropTypes.string
-
-}
-
+  auth: PropTypes.objectOf,
+  input: PropTypes.arrayOf,
+  btnText: PropTypes.string
+};
 
 export default AuthForm;

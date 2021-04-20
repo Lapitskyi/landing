@@ -1,25 +1,19 @@
-import React from 'react'
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 
-import {connect} from "react-redux";
+import { connect } from 'react-redux';
 
-import {authLoginAC} from "../../redux/auth-reducer";
-import Login from "./Login";
+import { authLoginAC } from '../../redux/auth-reducer';
+import Login from './Login';
 
+const mapStateToProps = ({ authPage }) => ({ login: authPage.login });
 
-let mapStateToProps = (state) => {
-    return {
-        login: state.authPage.login
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginAuth: () => {
+      dispatch(authLoginAC());
     }
+  };
 };
-
-
-let mapDispatchToProps = (dispatch) => {
-    return {
-        loginAuth: () => {
-            dispatch(authLoginAC())
-        }
-    }
-};
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

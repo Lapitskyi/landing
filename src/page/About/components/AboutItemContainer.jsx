@@ -1,19 +1,11 @@
-import React from "react"
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 
-import {connect} from "react-redux";
-import AboutItem from "./AboutItem";
+import { connect } from 'react-redux';
+import AboutItem from './AboutItem';
 
+const mapStateToProps = (aboutPage) => ({ about: aboutPage.about });
 
-let mapStateToProps = (state) => {
-    return {
-        about: state.aboutPage.about
-    }
-};
+const mapDispatchToProps = () => ({});
 
-let mapDispatchToProps = (dispatch) => {
-    return {}
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(AboutItem)
-
+export default connect(mapStateToProps, mapDispatchToProps)(AboutItem);

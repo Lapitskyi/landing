@@ -1,36 +1,44 @@
-import React from 'react'
+import React from 'react';
 
-import AuthForm from './components/AuthForm'
-import ButtonClose from "../../components/ButtonClose/ButtonClose";
-import AuthLinks from "./components/AuthLinks";
+import AuthForm from './components/AuthForm';
+import ButtonClose from '../../components/ButtonClose/ButtonClose';
+import AuthLinks from './components/AuthLinks';
 
 import './scss/Auth.scss';
 
-const Reset = (props) => {
-    const authReset= {
-        input: [
-            {id: "email", label: "Email", placeholder: "email", btn: "Reset password"},
-        ],
-            btn: "Reset password",
-            link: [
-            {id: 1, title: "Already have login and password? Sign in", path: '/login'}
-        ]
-    }
-    return (
-        <div className="reset">
-            <div className="auth__inner">
+const Reset = () => {
+  const authReset = {
+    input: [
+      {
+        id: 'email',
+        label: 'Email',
+        placeholder: 'email',
+        btn: 'Reset password'
+      },
+    ],
+    btnText: 'Reset password',
+    link: [
+      {
+        id: 1,
+        title: 'Already have login and password? Sign in',
+        path: '/login'
+      }
+    ]
+  };
+  return (
+    <div className="reset">
+      <div className="auth__inner">
 
-                <ButtonClose/>
+        <ButtonClose />
 
-                <h2 className="auth__title">Reset password</h2>
+        <h2 className="auth__title">Reset password</h2>
 
-                <AuthForm state={props.state} auth={authReset}/>
+        <AuthForm auth={authReset} />
 
-                <AuthLinks state={props.state} auth={authReset}/>
-            </div>
-        </div>
-    )
-}
-
+        <AuthLinks auth={authReset} />
+      </div>
+    </div>
+  );
+};
 
 export default Reset;

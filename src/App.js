@@ -1,24 +1,25 @@
-import React, {useState} from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
+import MainLayout from './layouts/MainLayout';
+
 import './App.scss';
 
-import MainLayout from "./layouts/MainLayout";
+const App = ({ theme }) => {
+  return (
+    <div className={theme === false
+      ? 'app-wrapper app-wrapper__white'
+      : 'app-wrapper app-wrapper__dark'}
+    >
+      <MainLayout />
+    </div>
+  );
+};
 
-const App = (props) => {
-    const [theme, setTheme] = useState(false);
+App.defaultProps = {
+  theme: false,
+};
 
-    const updateTheme = () => {
-        setTheme(!!theme === false);
-    }
-
-    return (
-        <div className={theme === false
-            ? `app-wrapper app-wrapper__white`
-            : `app-wrapper app-wrapper__dark`}>
-
-            <MainLayout updateTheme={updateTheme} theme={theme} storeTable={props.storeTable}/>
-
-        </div>
-    )
-}
-
+App.propTypes = {
+  theme: PropTypes.bool,
+};
 export default App;

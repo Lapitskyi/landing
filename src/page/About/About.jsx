@@ -1,29 +1,20 @@
-import React from 'react'
+import React from 'react';
+import ReviewsContainer from './components/ReviewsContainer';
+import AboutItemContainer from './components/AboutItemContainer';
 
+const About = () => {
+  return (
+    <>
+      <section>
+        <AboutItemContainer />
+      </section>
 
-import ReviewsContainer from "./components/ReviewsContainer";
-import AboutItemContainer from "./components/AboutItemContainer";
+      <section>
+        <ReviewsContainer />
+      </section>
 
-
-
-
-
-
-const About = (props) => {
-
-    return (
-        <>
-            <section>
-                <AboutItemContainer />
-            </section>
-
-            <section>
-                <ReviewsContainer/>
-            </section>
-
-        </>
-    )
-}
-
+    </>
+  );
+};
 
 export default About;

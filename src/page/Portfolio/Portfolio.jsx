@@ -1,23 +1,12 @@
-import React from 'react'
-import PropTypes from "prop-types";
-
+import React from 'react';
 import './scss/Portfolio.scss';
 
+const Portfolio = () => {
+  return (
+    <div className="portfolio__inner" />
+  );
+};
 
-const Portfolio = (props) => {
-
-
-    return (
-        <div className="portfolio__inner">
-
-
-
-        </div>
-    )
-}
-
-Portfolio.propTypes = {
-    title: PropTypes.string,
-}
+Portfolio.propTypes = {};
 
 export default Portfolio;

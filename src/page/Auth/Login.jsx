@@ -1,45 +1,56 @@
-import React from 'react'
+import React from 'react';
 
+import AuthLinks from './components/AuthLinks';
+import ButtonClose from '../../components/ButtonClose/ButtonClose';
+import './scss/Auth.scss';
+import AuthForm from './components/AuthForm';
 
-import AuthLinks from "./components/AuthLinks";
-import ButtonClose from "../../components/ButtonClose/ButtonClose";
+const Login = () => {
+  const authLogin = {
+    input: [
+      {
+        id: 'email',
+        label: 'Username or email',
+        type: 'text',
+        placeholder: 'email'
+      },
+      {
+        id: 'password',
+        label: 'Password',
+        type: 'text',
+        placeholder: 'password'
+      }
+    ],
+    btnText: 'Sing in',
+    link: [
+      {
+        id: 1,
+        title: 'Forgot your password?',
+        path: '/reset'
+      },
+      {
+        id: 2,
+        title: 'Don\'t have an account yet? Register now',
+        path: '/registration'
+      }
+    ]
+  };
 
-import './scss/Auth.scss'
-import AuthForm from "./components/AuthForm";
-import {InputForm} from "../../components/InputForm/InputForm";
+  return (
+    <div className="login">
+      <div className="auth__inner">
 
+        <ButtonClose />
 
-const Login = (props) => {
+        <h2 className="auth__title">Sing in</h2>
 
-    const authLogin = {
-        input: [
-            {id: "email", label: "Username or email", type: 'text', placeholder: "email"},
-            {id: "password", label: "Password", type: 'text', placeholder: "password"}
-        ],
-        btn: "Sing in",
-        link: [
-            {id: 1, title: "Forgot your password?", path: '/reset'},
-            {id: 2, title: "Don't have an account yet? Register now", path: '/registration'}
-        ]
-    }
+        <AuthForm auth={authLogin} />
 
-    return (
-        <div className="login">
-            <div className="auth__inner">
+        <AuthLinks auth={authLogin} />
 
-                <ButtonClose/>
-
-                <h2 className="auth__title">Sing in</h2>
-
-
-                <AuthForm state={props.login} auth={authLogin} />
-
-                <AuthLinks state={props.login} auth={authLogin}/>
-
-            </div>
-        </div>
-    )
-}
-
+      </div>
+    </div>
+  );
+};
 
 export default Login;

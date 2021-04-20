@@ -1,28 +1,30 @@
-import React from 'react'
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
+import '../scss/AuthLinks.scss';
+import { NavLink } from 'react-router-dom';
 
-import "../scss/AuthLinks.scss"
-import {NavLink} from "react-router-dom";
+const AuthLinks = ({ auth: { link } }) => {
+  return (
+    <ul className="auth-link__list">
+      {
+        link.map((item) => (
+          <li className="auth-link__list-item" key={item.id}>
+            <NavLink className="auth-link__list-link" to={item.path}>{item.title}</NavLink>
+          </li>
+        ))
+      }
+    </ul>
+  );
+};
 
-
-const AuthLinks = ({auth:{link}}) => {
-    return (
-        <ul className="auth-link__list">
-            {
-                link.map((link) =>
-                    <li className="auth-link__list-item" key={link.id}>
-                        <NavLink className="auth-link__list-link" to={link.path}>{link.title}</NavLink>
-                    </li>
-                )}
-        </ul>
-    )
-}
-
+AuthLinks.defaultProps = {
+  auth: {},
+  link: []
+};
 AuthLinks.propTypes = {
-    id: PropTypes.number,
-    title: PropTypes.string,
-    path: PropTypes.string
-}
+  auth: PropTypes.objectOf,
+  link: PropTypes.arrayOf
+};
 
 export default AuthLinks;
