@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import AuthForm from './components/AuthForm';
 import ButtonClose from '../../components/ButtonClose/ButtonClose';
@@ -6,25 +7,19 @@ import AuthLinks from './components/AuthLinks';
 
 import './scss/Auth.scss';
 
-const Reset = () => {
-  const authReset = {
-    input: [
-      {
-        id: 'email',
-        label: 'Email',
-        placeholder: 'email',
-        btn: 'Reset password'
-      },
-    ],
-    btnText: 'Reset password',
-    link: [
-      {
-        id: 1,
-        title: 'Already have login and password? Sign in',
-        path: '/login'
+const Reset = ({
+  storeT: {
+    state: {
+      auth: {
+        reset: {
+          input,
+          btnText,
+          link
+        }
       }
-    ]
-  };
+    }
+  }
+}) => {
   return (
     <div className="reset">
       <div className="auth__inner">
@@ -33,12 +28,41 @@ const Reset = () => {
 
         <h2 className="auth__title">Reset password</h2>
 
-        <AuthForm auth={authReset} />
-
-        <AuthLinks auth={authReset} />
+        <AuthForm auth={{
+          input,
+          btnText
+        }}
+        />
+        <AuthLinks link={link} />
       </div>
     </div>
   );
+};
+Reset.defaultProps = {
+  storeT: {
+    state: {
+      auth: {
+        reset: {
+          input: [],
+          btnText: '',
+          link: []
+        }
+      }
+    }
+  }
+};
+Reset.propTypes = {
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      auth: PropTypes.shape({
+        reset: PropTypes.shape({
+          input: PropTypes.arrayOf(PropTypes.object),
+          btnText: PropTypes.string,
+          link: PropTypes.arrayOf(PropTypes.object)
+        })
+      })
+    })
+  })
 };
 
 export default Reset;

@@ -8,22 +8,10 @@ import '../scss/Reviews.scss';
 const Reviews = ({
   reviewText,
   reviews,
-  newReviewsText,
-  addReviews
+  onNewReviewsText,
+  onAddReviews,
+  imgReviews
 }) => {
-  const imgReviews = React.createRef();
-
-  const onAddReviews = (e) => {
-    e.preventDefault();
-    const userImg = imgReviews.current.src;
-    addReviews(userImg);
-  };
-
-  const onChangeReviews = (e) => {
-    const text = e.target.value;
-    newReviewsText(text);
-  };
-
   return (
     <div className="reviews">
       <h2 className="reviews__title">Review</h2>
@@ -36,7 +24,9 @@ const Reviews = ({
         <form className="reviews__form">
           <textarea
             className="reviews__text"
-            onChange={onChangeReviews}
+            onChange={(e) => {
+              onNewReviewsText(e.target.value);
+            }}
             value={reviewText}
             placeholder="Leave a review"
           />
@@ -54,18 +44,20 @@ const Reviews = ({
 };
 
 Reviews.defaultProps = {
+  imgReviews: '',
   reviewText: '',
   reviews: [],
-  newReviewsText: () => {
+  onNewReviewsText: () => {
   },
-  addReviews: () => {
+  onAddReviews: () => {
   }
 };
 Reviews.propTypes = {
+  imgReviews: PropTypes.string,
   reviewText: PropTypes.string,
-  reviews: PropTypes.arrayOf,
-  newReviewsText: PropTypes.func,
-  addReviews: PropTypes.func
+  reviews: PropTypes.arrayOf(PropTypes.object),
+  onNewReviewsText: PropTypes.func,
+  onAddReviews: PropTypes.func
 };
 
 export default Reviews;

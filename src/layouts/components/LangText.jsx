@@ -1,40 +1,52 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../scss/Lang.scss';
+import PropTypes from 'prop-types';
 
-const LangText = () => {
-  const [lang, setLang] = useState([{ id: 'en', lang: true }, { id: 'ua', lang: false }, { id: 'ru', lang: false }]);
-
-  const onSwitchLanguage = (id) => {
-    setLang(
-      // eslint-disable-next-line no-nested-ternary
-      lang.map((l) => ((l.id === id) ? { ...l, lang: true }
-        : (l.id !== id) ? { ...l, lang: false } : l))
-    );
-  };
+const LangText = ({
+  updateLang: {
+    langToggle,
+    lang
+  }
+}) => {
   const a = lang.filter((item) => item.lang);
   const b = lang.filter((item) => !item.lang);
   return (
     <div className="lang">
       <ul className="lang__list ">
         {[...a, ...b].map((item) => (
-          // eslint-disable-next-line max-len
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
-          <li
-            className={item.lang === false ? 'lang__item ' : 'lang__item active'}
-            key={item.id}
-            onClick={() => onSwitchLanguage(item.id)}
-          >
-            <img
-              className="lang__img"
-              src=""
-              alt="lang ua"
-            />
-            {item.id}
+          <li key={item.id}>
+            <button
+              className={!item.lang ? 'lang__item ' : 'lang__item active'}
+              type="button"
+              onClick={() => langToggle(item.id)}
+            >
+              <img
+                className="lang__img"
+                src={item.imgLang}
+                alt="lang"
+              />
+              {item.id}
+            </button>
           </li>
         ))}
       </ul>
     </div>
   );
+};
+
+LangText.defaultProps = {
+  updateLang: {
+    langToggle: () => {
+    },
+    lang: []
+  }
+};
+
+LangText.propTypes = {
+  updateLang: PropTypes.shape({
+    langToggle: PropTypes.func,
+    lang: PropTypes.arrayOf(PropTypes.object)
+  })
 };
 
 export default LangText;

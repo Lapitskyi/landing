@@ -29,17 +29,20 @@ const AboutItem = ({
 };
 
 AboutItem.defaultProps = {
-  about: {},
-  title: '',
-  suptitle: '',
-  text: []
+  about: {
+    title: '',
+    suptitle: '',
+    text: []
+  },
 };
 
 AboutItem.propTypes = {
-  about: PropTypes.objectOf,
-  title: PropTypes.string,
-  suptitle: PropTypes.string,
-  text: PropTypes.arrayOf
+  about: PropTypes.shape({
+    title: PropTypes.string,
+    suptitle: PropTypes.string,
+    text: PropTypes.arrayOf(PropTypes.object)
+  }),
+
 };
 
 export default AboutItem;

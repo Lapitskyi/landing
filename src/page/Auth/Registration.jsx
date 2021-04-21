@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import AuthForm from './components/AuthForm';
 import ButtonClose from '../../components/ButtonClose/ButtonClose';
@@ -6,35 +7,19 @@ import AuthLinks from './components/AuthLinks';
 
 import './scss/Auth.scss';
 
-const Registration = () => {
-  const authRegistration = {
-    input: [
-      {
-        id: 'email',
-        label: 'Email',
-        placeholder: 'email'
-      },
-      {
-        id: 'password',
-        label: 'Password',
-        placeholder: 'password'
-      },
-      {
-        id: 'repassword',
-        label: 'Repassword',
-        placeholder: 'repassword'
+const Registration = ({
+  storeT: {
+    state: {
+      auth: {
+        registration: {
+          input,
+          btnText,
+          link
+        }
       }
-    ],
-    btnText: 'Sing Up',
-    link: [
-      {
-        id: 1,
-        title: 'Already have login and password? Sign in',
-        path: '/login'
-      }
-    ]
-  };
-
+    }
+  }
+}) => {
   return (
     <div className="registration">
       <div className="auth__inner">
@@ -43,12 +28,42 @@ const Registration = () => {
 
         <h2 className="auth__title">Sing Up</h2>
 
-        <AuthForm auth={authRegistration} />
+        <AuthForm auth={{
+          input,
+          btnText
+        }}
+        />
 
-        <AuthLinks auth={authRegistration} />
+        <AuthLinks link={link} />
       </div>
     </div>
   );
+};
+Registration.defaultProps = {
+  storeT: {
+    state: {
+      auth: {
+        registration: {
+          input: [],
+          btnText: '',
+          link: []
+        }
+      }
+    }
+  }
+};
+Registration.propTypes = {
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      auth: PropTypes.shape({
+        registration: PropTypes.shape({
+          input: PropTypes.arrayOf(PropTypes.object),
+          btnText: PropTypes.string,
+          link: PropTypes.arrayOf(PropTypes.object)
+        })
+      })
+    })
+  })
 };
 
 export default Registration;

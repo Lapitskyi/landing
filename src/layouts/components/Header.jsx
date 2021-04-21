@@ -30,11 +30,12 @@ const Header = ({
               (value) => (<ThemeToggle updateTheme={value} />)
             }
           </ThemeContext.Consumer>
-
-          <LangText />
-
+          <ThemeContext.Consumer>
+            {
+              (value) => (<LangText updateLang={value} />)
+            }
+          </ThemeContext.Consumer>
           <Social social={social} />
-
         </div>
       </div>
     </div>

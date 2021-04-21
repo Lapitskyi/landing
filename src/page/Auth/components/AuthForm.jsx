@@ -38,15 +38,17 @@ const AuthForm = ({
 };
 
 AuthForm.defaultProps = {
-  auth: {},
-  input: [],
-  btnText: ''
+  auth: {
+    input: [],
+    btnText: ''
+  },
 };
 
 AuthForm.propTypes = {
-  auth: PropTypes.objectOf,
-  input: PropTypes.arrayOf,
-  btnText: PropTypes.string
+  auth: PropTypes.shape({
+    input: PropTypes.arrayOf(PropTypes.object),
+    btnText: PropTypes.string
+  })
 };
 
 export default AuthForm;

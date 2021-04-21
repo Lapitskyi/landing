@@ -1,15 +1,14 @@
 import React from 'react';
-import Login from './Login';
 import StoreContext from '../../store/StoreContext';
+import Reset from './Reset';
 
-const LoginContainer = () => {
+const ResetContainer = () => {
   return (
     <StoreContext.Consumer>
       {
-        (value) => (<Login storeT={value} />)
+        (value) => (<Reset storeT={value} />)
       }
     </StoreContext.Consumer>
   );
 };
-
-export default LoginContainer;
+export default ResetContainer;

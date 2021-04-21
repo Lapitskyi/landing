@@ -1,15 +1,15 @@
 import React from 'react';
-import Login from './Login';
+import Registration from './Registration';
 import StoreContext from '../../store/StoreContext';
 
-const LoginContainer = () => {
+const RegistrationContainer = () => {
   return (
     <StoreContext.Consumer>
       {
-        (value) => (<Login storeT={value} />)
+        (value) => (<Registration storeT={value} />)
       }
     </StoreContext.Consumer>
   );
 };
 
-export default LoginContainer;
+export default RegistrationContainer;

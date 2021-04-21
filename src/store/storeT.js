@@ -1,5 +1,81 @@
 const storeT = {
   state: {
+    auth: {
+      login: {
+        input: [
+          {
+            id: 'email',
+            label: 'Username or email',
+            type: 'text',
+            placeholder: 'email'
+          },
+          {
+            id: 'password',
+            label: 'Password',
+            type: 'text',
+            placeholder: 'password'
+          }
+        ],
+        btnText: 'Sing in',
+        link: [
+          {
+            id: 1,
+            title: 'Forgot your password?',
+            path: '/reset'
+          },
+          {
+            id: 2,
+            title: 'Don\'t have an account yet? Register now',
+            path: '/registration'
+          }
+        ]
+      },
+      registration: {
+        input: [
+          {
+            id: 'email',
+            label: 'Email',
+            placeholder: 'email'
+          },
+          {
+            id: 'password',
+            label: 'Password',
+            placeholder: 'password'
+          },
+          {
+            id: 'repassword',
+            label: 'Repassword',
+            placeholder: 'repassword'
+          }
+        ],
+        btnText: 'Sing Up',
+        link: [
+          {
+            id: 1,
+            title: 'Already have login and password? Sign in',
+            path: '/login'
+          }
+        ]
+      },
+      reset: {
+        input: [
+          {
+            id: 'email',
+            label: 'Email',
+            placeholder: 'email',
+            btn: 'Reset password'
+          },
+        ],
+        btnText: 'Reset password',
+        link: [
+          {
+            id: 1,
+            title: 'Already have login and password? Sign in',
+            path: '/login'
+          }
+        ]
+      }
+    },
     tableArray: {
       tableHeadlines: [
         { id: 'fullName' },
@@ -152,23 +228,24 @@ const storeT = {
     langToggle: {
       langT: [
         {
-          en: true,
-          imgLang: '../../assets/icon/eng.png'
+          id: 'en',
+          lang: true,
+          imgLang: '../../assets/icon/en.png'
         },
         {
-          ua: false,
+          id: 'ua',
+          lang: false,
           imgLang: '../../assets/icon/ua.png'
         },
         {
-          ru: false,
+          id: 'ru',
+          lang: false,
           imgLang: '../../assets/icon/ru.png'
         }
       ],
-      onLangToggle: () => {}
     },
     themeToggle: {
       themeT: false,
-      onThemeToggle: () => {}
     }
   }
 };

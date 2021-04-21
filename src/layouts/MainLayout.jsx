@@ -6,9 +6,9 @@ import About from '../page/About/About';
 import Order from '../page/Order/Order';
 import Portfolio from '../page/Portfolio/Portfolio';
 import LoginContainer from '../page/Auth/LoginContainer';
-import Registration from '../page/Auth/Registration';
-import Reset from '../page/Auth/Reset';
 import HeaderContainer from './components/HeaderContainer';
+import ResetContainer from '../page/Auth/ResetContainer';
+import RegistrationContainer from '../page/Auth/RegistrationContainer';
 
 const MainLayout = () => {
   return (
@@ -21,8 +21,8 @@ const MainLayout = () => {
           <Route path="/order" render={() => <Order />} />
           <Route path="/portfolio" render={() => <Portfolio />} />
           <Route path="/login" render={() => <LoginContainer />} />
-          <Route path="/registration" render={() => <Registration />} />
-          <Route path="/reset" render={() => <Reset />} />
+          <Route path="/registration" render={() => <RegistrationContainer />} />
+          <Route path="/reset" render={() => <ResetContainer />} />
         </div>
       </div>
       <Footer />

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import '../scss/AuthLinks.scss';
 import { NavLink } from 'react-router-dom';
 
-const AuthLinks = ({ auth: { link } }) => {
+const AuthLinks = ({ link }) => {
   return (
     <ul className="auth-link__list">
       {
@@ -19,12 +19,10 @@ const AuthLinks = ({ auth: { link } }) => {
 };
 
 AuthLinks.defaultProps = {
-  auth: {},
   link: []
 };
 AuthLinks.propTypes = {
-  auth: PropTypes.objectOf,
-  link: PropTypes.arrayOf
+  link: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default AuthLinks;

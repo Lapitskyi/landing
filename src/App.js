@@ -6,7 +6,7 @@ import './App.scss';
 
 const App = ({ theme }) => {
   return (
-    <div className={theme === false
+    <div className={!theme
       ? 'app-wrapper app-wrapper__white'
       : 'app-wrapper app-wrapper__dark'}
     >

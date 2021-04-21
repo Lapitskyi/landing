@@ -4,9 +4,11 @@ import App from './App';
 import ThemeContext from './store/ThemeContext';
 
 const AppContainer = ({
-  state: {
-    themeToggle: { themeT },
-    langToggle: { langT }
+  storeT: {
+    state: {
+      themeToggle: { themeT },
+      langToggle: { langT }
+    }
   }
 }) => {
   const [theme, setTheme] = useState(themeT);
@@ -16,8 +18,12 @@ const AppContainer = ({
     setTheme(!!theme === false);
   };
 
-  const langToggle = () => {
-    setLang(!!lang === false);
+  const langToggle = (id) => {
+    setLang(
+      // eslint-disable-next-line no-nested-ternary
+      lang.map((l) => ((l.id === id) ? { ...l, lang: true }
+        : (l.id !== id) ? { ...l, lang: false } : l))
+    );
   };
 
   return (
@@ -33,22 +39,27 @@ const AppContainer = ({
   );
 };
 AppContainer.defaultProps = {
-  state: {
-    themeToggle: {
-      themeT: false
-    },
-    langToggle: {
-      langT: []
+  storeT: {
+    state: {
+      themeToggle: {
+        themeT: false
+      },
+      langToggle: {
+        langT: []
+      }
     }
   }
+
 };
 AppContainer.propTypes = {
-  state: PropTypes.shape({
-    themeToggle: PropTypes.shape({
-      themeT: PropTypes.bool
-    }),
-    langToggle: PropTypes.shape({
-      langT: PropTypes.arrayOf(PropTypes.object)
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      themeToggle: PropTypes.shape({
+        themeT: PropTypes.bool
+      }),
+      langToggle: PropTypes.shape({
+        langT: PropTypes.arrayOf(PropTypes.object)
+      })
     })
   })
 };

@@ -1,56 +1,63 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import AuthLinks from './components/AuthLinks';
 import ButtonClose from '../../components/ButtonClose/ButtonClose';
-import './scss/Auth.scss';
 import AuthForm from './components/AuthForm';
+import './scss/Auth.scss';
 
-const Login = () => {
-  const authLogin = {
-    input: [
-      {
-        id: 'email',
-        label: 'Username or email',
-        type: 'text',
-        placeholder: 'email'
-      },
-      {
-        id: 'password',
-        label: 'Password',
-        type: 'text',
-        placeholder: 'password'
+const Login = ({
+  storeT: {
+    state: {
+      auth: {
+        login: {
+          input,
+          btnText,
+          link
+        }
       }
-    ],
-    btnText: 'Sing in',
-    link: [
-      {
-        id: 1,
-        title: 'Forgot your password?',
-        path: '/reset'
-      },
-      {
-        id: 2,
-        title: 'Don\'t have an account yet? Register now',
-        path: '/registration'
-      }
-    ]
-  };
-
+    }
+  }
+}) => {
   return (
     <div className="login">
       <div className="auth__inner">
-
         <ButtonClose />
-
         <h2 className="auth__title">Sing in</h2>
-
-        <AuthForm auth={authLogin} />
-
-        <AuthLinks auth={authLogin} />
-
+        <AuthForm auth={{
+          input,
+          btnText
+        }}
+        />
+        <AuthLinks link={link} />
       </div>
     </div>
   );
 };
 
+Login.defaultProps = {
+  storeT: {
+    state: {
+      auth: {
+        login: {
+          input: [],
+          btnText: '',
+          link: []
+        }
+      }
+    }
+  }
+};
+Login.propTypes = {
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      auth: PropTypes.shape({
+        login: PropTypes.shape({
+          input: PropTypes.arrayOf(PropTypes.object),
+          btnText: PropTypes.string,
+          link: PropTypes.arrayOf(PropTypes.object)
+        })
+      })
+    })
+  })
+};
 export default Login;
