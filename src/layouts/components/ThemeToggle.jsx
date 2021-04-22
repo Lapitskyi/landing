@@ -17,7 +17,7 @@ const ThemeToggle = ({
           type="checkbox"
           id="checkbox"
           checked={theme}
-          onClick={() => toggleTheme(theme)}
+          onChange={() => toggleTheme(theme)}
         />
         <div className="theme__label">
           <svg className="theme__icon">

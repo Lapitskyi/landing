@@ -24,15 +24,15 @@ const TableCell = ({
   );
 };
 
-TableCell.default = {
+TableCell.defaultProps = {
   editMode: false,
   val: '',
   updateText: () => {}
 };
 TableCell.propTypes = {
-  editMode: PropTypes.bool.isRequired,
-  val: PropTypes.string.isRequired,
-  updateText: PropTypes.func.isRequired
+  editMode: PropTypes.bool,
+  val: PropTypes.string,
+  updateText: PropTypes.func
 };
 
 export default TableCell;

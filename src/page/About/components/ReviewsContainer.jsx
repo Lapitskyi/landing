@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import Reviews from './Reviews';
 import { addReview, newReviewText, setReviews } from '../../../redux/about-reducer';
 
-const ReviewsContainer = (props) => {
+const ReviewsContainer = ({
+  reviews,
+  reviewText,
+  ...props
+}) => {
   const onNewReviewsText = (text) => {
     props.newReviewText(text);
   };
@@ -16,10 +20,18 @@ const ReviewsContainer = (props) => {
     props.addReview(userImg);
   };
 
-  return <Reviews onNewReviewsText={onNewReviewsText} onAddReviews={onAddReviews} imgReviews={imgReviews} />;
+  return (
+    <Reviews
+      onNewReviewsText={onNewReviewsText}
+      onAddReviews={onAddReviews}
+      imgReviews={imgReviews}
+      reviews={reviews}
+      reviewText={reviewText}
+    />
+  );
 };
 
-const mapStateToProps = (aboutPage) => ({
+const mapStateToProps = ({ aboutPage }) => ({
   reviews: aboutPage.reviews,
   reviewText: aboutPage.reviewText
 });
@@ -31,6 +43,8 @@ export default connect(mapStateToProps, {
 })(ReviewsContainer);
 
 ReviewsContainer.defaultProps = {
+  reviews: [],
+  reviewText: '',
   newReviewText: () => {
   },
   addReview: () => {
@@ -39,6 +53,8 @@ ReviewsContainer.defaultProps = {
   // }
 };
 ReviewsContainer.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object),
+  reviewText: PropTypes.string,
   newReviewText: PropTypes.func,
   addReview: PropTypes.func,
   // setReviews: PropTypes.func

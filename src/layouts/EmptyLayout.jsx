@@ -1,14 +1,10 @@
-import React from "react";
+import React from 'react';
 
+const EmptyLayout = () => {
+  return (
+    <> </>
 
-const EmptyLayout = (props) => {
-    return (
-        <>
-
-        </>
-
-    )
-}
-
+  );
+};
 
 export default EmptyLayout;

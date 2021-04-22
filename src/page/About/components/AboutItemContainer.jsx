@@ -4,8 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import AboutItem from './AboutItem';
 
-const mapStateToProps = (aboutPage) => ({ about: aboutPage.about });
+const mapStateToProps = ({ aboutPage }) => ({ about: aboutPage.about });
 
-const mapDispatchToProps = () => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AboutItem);
+export default connect(mapStateToProps, {})(AboutItem);

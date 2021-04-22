@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes, { number } from 'prop-types';
+import PropTypes from 'prop-types';
 
 const TableCheckbox = ({
   id,
@@ -21,7 +21,7 @@ const TableCheckbox = ({
 };
 
 TableCheckbox.defaultProps = {
-  id: number,
+  id: 1,
   done: false,
   onCheckedChange: () => {}
 };

@@ -22,7 +22,7 @@ ReviewsList.defaultProps = {
   reviews: []
 };
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf
+  reviews: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default ReviewsList;
