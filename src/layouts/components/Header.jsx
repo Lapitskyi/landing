@@ -73,10 +73,10 @@ Header.defaultProps = {
 
 };
 Header.propTypes = {
-  toggleLang: {
-    lang: PropTypes.bool,
+  toggleLang: PropTypes.shape({
+    lang: PropTypes.arrayOf(PropTypes.object),
     langToggle: PropTypes.func
-  },
+  }),
   updateTheme: PropTypes.shape({
     theme: PropTypes.bool,
     toggleTheme: PropTypes.func

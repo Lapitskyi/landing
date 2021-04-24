@@ -1,9 +1,10 @@
 import React from 'react';
 import './scss/Portfolio.scss';
+import Todo from '../Home/components/Todo';
 
 const Portfolio = () => {
   return (
-    <div className="portfolio__inner" />
+    <Todo />
   );
 };
 
