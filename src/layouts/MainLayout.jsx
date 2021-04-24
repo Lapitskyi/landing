@@ -6,14 +6,14 @@ import About from '../page/About/About';
 import Order from '../page/Order/Order';
 import Portfolio from '../page/Portfolio/Portfolio';
 import LoginContainer from '../page/Auth/LoginContainer';
-import HeaderContainer from './components/HeaderContainer';
+import Header from './components/Header';
 import ResetContainer from '../page/Auth/ResetContainer';
 import RegistrationContainer from '../page/Auth/RegistrationContainer';
 
 const MainLayout = () => {
   return (
     <>
-      <HeaderContainer />
+      <Header />
       <div className="content">
         <div className="container">
           <Route path="/" exact render={() => <Home />} />

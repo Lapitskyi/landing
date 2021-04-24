@@ -3,7 +3,7 @@ import '../scss/Lang.scss';
 import PropTypes from 'prop-types';
 
 const LangText = ({
-  updateLang: {
+  toggleLang: {
     langToggle,
     lang
   }
@@ -35,7 +35,7 @@ const LangText = ({
 };
 
 LangText.defaultProps = {
-  updateLang: {
+  toggleLang: {
     langToggle: () => {
     },
     lang: []
@@ -43,7 +43,7 @@ LangText.defaultProps = {
 };
 
 LangText.propTypes = {
-  updateLang: PropTypes.shape({
+  toggleLang: PropTypes.shape({
     langToggle: PropTypes.func,
     lang: PropTypes.arrayOf(PropTypes.object)
   })

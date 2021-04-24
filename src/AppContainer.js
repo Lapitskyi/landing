@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import App from './App';
-import ThemeContext from './store/ThemeContext';
+import MyContext from './store/MyContext';
 
 const AppContainer = ({
   storeT: {
@@ -20,14 +20,26 @@ const AppContainer = ({
 
   const langToggle = (id) => {
     setLang(
-      // eslint-disable-next-line no-nested-ternary
-      lang.map((l) => ((l.id === id) ? { ...l, lang: true }
-        : (l.id !== id) ? { ...l, lang: false } : l))
+      lang.map((item) => {
+        if (item.id === id) {
+          return {
+            ...item,
+            lang: !!item.lang === false
+          };
+        }
+        if (item.id !== id) {
+          return {
+            ...item,
+            lang: false
+          };
+        }
+        return item;
+      })
     );
   };
 
   return (
-    <ThemeContext.Provider value={{
+    <MyContext.Provider value={{
       theme,
       toggleTheme,
       lang,
@@ -35,7 +47,7 @@ const AppContainer = ({
     }}
     >
       <App theme={theme} />
-    </ThemeContext.Provider>
+    </MyContext.Provider>
   );
 };
 AppContainer.defaultProps = {

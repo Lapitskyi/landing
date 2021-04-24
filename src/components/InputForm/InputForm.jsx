@@ -3,7 +3,7 @@ import './ImputForm.scss';
 import PropTypes from 'prop-types';
 
 const InputForm = ({
-  id, label, type, placeholder, onChange, value
+  id, label, type, placeholder, onChange, val
 }) => {
   return (
     <label key={id} htmlFor={id}>
@@ -13,7 +13,7 @@ const InputForm = ({
         type={type}
         placeholder={placeholder}
         onChange={onChange}
-        value={value}
+        value={val}
       />
     </label>
   );
@@ -23,7 +23,7 @@ InputForm.defaultProps = {
   label: 'text',
   type: 'text',
   placeholder: 'text',
-  value: 'text',
+  val: 'text',
   onChange: () => {}
 };
 
@@ -33,6 +33,6 @@ InputForm.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  value: PropTypes.string
+  val: PropTypes.string
 };
 export default InputForm;

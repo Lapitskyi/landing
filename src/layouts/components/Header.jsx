@@ -5,9 +5,19 @@ import ThemeToggle from './ThemeToggle';
 import Menu from './Menu';
 import Social from './Social';
 import LangText from './LangText';
-import ThemeContext from '../../store/ThemeContext';
+
+import withHoc from '../../hoc/withHoc';
 
 const Header = ({
+  toggleLang: {
+    lang,
+    langToggle
+  },
+  updateTheme: {
+    theme,
+    toggleTheme,
+  },
+
   storeT: {
     state: {
       menu,
@@ -25,16 +35,17 @@ const Header = ({
 
           <Menu menu={menu} />
 
-          <ThemeContext.Consumer>
-            {
-              (value) => (<ThemeToggle updateTheme={value} />)
-            }
-          </ThemeContext.Consumer>
-          <ThemeContext.Consumer>
-            {
-              (value) => (<LangText updateLang={value} />)
-            }
-          </ThemeContext.Consumer>
+          <ThemeToggle updateTheme={{
+            theme,
+            toggleTheme
+          }}
+          />
+
+          <LangText toggleLang={{
+            lang,
+            langToggle
+          }}
+          />
           <Social social={social} />
         </div>
       </div>
@@ -48,9 +59,29 @@ Header.defaultProps = {
       menu: [],
       social: []
     },
+  },
+  updateTheme: {
+    theme: false,
+    toggleTheme: () => {
+    }
+  },
+  toggleLang: {
+    lang: true,
+    langToggle: () => {
+    }
   }
+
 };
 Header.propTypes = {
+  toggleLang: {
+    lang: PropTypes.bool,
+    langToggle: PropTypes.func
+  },
+  updateTheme: PropTypes.shape({
+    theme: PropTypes.bool,
+    toggleTheme: PropTypes.func
+  }),
+
   storeT: PropTypes.shape({
     state: PropTypes.shape({
       menu: PropTypes.arrayOf(PropTypes.object),
@@ -59,4 +90,4 @@ Header.propTypes = {
   }),
 };
 
-export default Header;
+export default withHoc(Header);

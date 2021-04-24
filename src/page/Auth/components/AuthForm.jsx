@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import '../scss/AuthForm.scss';
+import ButtonForm from '../../../components/ButtonForm/ButtonForm';
 
 const AuthForm = ({
   auth: {
@@ -27,12 +28,9 @@ const AuthForm = ({
           />
         </label>
       ))}
-      <button
-        className="form__btn btn"
-        type="submit"
-      >
-        {btnText}
-      </button>
+
+      <ButtonForm name={btnText} />
+
     </form>
   );
 };
