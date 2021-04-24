@@ -1,15 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Login from './Login';
-import StoreContext from '../../store/StoreContext';
+import withHoc from '../../hoc/withHoc';
 
-const LoginContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {
-        (value) => (<Login storeT={value} />)
+const LoginContainer = ({
+  storeT: {
+    state: {
+      auth: {
+        login: {
+          input,
+          btnText,
+          link
+        }
       }
-    </StoreContext.Consumer>
+    }
+  }
+}) => {
+  return (
+    <Login input={input} btnText={btnText} link={link} />
   );
 };
 
-export default LoginContainer;
+LoginContainer.defaultProps = {
+  storeT: {
+    state: {
+      auth: {
+        login: {
+          input: [],
+          btnText: '',
+          link: []
+        }
+      }
+    }
+  }
+};
+LoginContainer.propTypes = {
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      auth: PropTypes.shape({
+        login: PropTypes.shape({
+          input: PropTypes.arrayOf(PropTypes.object),
+          btnText: PropTypes.string,
+          link: PropTypes.arrayOf(PropTypes.object)
+        })
+      })
+    })
+  })
+};
+export default withHoc(LoginContainer);

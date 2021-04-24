@@ -6,17 +6,9 @@ import AuthForm from './components/AuthForm';
 import './scss/Auth.scss';
 
 const Login = ({
-  storeT: {
-    state: {
-      auth: {
-        login: {
-          input,
-          btnText,
-          link
-        }
-      }
-    }
-  }
+  input,
+  btnText,
+  link
 }) => {
   return (
     <div className="login">
@@ -35,29 +27,14 @@ const Login = ({
 };
 
 Login.defaultProps = {
-  storeT: {
-    state: {
-      auth: {
-        login: {
-          input: [],
-          btnText: '',
-          link: []
-        }
-      }
-    }
-  }
+  input: [],
+  btnText: '',
+  link: []
 };
 Login.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      auth: PropTypes.shape({
-        login: PropTypes.shape({
-          input: PropTypes.arrayOf(PropTypes.object),
-          btnText: PropTypes.string,
-          link: PropTypes.arrayOf(PropTypes.object)
-        })
-      })
-    })
-  })
+  input: PropTypes.arrayOf(PropTypes.object),
+  btnText: PropTypes.string,
+  link: PropTypes.arrayOf(PropTypes.object)
 };
+
 export default Login;

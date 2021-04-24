@@ -12,17 +12,20 @@ const withHoc = (Component) => {
       langToggle
     } = useContext(MyContext);
     return (
-      <Component
-        storeT={storeT}
-        updateTheme={{
-          theme,
-          toggleTheme
-        }}
-        toggleLang={{
-          lang,
-          langToggle
-        }}
-      />
+      <>
+        <Component
+          storeT={storeT}
+          updateTheme={{
+            theme,
+            toggleTheme
+          }}
+          toggleLang={{
+            lang,
+            langToggle
+          }}
+        />
+
+      </>
     );
   };
 };

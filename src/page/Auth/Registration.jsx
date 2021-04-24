@@ -8,17 +8,9 @@ import AuthLinks from './components/AuthLinks';
 import './scss/Auth.scss';
 
 const Registration = ({
-  storeT: {
-    state: {
-      auth: {
-        registration: {
-          input,
-          btnText,
-          link
-        }
-      }
-    }
-  }
+  input,
+  btnText,
+  link
 }) => {
   return (
     <div className="registration">
@@ -40,30 +32,15 @@ const Registration = ({
   );
 };
 Registration.defaultProps = {
-  storeT: {
-    state: {
-      auth: {
-        registration: {
-          input: [],
-          btnText: '',
-          link: []
-        }
-      }
-    }
-  }
+  input: [],
+  btnText: '',
+  link: []
 };
 Registration.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      auth: PropTypes.shape({
-        registration: PropTypes.shape({
-          input: PropTypes.arrayOf(PropTypes.object),
-          btnText: PropTypes.string,
-          link: PropTypes.arrayOf(PropTypes.object)
-        })
-      })
-    })
-  })
+  input: PropTypes.arrayOf(PropTypes.object),
+  btnText: PropTypes.string,
+  link: PropTypes.arrayOf(PropTypes.object)
+
 };
 
 export default Registration;

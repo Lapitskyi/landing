@@ -1,14 +1,50 @@
 import React from 'react';
-import StoreContext from '../../store/StoreContext';
+import PropTypes from 'prop-types';
 import Reset from './Reset';
+import withHoc from '../../hoc/withHoc';
 
-const ResetContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {
-        (value) => (<Reset storeT={value} />)
+const ResetContainer = ({
+  storeT: {
+    state: {
+      auth: {
+        reset: {
+          input,
+          btnText,
+          link
+        }
       }
-    </StoreContext.Consumer>
+    }
+  }
+}) => {
+  return (
+    <Reset input={input} btnText={btnText} link={link} />
   );
 };
-export default ResetContainer;
+
+ResetContainer.defaultProps = {
+  storeT: {
+    state: {
+      auth: {
+        reset: {
+          input: [],
+          btnText: '',
+          link: []
+        }
+      }
+    }
+  }
+};
+ResetContainer.propTypes = {
+  storeT: PropTypes.shape({
+    state: PropTypes.shape({
+      auth: PropTypes.shape({
+        reset: PropTypes.shape({
+          input: PropTypes.arrayOf(PropTypes.object),
+          btnText: PropTypes.string,
+          link: PropTypes.arrayOf(PropTypes.object)
+        })
+      })
+    })
+  })
+};
+export default withHoc(ResetContainer);
