@@ -4,10 +4,8 @@ import '../scss/ThemeToggle.scss';
 import sprite from '../../assets/spriteSvg/sprite.svg';
 
 const ThemeToggle = ({
-  updateTheme: {
-    theme,
-    toggleTheme
-  }
+  themeT,
+  toggleTheme
 }) => {
   return (
     <div className="theme">
@@ -16,8 +14,8 @@ const ThemeToggle = ({
           className="theme__input"
           type="checkbox"
           id="checkbox"
-          checked={theme}
-          onChange={() => toggleTheme(theme)}
+          checked={themeT}
+          onChange={() => toggleTheme(themeT)}
         />
         <div className="theme__label">
           <svg className="theme__icon">
@@ -34,16 +32,15 @@ const ThemeToggle = ({
   );
 };
 ThemeToggle.defaultProps = {
-  updateTheme: PropTypes.shape({
-    theme: false,
-    toggleTheme: () => {}
-  })
+  themeT: false,
+  toggleTheme: () => {
+  }
+
 };
 ThemeToggle.propTypes = {
-  updateTheme: PropTypes.shape({
-    theme: PropTypes.bool,
-    toggleTheme: PropTypes.func
-  })
+  themeT: PropTypes.bool,
+  toggleTheme: PropTypes.func
+
 };
 
 export default ThemeToggle;

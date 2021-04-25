@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import AppContainer from './AppContainer';
 import store from './redux/store-redux';
-import StoreContext from './store/StoreContext';
 import storeT from './store/storeT';
 
 import './index.scss';
@@ -14,9 +13,7 @@ ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <Provider store={store}>
-        <StoreContext.Provider value={storeT}>
-          <AppContainer storeT={storeT} />
-        </StoreContext.Provider>
+        <AppContainer storeT={storeT} />
       </Provider>
     </React.StrictMode>
     ,

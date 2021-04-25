@@ -217,28 +217,24 @@ const storeT = {
         alt: 'github'
       }
     ],
-    langToggle: {
-      langT: [
-        {
-          id: 'en',
-          lang: true,
-          imgLang: en
-        },
-        {
-          id: 'ua',
-          lang: false,
-          imgLang: ua
-        },
-        {
-          id: 'ru',
-          lang: false,
-          imgLang: ru
-        }
-      ],
-    },
-    themeToggle: {
-      themeT: false,
-    }
+    langT: [
+      {
+        id: 'en',
+        lang: true,
+        imgLang: en
+      },
+      {
+        id: 'ua',
+        lang: false,
+        imgLang: ua
+      },
+      {
+        id: 'ru',
+        lang: false,
+        imgLang: ru
+      }
+    ],
+    themeT: false,
   }
 };
 

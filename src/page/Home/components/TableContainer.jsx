@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import Table from './Table';
 
 const TableContainer = ({
-  storeT: {
-    state: {
-      tableArray: {
-        tableBody,
-        tableHeadlines
-      }
+  stateApp: {
+    tableArray: {
+      tableBody,
+      tableHeadlines
     }
   }
+
 }) => {
   const [tableItem, setTableItem] = useState(tableBody);
   const [editMode, setEditMode] = useState(false);
@@ -163,25 +162,21 @@ const TableContainer = ({
 };
 
 TableContainer.defaultProps = {
-  storeT: {
-    state: {
-      tableArray: {
-        tableBody: [],
-        tableHeadlines: []
-      }
+  stateApp: {
+    tableArray: {
+      tableBody: [],
+      tableHeadlines: []
     }
   }
 };
 
 TableContainer.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      tableArray: PropTypes.shape({
-        tableBody: PropTypes.arrayOf(PropTypes.object),
-        tableHeadlines: PropTypes.arrayOf(PropTypes.object)
-      })
+  stateApp: PropTypes.shape({
+    tableArray: PropTypes.shape({
+      tableBody: PropTypes.arrayOf(PropTypes.object),
+      tableHeadlines: PropTypes.arrayOf(PropTypes.object)
     })
-  }),
+  })
 };
 
 export default TableContainer;

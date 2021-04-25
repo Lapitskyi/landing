@@ -4,76 +4,36 @@ import App from './App';
 import MyContext from './store/MyContext';
 
 const AppContainer = ({
-  storeT: {
-    state: {
-      themeToggle: { themeT },
-      langToggle: { langT }
-    }
-  }
+  storeT
 }) => {
-  const [theme, setTheme] = useState(themeT);
-  const [lang, setLang] = useState(langT);
+  const [stateApp, setStateApp] = useState(storeT.state);
 
   const toggleTheme = () => {
-    setTheme(!!theme === false);
+    setStateApp(
+      stateApp.map((stateItem) => console.log(stateItem))
+    );
   };
 
   const langToggle = (id) => {
-    setLang(
-      lang.map((item) => {
-        if (item.id === id) {
-          return {
-            ...item,
-            lang: !!item.lang === false
-          };
-        }
-        if (item.id !== id) {
-          return {
-            ...item,
-            lang: false
-          };
-        }
-        return item;
-      })
-    );
+    console.log(id);
   };
 
   return (
     <MyContext.Provider value={{
-      theme,
+      stateApp,
       toggleTheme,
-      lang,
       langToggle
     }}
     >
-      <App theme={theme} />
+      <App stateApp={stateApp} />
     </MyContext.Provider>
   );
 };
 AppContainer.defaultProps = {
-  storeT: {
-    state: {
-      themeToggle: {
-        themeT: false
-      },
-      langToggle: {
-        langT: []
-      }
-    }
-  }
-
+  storeT: {}
 };
 AppContainer.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      themeToggle: PropTypes.shape({
-        themeT: PropTypes.bool
-      }),
-      langToggle: PropTypes.shape({
-        langT: PropTypes.arrayOf(PropTypes.object)
-      })
-    })
-  })
+  storeT: PropTypes.objectOf(PropTypes.object)
 };
 
 export default AppContainer;

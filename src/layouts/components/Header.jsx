@@ -9,21 +9,15 @@ import LangText from './LangText';
 import withHoc from '../../hoc/withHoc';
 
 const Header = ({
-  toggleLang: {
-    lang,
-    langToggle
-  },
-  updateTheme: {
-    theme,
-    toggleTheme,
+  langToggle,
+  toggleTheme,
+  stateApp: {
+    menu,
+    social,
+    themeT,
+    langT
   },
 
-  storeT: {
-    state: {
-      menu,
-      social,
-    }
-  }
 }) => {
   return (
     <div className="header">
@@ -35,16 +29,14 @@ const Header = ({
 
           <Menu menu={menu} />
 
-          <ThemeToggle updateTheme={{
-            theme,
-            toggleTheme
-          }}
+          <ThemeToggle
+            themeT={themeT}
+            toggleTheme={toggleTheme}
           />
 
-          <LangText toggleLang={{
-            lang,
-            langToggle
-          }}
+          <LangText
+            langT={langT}
+            langToggle={langToggle}
           />
           <Social social={social} />
         </div>
@@ -54,40 +46,29 @@ const Header = ({
 };
 
 Header.defaultProps = {
-  storeT: {
-    state: {
-      menu: [],
-      social: []
-    },
+  stateApp: {
+    menu: [],
+    social: [],
+    themeT: false,
+    langT: []
   },
-  updateTheme: {
-    theme: false,
-    toggleTheme: () => {
-    }
+
+  toggleTheme: () => {
   },
-  toggleLang: {
-    lang: true,
-    langToggle: () => {
-    }
+  langToggle: () => {
   }
 
 };
 Header.propTypes = {
-  toggleLang: PropTypes.shape({
-    lang: PropTypes.arrayOf(PropTypes.object),
-    langToggle: PropTypes.func
-  }),
-  updateTheme: PropTypes.shape({
-    theme: PropTypes.bool,
-    toggleTheme: PropTypes.func
-  }),
+  stateApp: PropTypes.shape({
+    themeT: PropTypes.bool,
+    langT: PropTypes.arrayOf(PropTypes.object),
+    menu: PropTypes.arrayOf(PropTypes.object),
+    social: PropTypes.arrayOf(PropTypes.object),
 
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      menu: PropTypes.arrayOf(PropTypes.object),
-      social: PropTypes.arrayOf(PropTypes.object),
-    })
   }),
+  toggleTheme: PropTypes.func,
+  langToggle: PropTypes.func
 };
 
 export default withHoc(Header);

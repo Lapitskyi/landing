@@ -4,14 +4,12 @@ import Login from './Login';
 import withHoc from '../../hoc/withHoc';
 
 const LoginContainer = ({
-  storeT: {
-    state: {
-      auth: {
-        login: {
-          input,
-          btnText,
-          link
-        }
+  stateApp: {
+    auth: {
+      login: {
+        input,
+        btnText,
+        link
       }
     }
   }
@@ -22,27 +20,23 @@ const LoginContainer = ({
 };
 
 LoginContainer.defaultProps = {
-  storeT: {
-    state: {
-      auth: {
-        login: {
-          input: [],
-          btnText: '',
-          link: []
-        }
+  stateApp: {
+    auth: {
+      login: {
+        input: [],
+        btnText: '',
+        link: []
       }
     }
   }
 };
 LoginContainer.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      auth: PropTypes.shape({
-        login: PropTypes.shape({
-          input: PropTypes.arrayOf(PropTypes.object),
-          btnText: PropTypes.string,
-          link: PropTypes.arrayOf(PropTypes.object)
-        })
+  stateApp: PropTypes.shape({
+    auth: PropTypes.shape({
+      login: PropTypes.shape({
+        input: PropTypes.arrayOf(PropTypes.object),
+        btnText: PropTypes.string,
+        link: PropTypes.arrayOf(PropTypes.object)
       })
     })
   })

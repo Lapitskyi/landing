@@ -4,14 +4,12 @@ import Registration from './Registration';
 import withHoc from '../../hoc/withHoc';
 
 const RegistrationContainer = ({
-  storeT: {
-    state: {
-      auth: {
-        registration: {
-          input,
-          btnText,
-          link
-        }
+  stateApp: {
+    auth: {
+      registration: {
+        input,
+        btnText,
+        link
       }
     }
   }
@@ -21,27 +19,23 @@ const RegistrationContainer = ({
   );
 };
 RegistrationContainer.defaultProps = {
-  storeT: {
-    state: {
-      auth: {
-        registration: {
-          input: [],
-          btnText: '',
-          link: []
-        }
+  stateApp: {
+    auth: {
+      registration: {
+        input: [],
+        btnText: '',
+        link: []
       }
     }
   }
 };
 RegistrationContainer.propTypes = {
-  storeT: PropTypes.shape({
-    state: PropTypes.shape({
-      auth: PropTypes.shape({
-        registration: PropTypes.shape({
-          input: PropTypes.arrayOf(PropTypes.object),
-          btnText: PropTypes.string,
-          link: PropTypes.arrayOf(PropTypes.object)
-        })
+  stateApp: PropTypes.shape({
+    auth: PropTypes.shape({
+      registration: PropTypes.shape({
+        input: PropTypes.arrayOf(PropTypes.object),
+        btnText: PropTypes.string,
+        link: PropTypes.arrayOf(PropTypes.object)
       })
     })
   })

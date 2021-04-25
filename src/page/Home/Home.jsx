@@ -7,11 +7,11 @@ import withHoc from '../../hoc/withHoc';
 
 import TodoContainer from './components/TodoContainer';
 
-const Home = ({ storeT }) => {
+const Home = ({ stateApp }) => {
   return (
     <>
       <section>
-        <TableContainer storeT={storeT} />
+        <TableContainer stateApp={stateApp} />
       </section>
       <section>
         <TodoContainer />
@@ -21,10 +21,10 @@ const Home = ({ storeT }) => {
 };
 
 Home.defaultProps = {
-  storeT: {}
+  stateApp: {}
 };
 Home.propTypes = {
-  storeT: PropTypes.objectOf(PropTypes.object)
+  stateApp: PropTypes.objectOf(PropTypes.object)
 };
 
 export default withHoc(Home);
