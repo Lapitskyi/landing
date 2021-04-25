@@ -10,12 +10,34 @@ const AppContainer = ({
 
   const toggleTheme = () => {
     setStateApp(
-      stateApp.map((stateItem) => console.log(stateItem))
+      {
+        ...stateApp,
+        themeT: !!stateApp.themeT === false
+      }
     );
   };
 
   const langToggle = (id) => {
-    console.log(id);
+    setStateApp(
+      {
+        ...stateApp,
+        langT: stateApp.langT.map((itemLang) => {
+          if (itemLang.id === id) {
+            return {
+              ...itemLang,
+              lang: true
+            };
+          }
+          if (itemLang.id !== id) {
+            return {
+              ...itemLang,
+              lang: false
+            };
+          }
+          return itemLang;
+        })
+      }
+    );
   };
 
   return (

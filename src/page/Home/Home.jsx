@@ -24,7 +24,7 @@ Home.defaultProps = {
   stateApp: {}
 };
 Home.propTypes = {
-  stateApp: PropTypes.objectOf(PropTypes.object)
+  stateApp: PropTypes.shape({})
 };
 
 export default withHoc(Home);

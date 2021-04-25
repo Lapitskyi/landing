@@ -26,9 +26,7 @@ const Header = ({
           <div className="logo">
             <img className="logo__img" src="https://via.placeholder.com/200x50" alt="logo" />
           </div>
-
           <Menu menu={menu} />
-
           <ThemeToggle
             themeT={themeT}
             toggleTheme={toggleTheme}
