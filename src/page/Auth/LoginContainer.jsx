@@ -5,39 +5,32 @@ import withHoc from '../../hoc/withHoc';
 
 const LoginContainer = ({
   stateApp: {
+    langT,
     auth: {
-      login: {
-        input,
-        btnText,
-        link
-      }
+      login
     }
   }
 }) => {
+  const a = langT.filter((item) => item.lang === true);
   return (
-    <Login input={input} btnText={btnText} link={link} />
+    <Login login={login[`${a[0].id}`]} />
   );
 };
 
 LoginContainer.defaultProps = {
   stateApp: {
+    langT: {},
     auth: {
-      login: {
-        input: [],
-        btnText: '',
-        link: []
-      }
+      login: {}
     }
   }
 };
 LoginContainer.propTypes = {
   stateApp: PropTypes.shape({
+    langT: PropTypes.arrayOf(PropTypes.object),
     auth: PropTypes.shape({
-      login: PropTypes.shape({
-        input: PropTypes.arrayOf(PropTypes.object),
-        btnText: PropTypes.string,
-        link: PropTypes.arrayOf(PropTypes.object)
-      })
+      login: PropTypes.objectOf(PropTypes.object)
+
     })
   })
 };

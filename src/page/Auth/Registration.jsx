@@ -8,9 +8,11 @@ import AuthLinks from './components/AuthLinks';
 import './scss/Auth.scss';
 
 const Registration = ({
-  input,
-  btnText,
-  link
+  registration: {
+    input,
+    btnText,
+    link
+  }
 }) => {
   return (
     <div className="registration">
@@ -32,15 +34,18 @@ const Registration = ({
   );
 };
 Registration.defaultProps = {
-  input: [],
-  btnText: '',
-  link: []
+  registration: PropTypes.shape({
+    input: [],
+    btnText: '',
+    link: []
+  })
 };
 Registration.propTypes = {
-  input: PropTypes.arrayOf(PropTypes.object),
-  btnText: PropTypes.string,
-  link: PropTypes.arrayOf(PropTypes.object)
-
+  registration: PropTypes.shape({
+    input: PropTypes.arrayOf(PropTypes.object),
+    btnText: PropTypes.string,
+    link: PropTypes.arrayOf(PropTypes.object)
+  })
 };
 
 export default Registration;

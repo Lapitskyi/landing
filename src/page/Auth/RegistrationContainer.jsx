@@ -5,38 +5,30 @@ import withHoc from '../../hoc/withHoc';
 
 const RegistrationContainer = ({
   stateApp: {
+    langT,
     auth: {
-      registration: {
-        input,
-        btnText,
-        link
-      }
+      registration
     }
   }
 }) => {
+  const a = langT.filter((item) => item.lang === true);
   return (
-    <Registration input={input} btnText={btnText} link={link} />
+    <Registration registration={registration[`${a[0].id}`]} />
   );
 };
 RegistrationContainer.defaultProps = {
   stateApp: {
+    langT: {},
     auth: {
-      registration: {
-        input: [],
-        btnText: '',
-        link: []
-      }
+      registration: {}
     }
   }
 };
 RegistrationContainer.propTypes = {
   stateApp: PropTypes.shape({
+    langT: PropTypes.arrayOf(PropTypes.object),
     auth: PropTypes.shape({
-      registration: PropTypes.shape({
-        input: PropTypes.arrayOf(PropTypes.object),
-        btnText: PropTypes.string,
-        link: PropTypes.arrayOf(PropTypes.object)
-      })
+      registration: PropTypes.objectOf(PropTypes.object)
     })
   })
 };

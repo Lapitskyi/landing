@@ -5,39 +5,32 @@ import withHoc from '../../hoc/withHoc';
 
 const ResetContainer = ({
   stateApp: {
+    langT,
     auth: {
-      reset: {
-        input,
-        btnText,
-        link
-      }
+      reset
     }
   }
 }) => {
+  const a = langT.filter((item) => item.lang === true);
   return (
-    <Reset input={input} btnText={btnText} link={link} />
+    <Reset reset={reset[`${a[0].id}`]} />
   );
 };
 
 ResetContainer.defaultProps = {
   stateApp: {
+    langT: {},
     auth: {
-      reset: {
-        input: [],
-        btnText: '',
-        link: []
-      }
+      reset: {}
     }
   }
 };
 ResetContainer.propTypes = {
   stateApp: PropTypes.shape({
+    langT: PropTypes.arrayOf(PropTypes.object),
     auth: PropTypes.shape({
-      reset: PropTypes.shape({
-        input: PropTypes.arrayOf(PropTypes.object),
-        btnText: PropTypes.string,
-        link: PropTypes.arrayOf(PropTypes.object)
-      })
+      reset: PropTypes.objectOf(PropTypes.object)
+
     })
   })
 };

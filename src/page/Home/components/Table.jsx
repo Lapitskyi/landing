@@ -22,6 +22,7 @@ const Table = ({
   deleteItemTable,
   addTable
 }) => {
+
   return (
     <div className="inner">
       <table className="table">

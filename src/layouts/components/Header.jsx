@@ -19,6 +19,7 @@ const Header = ({
   },
 
 }) => {
+  const a = langT.filter((item) => item.lang === true);
   return (
     <div className="header">
       <div className="container">
@@ -26,7 +27,7 @@ const Header = ({
           <div className="logo">
             <img className="logo__img" src="https://via.placeholder.com/200x50" alt="logo" />
           </div>
-          <Menu menu={menu} />
+          <Menu menu={menu[`${a[0].id}`]} />
           <ThemeToggle
             themeT={themeT}
             toggleTheme={toggleTheme}

@@ -4,20 +4,21 @@ import Table from './Table';
 
 const TableContainer = ({
   stateApp: {
+    langT,
     tableArray: {
       tableBody,
       tableHeadlines
     }
   }
-
 }) => {
-  const [tableItem, setTableItem] = useState(tableBody);
+  const z = langT.filter((item) => item.lang === true);
+  const [tableItem, setTableItem] = useState(tableBody[`${z[0].id}`]);
   const [editMode, setEditMode] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
 
   useEffect(() => {
-    setTableItem(tableBody);
-  }, [tableBody]);
+    setTableItem(tableBody[`${z[0].id}`]);
+  }, [tableBody[`${z[0].id}`]]);
 
   const activateEditMode = () => {
     setEditMode(!!editMode === false);
@@ -41,15 +42,17 @@ const TableContainer = ({
     );
   };
 
-  const updateInfo = (id, idInfo, text) => {
+  const updateInfo = (id, idInfo, tableText) => {
     setTableItem(
       tableItem.map((item) => {
         if (item.id === id) {
           // eslint-disable-next-line no-return-assign
           item.info.map((infoItem) => ((infoItem.id === idInfo) ? {
             ...infoItem,
-            // eslint-disable-next-line no-param-reassign
-            text: infoItem.text = text
+            text: {
+              // eslint-disable-next-line no-param-reassign
+              ...infoItem.text = tableText
+            }
           } : infoItem));
         }
         return item;
@@ -96,7 +99,7 @@ const TableContainer = ({
         }
         if (text === 'fullName') {
           // eslint-disable-next-line no-nested-ternary
-          return a.fullName > b.fullName ? -1 : 1 || a.fullName < b.fullName ? -1 : 1;
+          return a.fullName > b.fullName ? -1 : a.fullName < b.fullName ? -1 : 1;
         }
       })
     ]);
@@ -107,22 +110,18 @@ const TableContainer = ({
   };
   const dragEndLeaveItem = () => {
     setTableItem(
-      // eslint-disable-next-line no-return-assign
       tableItem.map((items) => ((items.dragAndDrop === true) ? {
         ...items,
-        // eslint-disable-next-line no-param-reassign
-        dragAndDrop: items.dragAndDrop = false
+        dragAndDrop: false
       } : items))
     );
   };
   const dragOverItem = (e, item) => {
     e.preventDefault();
     setTableItem(
-      // eslint-disable-next-line no-return-assign
       tableItem.map((items) => ((items.id === item.id) ? {
         ...items,
-        // eslint-disable-next-line no-param-reassign
-        dragAndDrop: items.dragAndDrop = true
+        dragAndDrop: true
       } : items))
     );
   };
@@ -156,13 +155,14 @@ const TableContainer = ({
       dropItem={dropItem}
       editMode={editMode}
       tableItem={tableItem}
-      tableHeadlines={tableHeadlines}
+      tableHeadlines={tableHeadlines[`${z[0].id}`]}
     />
   );
 };
 
 TableContainer.defaultProps = {
   stateApp: {
+    langT: {},
     tableArray: {
       tableBody: [],
       tableHeadlines: []
@@ -172,6 +172,7 @@ TableContainer.defaultProps = {
 
 TableContainer.propTypes = {
   stateApp: PropTypes.shape({
+    langT: PropTypes.arrayOf(PropTypes.object),
     tableArray: PropTypes.shape({
       tableBody: PropTypes.arrayOf(PropTypes.object),
       tableHeadlines: PropTypes.arrayOf(PropTypes.object)

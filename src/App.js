@@ -5,7 +5,6 @@ import MainLayout from './layouts/MainLayout';
 import './App.scss';
 
 const App = ({ stateApp: { themeT } }) => {
-  console.log(themeT);
   return (
     <div className={!themeT
       ? 'app-wrapper app-wrapper__white'

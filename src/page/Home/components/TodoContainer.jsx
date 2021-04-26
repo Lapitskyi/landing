@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import '../scss/Todo.scss';
+import PropTypes from 'prop-types';
 import Todo from './Todo';
+import withHoc from '../../../hoc/withHoc';
+import '../scss/Todo.scss';
 
-const TodoContainer = () => {
+const TodoContainer = ({ stateApp }) => {
   const [todos, setTodos] = useState([]);
   const [text, setText] = useState('');
 
@@ -16,6 +18,7 @@ const TodoContainer = () => {
 
   return (
     <Todo
+      stateApp={stateApp}
       todos={todos}
       setTodos={setTodos}
       text={text}
@@ -24,5 +27,11 @@ const TodoContainer = () => {
     />
   );
 };
+TodoContainer.defaultProps = {
+  stateApp: {}
+};
+TodoContainer.propTypes = {
+  stateApp: PropTypes.objectOf(PropTypes.isRequired)
+};
 
-export default TodoContainer;
+export default withHoc(TodoContainer);

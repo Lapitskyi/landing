@@ -8,9 +8,11 @@ import AuthLinks from './components/AuthLinks';
 import './scss/Auth.scss';
 
 const Reset = ({
-  input,
-  btnText,
-  link
+  reset: {
+    input,
+    btnText,
+    link
+  }
 }) => {
   return (
     <div className="reset">
@@ -31,14 +33,19 @@ const Reset = ({
   );
 };
 Reset.defaultProps = {
-  input: [],
-  btnText: '',
-  link: []
+  reset: {
+    input: [],
+    btnText: '',
+    link: []
+  }
+
 };
 Reset.propTypes = {
-  input: PropTypes.arrayOf(PropTypes.object),
-  btnText: PropTypes.string,
-  link: PropTypes.arrayOf(PropTypes.object)
+  reset: PropTypes.shape({
+    input: PropTypes.arrayOf(PropTypes.object),
+    btnText: PropTypes.string,
+    link: PropTypes.arrayOf(PropTypes.object)
+  })
 };
 
 export default Reset;

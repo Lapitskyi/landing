@@ -6,9 +6,11 @@ import AuthForm from './components/AuthForm';
 import './scss/Auth.scss';
 
 const Login = ({
-  input,
-  btnText,
-  link
+  login: {
+    input,
+    btnText,
+    link
+  }
 }) => {
   return (
     <div className="login">
@@ -27,14 +29,19 @@ const Login = ({
 };
 
 Login.defaultProps = {
-  input: [],
-  btnText: '',
-  link: []
+  login: {
+    input: [],
+    btnText: '',
+    link: []
+  }
 };
 Login.propTypes = {
-  input: PropTypes.arrayOf(PropTypes.object),
-  btnText: PropTypes.string,
-  link: PropTypes.arrayOf(PropTypes.object)
+  login: PropTypes.shape({
+    input: PropTypes.arrayOf(PropTypes.object),
+    btnText: PropTypes.string,
+    link: PropTypes.arrayOf(PropTypes.object)
+  })
+
 };
 
 export default Login;
