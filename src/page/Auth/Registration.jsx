@@ -29,7 +29,7 @@ const Registration = ({
       .required('Required'),
   });
   return (
-    <div className="registration">
+    <div className="registration auth">
       <div className="auth__inner">
 
         <ButtonClose />

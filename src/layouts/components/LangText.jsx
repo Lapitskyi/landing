@@ -6,15 +6,15 @@ const LangText = ({
   langToggle,
   langT
 }) => {
-  const a = langT.filter((item) => item.lang);
-  const b = langT.filter((item) => !item.lang);
+  const langSelect = langT.filter((item) => item.lang);
+  const langNotSelect = langT.filter((item) => !item.lang);
   return (
     <div className="lang">
       <ul className="lang__list ">
-        {[...a, ...b].map((item) => (
-          <li key={item.id}>
+        {[...langSelect, ...langNotSelect].map((item) => (
+          <li key={item.id} className={!item.lang ? 'lang__item ' : 'lang__item active'}>
             <button
-              className={!item.lang ? 'lang__item ' : 'lang__item active'}
+              className="lang__btn btn"
               type="button"
               onClick={() => langToggle(item.id)}
             >

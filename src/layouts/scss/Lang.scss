@@ -2,9 +2,7 @@
   width: 40px;
   height: 16px;
   position: relative;
-}
 
-.lang {
   &__list {
     width: 40px;
     position: absolute;
@@ -25,10 +23,6 @@
   }
 
   &__item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-transform: uppercase;
     overflow: hidden;
     max-height: 0;
   }
@@ -44,5 +38,17 @@
   &__img {
     display: block;
     width: 18px;
+  }
+
+  &__btn {
+    width: 40px;
+    display: flex!important;
+    font-size: 12px;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    color: #333333!important;
+    padding: 0!important;
+    margin: 0!important;
   }
 }
