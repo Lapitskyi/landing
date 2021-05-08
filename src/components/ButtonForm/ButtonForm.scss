@@ -1,9 +1,12 @@
-.button__form{
-  margin: 0 auto;
-  margin-top: 30px;
-  background-color: #00a4e5;
-  color: #ffffff;
-  font-size: 16px;
-  padding: 10px 30px;
-  border-radius: 10px;
+.button {
+  &__form-btn {
+    display: block;
+    text-align: center;
+    margin: 30px auto 0!important;
+    font-size: 16px;
+  }
+
+  &__form-btn:disabled {
+    background-color: grey;
+  }
 }

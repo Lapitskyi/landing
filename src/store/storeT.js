@@ -26,12 +26,12 @@ const storeT = {
             {
               id: 1,
               title: 'Forgot your password?',
-              path: '/reset'
+              path: '/auth/reset'
             },
             {
               id: 2,
               title: 'Don\'t have an account yet? Register now',
-              path: '/registration'
+              path: '/auth/registration'
             }
           ]
         },
@@ -55,12 +55,12 @@ const storeT = {
             {
               id: 1,
               title: 'Забули свій пароль?',
-              path: '/reset'
+              path: '/auth/reset'
             },
             {
               id: 2,
               title: 'Ще не маєте облікового запису? Зареєструйтесь зараз',
-              path: '/registration'
+              path: '/auth/registration'
             }
           ]
         },
@@ -84,12 +84,12 @@ const storeT = {
             {
               id: 1,
               title: 'Забыли Ваш пароль?',
-              path: '/reset'
+              path: '/auth/reset'
             },
             {
               id: 2,
               title: 'Еще нет учетной записи? Зарегистрироваться',
-              path: '/registration'
+              path: '/auth/registration'
             }
           ]
         }
@@ -108,9 +108,9 @@ const storeT = {
               placeholder: 'password'
             },
             {
-              id: 'repassword',
-              label: 'Repassword',
-              placeholder: 'repassword'
+              id: 'confirnPassword',
+              label: 'confirnPassword',
+              placeholder: 'confirnPassword'
             }
           ],
           btnText: 'Sing Up',
@@ -118,7 +118,7 @@ const storeT = {
             {
               id: 1,
               title: 'Already have login and password? Sign in',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         },
@@ -135,7 +135,7 @@ const storeT = {
               placeholder: 'Пароль'
             },
             {
-              id: 'repassword',
+              id: 'confirnPassword',
               label: 'Повторіть пароль',
               placeholder: 'Повторіть пароль'
             }
@@ -145,7 +145,7 @@ const storeT = {
             {
               id: 1,
               title: 'Уже маєте логін та пароль? Увійти',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         },
@@ -162,7 +162,7 @@ const storeT = {
               placeholder: 'Пароль'
             },
             {
-              id: 'repassword',
+              id: 'confirnPassword',
               label: 'Повторить пароль',
               placeholder: 'Повторить пароль'
             }
@@ -172,7 +172,7 @@ const storeT = {
             {
               id: 1,
               title: 'Уже есть логин и пароль? Войти',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         }
@@ -191,7 +191,7 @@ const storeT = {
             {
               id: 1,
               title: 'Already have login and password? Sign in',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         },
@@ -208,7 +208,7 @@ const storeT = {
             {
               id: 1,
               title: 'Згадали логін та пароль? ',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         },
@@ -225,7 +225,7 @@ const storeT = {
             {
               id: 1,
               title: 'Вспомнили логин и пароль?',
-              path: '/login'
+              path: '/auth/login'
             }
           ]
         }
@@ -504,12 +504,12 @@ const storeT = {
         {
           id: 5,
           name: 'Login',
-          link: '/login'
+          link: '/auth/login'
         },
         {
           id: 6,
           name: 'Registration',
-          link: '/registration'
+          link: '/auth/registration'
         }
       ],
       ua: [
@@ -536,12 +536,12 @@ const storeT = {
         {
           id: 5,
           name: 'Вхiд',
-          link: '/login'
+          link: '/auth/login'
         },
         {
           id: 6,
           name: 'Зареєструватися',
-          link: '/registration'
+          link: '/auth/registration'
         }
       ],
       ru: [
@@ -568,12 +568,12 @@ const storeT = {
         {
           id: 5,
           name: 'Вход',
-          link: '/login'
+          link: '/auth/login'
         },
         {
           id: 6,
           name: 'Регистрация',
-          link: '/registration'
+          link: '/auth/registration'
         }
       ],
     },

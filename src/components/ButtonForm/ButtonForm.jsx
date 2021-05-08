@@ -2,19 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ButtonForm.scss';
 
-const ButtonForm = ({ name }) => {
-  return (
-    <button className="button__form" type="submit">
-      {name}
-    </button>
-  );
-};
+const ButtonForm = ({
+  name,
+  addDisabled,
+  addOnClick
+}) => (
+  <button
+    className="button__form-btn btn btn__size-medium btn--color"
+    type="submit"
+    disabled={addDisabled}
+    onClick={addOnClick}
+  >
+    {name}
+  </button>
+);
 
 ButtonForm.defaultProps = {
-  name: 'click'
+  name: 'click',
+  addDisabled: true,
+  addOnClick: () => {
+  }
 };
 ButtonForm.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
+  addDisabled: PropTypes.bool,
+  addOnClick: PropTypes.func
 };
 
 export default ButtonForm;

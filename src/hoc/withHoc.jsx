@@ -9,6 +9,7 @@ const withHoc = (Component) => {
       toggleTheme,
       langToggle
     } = useContext(MyContext);
+
     return (
       <>
         <Component

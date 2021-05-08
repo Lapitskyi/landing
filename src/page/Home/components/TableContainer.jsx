@@ -11,14 +11,14 @@ const TableContainer = ({
     }
   }
 }) => {
-  const z = langT.filter((item) => item.lang === true);
-  const [tableItem, setTableItem] = useState(tableBody[`${z[0].id}`]);
+  const lg = langT.filter((item) => item.lang === true);
+  const [tableItem, setTableItem] = useState(tableBody[`${lg[0].id}`]);
   const [editMode, setEditMode] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
 
   useEffect(() => {
-    setTableItem(tableBody[`${z[0].id}`]);
-  }, [tableBody[`${z[0].id}`]]);
+    setTableItem(tableBody[`${lg[0].id}`]);
+  }, [tableBody[`${lg[0].id}`]]);
 
   const activateEditMode = () => {
     setEditMode(!!editMode === false);
@@ -155,7 +155,7 @@ const TableContainer = ({
       dropItem={dropItem}
       editMode={editMode}
       tableItem={tableItem}
-      tableHeadlines={tableHeadlines[`${z[0].id}`]}
+      tableHeadlines={tableHeadlines[`${lg[0].id}`]}
     />
   );
 };
