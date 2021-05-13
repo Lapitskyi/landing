@@ -11,7 +11,7 @@ import './scss/Auth.scss';
 const Reset = ({
   reset: {
     input,
-    btnText,
+    name,
     link
   }
 }) => {
@@ -27,7 +27,7 @@ const Reset = ({
 
         <ButtonClose />
 
-        <h2 className="auth__title">Reset password</h2>
+        <h2 className="auth__title">{name}</h2>
 
         <Formik
           initialValues={{
@@ -65,7 +65,7 @@ const Reset = ({
               ))}
 
               <ButtonForm
-                name={btnText}
+                name={name}
                 addDisabled={!isValid && !dirty}
                 addOnClick={handleSubmit}
               />
@@ -80,7 +80,7 @@ const Reset = ({
 Reset.defaultProps = {
   reset: {
     input: [],
-    btnText: '',
+    name: '',
     link: []
   }
 
@@ -88,7 +88,7 @@ Reset.defaultProps = {
 Reset.propTypes = {
   reset: PropTypes.shape({
     input: PropTypes.arrayOf(PropTypes.object),
-    btnText: PropTypes.string,
+    name: PropTypes.string,
     link: PropTypes.arrayOf(PropTypes.object)
   })
 };

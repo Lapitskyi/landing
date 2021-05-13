@@ -11,7 +11,7 @@ import './scss/Auth.scss';
 const Registration = ({
   registration: {
     input,
-    btnText,
+    name,
     link
   }
 }) => {
@@ -34,7 +34,7 @@ const Registration = ({
 
         <ButtonClose />
 
-        <h2 className="auth__title">Sing Up</h2>
+        <h2 className="auth__title">{name}</h2>
 
         <Formik
           initialValues={{
@@ -72,7 +72,7 @@ const Registration = ({
               ))}
 
               <ButtonForm
-                name={btnText}
+                name={name}
                 addDisabled={!isValid && !dirty}
                 addOnClick={handleSubmit}
               />
@@ -86,16 +86,16 @@ const Registration = ({
   );
 };
 Registration.defaultProps = {
-  registration: PropTypes.shape({
+  registration: {
     input: [],
-    btnText: '',
+    name: '',
     link: []
-  })
+  }
 };
 Registration.propTypes = {
   registration: PropTypes.shape({
     input: PropTypes.arrayOf(PropTypes.object),
-    btnText: PropTypes.string,
+    name: PropTypes.string,
     link: PropTypes.arrayOf(PropTypes.object)
   })
 };

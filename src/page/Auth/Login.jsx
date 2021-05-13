@@ -10,7 +10,7 @@ import ButtonForm from '../../components/ButtonForm/ButtonForm';
 const Login = ({
   login: {
     input,
-    btnText,
+    name,
     link
   }
 }) => {
@@ -28,7 +28,7 @@ const Login = ({
     <div className="login auth">
       <div className="auth__inner">
         <ButtonClose />
-        <h2 className="auth__title">{btnText}</h2>
+        <h2 className="auth__title">{name}</h2>
         <Formik
           initialValues={{
             email: '',
@@ -42,7 +42,14 @@ const Login = ({
           }}
         >
           {({
-            values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleBlur,
+            isValid,
+            handleSubmit,
+            dirty
           }) => (
 
             <form className="auth__form">
@@ -65,7 +72,7 @@ const Login = ({
               ))}
 
               <ButtonForm
-                name={btnText}
+                name={name}
                 addDisabled={!isValid && !dirty}
                 addOnClick={handleSubmit}
               />
@@ -81,14 +88,14 @@ const Login = ({
 Login.defaultProps = {
   login: {
     input: [],
-    btnText: '',
+    name: '',
     link: []
   }
 };
 Login.propTypes = {
   login: PropTypes.shape({
     input: PropTypes.arrayOf(PropTypes.object),
-    btnText: PropTypes.string,
+    name: PropTypes.string,
     link: PropTypes.arrayOf(PropTypes.object)
   })
 

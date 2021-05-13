@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import AppContainer from './AppContainer';
 import store from './redux/store-redux';
 import storeT from './store/storeT';
+import './i18n/index';
 
 import './index.scss';
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import App from './App';
 import MyContext from './store/MyContext';
@@ -7,6 +8,8 @@ const AppContainer = ({
   storeT
 }) => {
   const [stateApp, setStateApp] = useState(storeT.state);
+
+  const { i18n } = useTranslation();
 
   const toggleTheme = () => {
     setStateApp(
@@ -18,6 +21,7 @@ const AppContainer = ({
   };
 
   const langToggle = (id) => {
+    i18n.changeLanguage(id);
     setStateApp(
       {
         ...stateApp,

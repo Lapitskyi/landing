@@ -12,14 +12,12 @@ const Header = ({
   langToggle,
   toggleTheme,
   stateApp: {
-    menu,
     social,
     themeT,
     langT
   },
 
 }) => {
-  const a = langT.filter((item) => item.lang === true);
   return (
     <div className="header">
       <div className="container">
@@ -27,7 +25,7 @@ const Header = ({
           <div className="logo">
             <img className="logo__img" src="https://via.placeholder.com/200x50" alt="logo" />
           </div>
-          <Menu menu={menu[`${a[0].id}`]} />
+          <Menu />
           <ThemeToggle
             themeT={themeT}
             toggleTheme={toggleTheme}
@@ -46,7 +44,6 @@ const Header = ({
 
 Header.defaultProps = {
   stateApp: {
-    menu: [],
     social: [],
     themeT: false,
     langT: []
@@ -62,7 +59,6 @@ Header.propTypes = {
   stateApp: PropTypes.shape({
     themeT: PropTypes.bool,
     langT: PropTypes.arrayOf(PropTypes.object),
-    menu: PropTypes.arrayOf(PropTypes.object),
     social: PropTypes.arrayOf(PropTypes.object),
 
   }),
