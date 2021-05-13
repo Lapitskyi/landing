@@ -10,6 +10,7 @@ const AppContainer = ({
   const [stateApp, setStateApp] = useState(storeT.state);
 
   const { i18n } = useTranslation();
+  localStorage.setItem('theme', stateApp.themeT);
 
   const toggleTheme = () => {
     setStateApp(

@@ -85,7 +85,6 @@ export default {
       ]
     },
   },
-
   nav: [
     {
       id: 1,
@@ -117,5 +116,6 @@ export default {
       name: 'Регистрация',
       link: '/auth/registration'
     }
-  ]
+  ],
+  todoText: 'нет записей'
 };

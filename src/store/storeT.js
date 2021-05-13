@@ -56,22 +56,22 @@ const storeT = {
             done: false,
             dragAndDrop: false,
             heading: 'Name',
-            fullName: 'Why is it used?',
+            fullName: '',
             info: [
               {
                 id: 'text',
                 heading: 'text',
-                text: 'Why is it used?'
+                text: ''
               },
               {
                 id: 'phone',
                 heading: 'pnone',
-                text: '8(222)222-22-22'
+                text: ''
               },
               {
                 id: 'email',
                 heading: 'email',
-                text: '2_mail@mail.com'
+                text: ''
               }
             ]
           },
@@ -80,16 +80,16 @@ const storeT = {
             done: false,
             dragAndDrop: false,
             heading: 'Name',
-            fullName: 'Why is it used?',
+            fullName: '',
             info: [
               {
                 id: 'text',
                 heading: 'text',
-                text: 'Why is it used?'
+                text: ''
               },
               {
                 id: 'phone',
-                heading: 'phone',
+                heading: 'pnone',
                 text: ''
               },
               {
@@ -290,11 +290,7 @@ const storeT = {
       }
     ],
     themeT: false,
-    todoText: {
-      en: 'List clear',
-      ua: 'немає записів',
-      ru: 'нет записей'
-    }
+
   }
 };
 

@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import '../scss/Todo.scss';
 
 const Todo = ({
-  stateApp: {
-    langT,
-    todoText
-  },
+  t,
   todos,
   text,
   setText,
   updateTodos
 }) => {
-  const a = langT.filter((item) => item.lang === true);
   return (
     <div className="todo">
       <h3 className="todo__title"> Todo </h3>
@@ -35,7 +31,7 @@ const Todo = ({
       </form>
       {todos.length === 0 && (
         <p className="todo__text">
-          {todoText[`${a[0].id}`]}
+          {t('todoText')}
         </p>
       )}
 
@@ -53,25 +49,19 @@ const Todo = ({
 Todo.defaultProps = {
   todos: [],
   text: '',
+  t: '',
   setText: () => {
   },
   updateTodos: () => {
-  },
-  stateApp: {
-    langT: [],
-    todoText: {}
-  },
+  }
 };
 Todo.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.string),
   text: PropTypes.string,
+  t: PropTypes.string,
   setText: PropTypes.func,
   updateTodos: PropTypes.func,
 
-  stateApp: PropTypes.shape({
-    langT: PropTypes.arrayOf(PropTypes.object),
-    todoText: PropTypes.objectOf(PropTypes.string)
-  })
 };
 
 export default Todo;

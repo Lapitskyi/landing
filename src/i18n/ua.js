@@ -116,5 +116,6 @@ export default {
       name: 'Зареєструватися',
       link: '/auth/registration'
     }
-  ]
+  ],
+  todoText: 'немає записів'
 };

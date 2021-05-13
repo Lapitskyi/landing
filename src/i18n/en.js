@@ -115,5 +115,6 @@ export default {
       name: 'Registration',
       link: '/auth/registration'
     }
-  ]
+  ],
+  todoText: 'List clear'
 };
