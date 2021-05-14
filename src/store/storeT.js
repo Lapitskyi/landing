@@ -5,252 +5,88 @@ import ru from '../assets/icon/rus.png';
 const storeT = {
   state: {
     tableArray: {
-      tableHeadlines: {
-        en: [
-          { id: 'fullName' },
-          { id: 'text' },
-          { id: 'phone' },
-          { id: 'email' }
-        ],
-        ua: [
-          { id: 'ПІБ' },
-          { id: 'Текст' },
-          { id: 'Телефон' },
-          { id: 'емейл' }],
-        ru: [
-          { id: 'ФИО' },
-          { id: 'Текст' },
-          { id: 'Телефон' },
-          { id: 'Эмаил' }
-        ]
-      },
-      tableBody: {
-        en: [
-          {
-            id: 1,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'What Lorem Ipsum?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
+      tableHeadlines: [
+        { id: 'fullName' },
+        { id: 'text' },
+        { id: 'phone' },
+        { id: 'email' }
+      ],
+      tableBody: [
+        {
+          id: 1,
+          done: false,
+          dragAndDrop: false,
+          heading: 'Name',
+          fullName: 'What Lorem Ipsum?',
+          info: [
+            {
+              id: 'text',
+              heading: 'text',
 
-                text: 'Lorem Ipsum '
-              },
-              {
-                id: 'phone',
-                heading: 'phone',
-                text: '8(111)111-11-11'
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: '1_mail@mail.com'
-              }
-            ]
-          },
-          {
-            id: 2,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: '',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: ''
-              },
-              {
-                id: 'phone',
-                heading: 'pnone',
-                text: ''
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: ''
-              }
-            ]
-          },
-          {
-            id: 3,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: '',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: ''
-              },
-              {
-                id: 'phone',
-                heading: 'pnone',
-                text: ''
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: ''
-              }
-            ]
-          },
-        ],
-        ua: [
-          {
-            id: 1,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Что такое Lorem Ipsum?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
+              text: 'Lorem Ipsum '
+            },
+            {
+              id: 'phone',
+              heading: 'phone',
+              text: '8(111)111-11-11'
+            },
+            {
+              id: 'email',
+              heading: 'email',
+              text: '1_mail@mail.com'
+            }
+          ]
+        },
+        {
+          id: 2,
+          done: false,
+          dragAndDrop: false,
+          heading: 'Name',
+          fullName: '',
+          info: [
+            {
+              id: 'text',
+              heading: 'text',
+              text: ''
+            },
+            {
+              id: 'phone',
+              heading: 'pnone',
+              text: ''
+            },
+            {
+              id: 'email',
+              heading: 'email',
+              text: ''
+            }
+          ]
+        },
+        {
+          id: 3,
+          done: false,
+          dragAndDrop: false,
+          heading: 'Name',
+          fullName: '',
+          info: [
+            {
+              id: 'text',
+              heading: 'text',
+              text: ''
+            },
+            {
+              id: 'phone',
+              heading: 'pnone',
+              text: ''
+            },
+            {
+              id: 'email',
+              heading: 'email',
+              text: ''
+            }
+          ]
+        },
 
-                text: 'Lorem Ipsum - это текст-"рыба", '
-              },
-              {
-                id: 'phone',
-                heading: 'phone',
-                text: '8(111)111-11-11'
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: '1_mail@mail.com'
-              }
-            ]
-          },
-          {
-            id: 2,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Почему он используется?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.'
-              },
-              {
-                id: 'phone',
-                heading: 'pnone',
-                text: '8(222)222-22-22'
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: '2_mail@mail.com'
-              }
-            ]
-          },
-          {
-            id: 3,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Откуда он появился?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: ' набор слов, но это не совсем '
-              },
-              {
-                id: 'phone',
-                heading: 'phone',
-                text: ''
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: ''
-              }
-            ]
-          },
-        ],
-        ru: [
-          {
-            id: 1,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Что такое Lorem Ipsum?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-
-                text: 'Lorem Ipsum - это текст-"рыба", '
-              },
-              {
-                id: 'phone',
-                heading: 'phone',
-                text: '8(111)111-11-11'
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: '1_mail@mail.com'
-              }
-            ]
-          },
-          {
-            id: 2,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Почему он используется?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: 'Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться.'
-              },
-              {
-                id: 'phone',
-                heading: 'pnone',
-                text: '8(222)222-22-22'
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: '2_mail@mail.com'
-              }
-            ]
-          },
-          {
-            id: 3,
-            done: false,
-            dragAndDrop: false,
-            heading: 'Name',
-            fullName: 'Откуда он появился?',
-            info: [
-              {
-                id: 'text',
-                heading: 'text',
-                text: ' набор слов, но это не совсем '
-              },
-              {
-                id: 'phone',
-                heading: 'phone',
-                text: ''
-              },
-              {
-                id: 'email',
-                heading: 'email',
-                text: ''
-              }
-            ]
-          },
-        ]
-      }
+      ],
     },
     social: [
       {
@@ -288,9 +124,7 @@ const storeT = {
         lang: false,
         imgLang: ru
       }
-    ],
-    themeT: false,
-
+    ]
   }
 };
 

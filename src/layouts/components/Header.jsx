@@ -13,9 +13,9 @@ const Header = ({
   toggleTheme,
   stateApp: {
     social,
-    themeT,
     langT
   },
+  theme
 
 }) => {
   return (
@@ -27,7 +27,7 @@ const Header = ({
           </div>
           <Menu />
           <ThemeToggle
-            themeT={themeT}
+            theme={theme}
             toggleTheme={toggleTheme}
           />
 
@@ -43,9 +43,9 @@ const Header = ({
 };
 
 Header.defaultProps = {
+  theme: false,
   stateApp: {
     social: [],
-    themeT: false,
     langT: []
   },
 
@@ -56,8 +56,8 @@ Header.defaultProps = {
 
 };
 Header.propTypes = {
+  theme: PropTypes.bool,
   stateApp: PropTypes.shape({
-    themeT: PropTypes.bool,
     langT: PropTypes.arrayOf(PropTypes.object),
     social: PropTypes.arrayOf(PropTypes.object),
 

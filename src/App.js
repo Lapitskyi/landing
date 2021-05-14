@@ -4,9 +4,9 @@ import MainLayout from './layouts/MainLayout';
 
 import './App.scss';
 
-const App = ({ stateApp: { themeT } }) => {
+const App = ({ theme }) => {
   return (
-    <div className={!themeT
+    <div className={!theme
       ? 'app-wrapper app-wrapper__white'
       : 'app-wrapper app-wrapper__dark'}
     >
@@ -16,14 +16,10 @@ const App = ({ stateApp: { themeT } }) => {
 };
 
 App.defaultProps = {
-  stateApp: {
-    themeT: false,
-  }
+  theme: false,
 };
 
 App.propTypes = {
-  stateApp: PropTypes.shape({
-    themeT: PropTypes.bool,
-  })
+  theme: PropTypes.bool,
 };
 export default App;

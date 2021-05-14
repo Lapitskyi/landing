@@ -4,21 +4,19 @@ import Table from './Table';
 
 const TableContainer = ({
   stateApp: {
-    langT,
     tableArray: {
       tableBody,
       tableHeadlines
     }
   }
 }) => {
-  const lg = langT.filter((item) => item.lang === true);
-  const [tableItem, setTableItem] = useState(tableBody[`${lg[0].id}`]);
+  const [tableItem, setTableItem] = useState(tableBody);
   const [editMode, setEditMode] = useState(false);
   const [currentItem, setCurrentItem] = useState(null);
 
   useEffect(() => {
-    setTableItem(tableBody[`${lg[0].id}`]);
-  }, [tableBody[`${lg[0].id}`]]);
+    setTableItem(tableBody);
+  }, [tableBody]);
 
   const activateEditMode = () => {
     setEditMode(!!editMode === false);
@@ -155,14 +153,13 @@ const TableContainer = ({
       dropItem={dropItem}
       editMode={editMode}
       tableItem={tableItem}
-      tableHeadlines={tableHeadlines[`${lg[0].id}`]}
+      tableHeadlines={tableHeadlines}
     />
   );
 };
 
 TableContainer.defaultProps = {
   stateApp: {
-    langT: {},
     tableArray: {
       tableBody: [],
       tableHeadlines: []
@@ -172,7 +169,6 @@ TableContainer.defaultProps = {
 
 TableContainer.propTypes = {
   stateApp: PropTypes.shape({
-    langT: PropTypes.arrayOf(PropTypes.object),
     tableArray: PropTypes.shape({
       tableBody: PropTypes.arrayOf(PropTypes.object),
       tableHeadlines: PropTypes.arrayOf(PropTypes.object)

@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import App from './App';
 import MyContext from './store/MyContext';
+import useLocalStorage from './useHook/useLocalStorage';
 
 const AppContainer = ({
   storeT
@@ -10,19 +11,16 @@ const AppContainer = ({
   const [stateApp, setStateApp] = useState(storeT.state);
 
   const { i18n } = useTranslation();
-  localStorage.setItem('theme', stateApp.themeT);
+  const [lng, setLng] = useLocalStorage('lang');
+  const [theme, setTheme] = useLocalStorage('theme');
 
   const toggleTheme = () => {
-    setStateApp(
-      {
-        ...stateApp,
-        themeT: !!stateApp.themeT === false
-      }
-    );
+    setTheme(!!theme === false);
   };
 
   const langToggle = (id) => {
     i18n.changeLanguage(id);
+    setLng(id);
     setStateApp(
       {
         ...stateApp,
@@ -48,11 +46,13 @@ const AppContainer = ({
   return (
     <MyContext.Provider value={{
       stateApp,
+      theme,
+      lng,
       toggleTheme,
       langToggle
     }}
     >
-      <App stateApp={stateApp} />
+      <App theme={theme} />
     </MyContext.Provider>
   );
 };

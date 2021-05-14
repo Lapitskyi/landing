@@ -33,5 +33,9 @@ const useShowActive = () => {
   const toggleLang = () => {
     setLang(lang);
   };
+  return {
+    lang,
+    theme
+  };
 };
 export default useShowActive;

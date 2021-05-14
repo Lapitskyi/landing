@@ -5,6 +5,7 @@ import MyContext from '../store/MyContext';
 const withHoc = (Component) => {
   return () => {
     const {
+      theme,
       stateApp,
       toggleTheme,
       langToggle
@@ -13,6 +14,7 @@ const withHoc = (Component) => {
     return (
       <>
         <Component
+          theme={theme}
           stateApp={stateApp}
           toggleTheme={toggleTheme}
           langToggle={langToggle}

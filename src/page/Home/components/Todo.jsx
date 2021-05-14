@@ -49,7 +49,8 @@ const Todo = ({
 Todo.defaultProps = {
   todos: [],
   text: '',
-  t: '',
+  t: () => {
+  },
   setText: () => {
   },
   updateTodos: () => {
@@ -58,7 +59,7 @@ Todo.defaultProps = {
 Todo.propTypes = {
   todos: PropTypes.arrayOf(PropTypes.string),
   text: PropTypes.string,
-  t: PropTypes.string,
+  t: PropTypes.func,
   setText: PropTypes.func,
   updateTodos: PropTypes.func,
 
