@@ -2,10 +2,11 @@ import React from 'react';
 
 const MyContext = React.createContext({
   theme: false,
-  stateApp: {},
+  state: {},
   toggleTheme: () => {
   },
-  langToggle: () => {
+  lang: {},
+  toggleLang: () => {
   },
 });
 export default MyContext;

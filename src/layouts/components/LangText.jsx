@@ -3,11 +3,11 @@ import '../scss/Lang.scss';
 import PropTypes from 'prop-types';
 
 const LangText = ({
-  langToggle,
-  langT
+  lang,
+  toggleLang,
 }) => {
-  const langSelect = langT.filter((item) => item.lang);
-  const langNotSelect = langT.filter((item) => !item.lang);
+  const langSelect = lang.filter((item) => item.lang);
+  const langNotSelect = lang.filter((item) => !item.lang);
   return (
     <div className="lang">
       <ul className="lang__list ">
@@ -16,7 +16,7 @@ const LangText = ({
             <button
               className="lang__btn btn"
               type="button"
-              onClick={() => langToggle(item.id)}
+              onClick={() => toggleLang(item.id)}
             >
               <img
                 className="lang__img"
@@ -33,14 +33,14 @@ const LangText = ({
 };
 
 LangText.defaultProps = {
-  langToggle: () => {
+  toggleLang: () => {
   },
-  langT: []
+  lang: []
 };
 
 LangText.propTypes = {
-  langToggle: PropTypes.func,
-  langT: PropTypes.arrayOf(PropTypes.object)
+  toggleLang: PropTypes.func,
+  lang: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default LangText;

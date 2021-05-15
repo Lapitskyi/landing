@@ -1,55 +1,23 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import PropTypes from 'prop-types';
 import App from './App';
 import MyContext from './store/MyContext';
-import useLocalStorage from './useHook/useLocalStorage';
+import useToggleTheme from './useHook/useToggleTheme';
+import useToggleLang from './useHook/useToggleLang';
 
 const AppContainer = ({
-  storeT
+  state
 }) => {
-  const [stateApp, setStateApp] = useState(storeT.state);
-
-  const { i18n } = useTranslation();
-  const [lng, setLng] = useLocalStorage('lang');
-  const [theme, setTheme] = useLocalStorage('theme');
-
-  const toggleTheme = () => {
-    setTheme(!!theme === false);
-  };
-
-  const langToggle = (id) => {
-    i18n.changeLanguage(id);
-    setLng(id);
-    setStateApp(
-      {
-        ...stateApp,
-        langT: stateApp.langT.map((itemLang) => {
-          if (itemLang.id === id) {
-            return {
-              ...itemLang,
-              lang: true
-            };
-          }
-          if (itemLang.id !== id) {
-            return {
-              ...itemLang,
-              lang: false
-            };
-          }
-          return itemLang;
-        })
-      }
-    );
-  };
+  const { theme, toggleTheme } = useToggleTheme(false);
+  const { lang, toggleLang } = useToggleLang();
 
   return (
     <MyContext.Provider value={{
-      stateApp,
+      state,
       theme,
-      lng,
       toggleTheme,
-      langToggle
+      lang,
+      toggleLang
     }}
     >
       <App theme={theme} />
@@ -57,10 +25,18 @@ const AppContainer = ({
   );
 };
 AppContainer.defaultProps = {
-  storeT: {}
+  state: {}
 };
 AppContainer.propTypes = {
-  storeT: PropTypes.objectOf(PropTypes.object)
+  state: PropTypes.shape({
+    nav: PropTypes.arrayOf(PropTypes.object),
+    auth: PropTypes.objectOf(PropTypes.object),
+    tableArray: PropTypes.shape({
+      tableHeadlines: PropTypes.arrayOf(PropTypes.object),
+      tableBody: PropTypes.arrayOf(PropTypes.object)
+    }),
+    social: PropTypes.arrayOf(PropTypes.object)
+  })
 };
 
 export default AppContainer;

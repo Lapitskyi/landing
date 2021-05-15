@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Table from './Table';
 
 const TableContainer = ({
-  stateApp: {
+  state: {
     tableArray: {
       tableBody,
       tableHeadlines
@@ -159,7 +159,7 @@ const TableContainer = ({
 };
 
 TableContainer.defaultProps = {
-  stateApp: {
+  state: {
     tableArray: {
       tableBody: [],
       tableHeadlines: []
@@ -168,7 +168,7 @@ TableContainer.defaultProps = {
 };
 
 TableContainer.propTypes = {
-  stateApp: PropTypes.shape({
+  state: PropTypes.shape({
     tableArray: PropTypes.shape({
       tableBody: PropTypes.arrayOf(PropTypes.object),
       tableHeadlines: PropTypes.arrayOf(PropTypes.object)

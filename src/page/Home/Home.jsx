@@ -7,10 +7,10 @@ import withHoc from '../../hoc/withHoc';
 
 import TodoContainer from './components/TodoContainer';
 
-const Home = ({ stateApp }) => (
+const Home = ({ state }) => (
   <>
     <section>
-      <TableContainer stateApp={stateApp} />
+      <TableContainer state={state} />
     </section>
     <section>
       <TodoContainer />
@@ -19,7 +19,7 @@ const Home = ({ stateApp }) => (
 );
 
 Home.defaultProps = {
-  stateApp: {
+  state: {
     tableArray: {
       tableBody: [],
       tableHeadlines: []
@@ -27,7 +27,7 @@ Home.defaultProps = {
   }
 };
 Home.propTypes = {
-  stateApp: PropTypes.shape({
+  state: PropTypes.shape({
     tableArray: PropTypes.shape({
       tableBody: PropTypes.arrayOf(PropTypes.object),
       tableHeadlines: PropTypes.arrayOf(PropTypes.object)

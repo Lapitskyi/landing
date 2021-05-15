@@ -4,16 +4,14 @@ import MainLayout from './layouts/MainLayout';
 
 import './App.scss';
 
-const App = ({ theme }) => {
-  return (
-    <div className={!theme
-      ? 'app-wrapper app-wrapper__white'
-      : 'app-wrapper app-wrapper__dark'}
-    >
-      <MainLayout />
-    </div>
-  );
-};
+const App = ({ theme }) => (
+  <div className={!theme
+    ? 'app-wrapper app-wrapper__white'
+    : 'app-wrapper app-wrapper__dark'}
+  >
+    <MainLayout />
+  </div>
+);
 
 App.defaultProps = {
   theme: false,

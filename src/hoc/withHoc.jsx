@@ -6,18 +6,20 @@ const withHoc = (Component) => {
   return () => {
     const {
       theme,
-      stateApp,
+      state,
       toggleTheme,
-      langToggle
+      lang,
+      toggleLang
     } = useContext(MyContext);
 
     return (
       <>
         <Component
           theme={theme}
-          stateApp={stateApp}
+          state={state}
           toggleTheme={toggleTheme}
-          langToggle={langToggle}
+          lang={lang}
+          toggleLang={toggleLang}
         />
       </>
     );

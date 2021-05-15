@@ -8,7 +8,7 @@ import Registration from './Registration';
 import Reset from './Reset';
 
 const AuthContainer = ({
-  stateApp: {
+  state: {
     auth: {
       login,
       registration,
@@ -27,7 +27,7 @@ const AuthContainer = ({
   );
 };
 AuthContainer.defaultProps = {
-  stateApp: {
+  state: {
     langT: {},
     auth: {
       login: {},
@@ -38,7 +38,7 @@ AuthContainer.defaultProps = {
 };
 
 AuthContainer.propTypes = {
-  stateApp: PropTypes.shape({
+  state: PropTypes.shape({
     langT: PropTypes.arrayOf(PropTypes.object),
     auth: PropTypes.shape({
       login: PropTypes.PropTypes.shape({

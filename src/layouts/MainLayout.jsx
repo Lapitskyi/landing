@@ -8,25 +8,23 @@ import Portfolio from '../page/Portfolio/Portfolio';
 import Header from './components/Header';
 import AuthContainer from '../page/Auth/AuthContainer';
 
-const MainLayout = () => {
-  return (
-    <>
-      <Header />
-      <div className="content">
-        <div className="container">  
-          <Switch>
-            <Route path="/" exact render={() => <Home />} />
-            <Route path="/about" render={() => <About />} />
-            <Route path="/order" render={() => <Order />} />
-            <Route path="/portfolio" render={() => <Portfolio />} />
-            <Route path="/auth" render={() => <AuthContainer />} />
-            <Redirect to="/" />
-          </Switch>
-        </div>
+const MainLayout = () => (
+  <>
+    <Header />
+    <div className="content">
+      <div className="container">
+        <Switch>
+          <Route path="/" exact render={() => <Home />} />
+          <Route path="/about" render={() => <About />} />
+          <Route path="/order" render={() => <Order />} />
+          <Route path="/portfolio" render={() => <Portfolio />} />
+          <Route path="/auth" render={() => <AuthContainer />} />
+          <Redirect to="/" />
+        </Switch>
       </div>
-      <Footer />
-    </>
-  );
-};
+    </div>
+    <Footer />
+  </>
+);
 
 export default MainLayout;
