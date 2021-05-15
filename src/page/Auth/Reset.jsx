@@ -9,6 +9,7 @@ import AuthLinks from './components/AuthLinks';
 import './scss/Auth.scss';
 
 const Reset = ({
+  t,
   reset: {
     input,
     name,
@@ -27,7 +28,7 @@ const Reset = ({
 
         <ButtonClose />
 
-        <h2 className="auth__title">{name}</h2>
+        <h2 className="auth__title">{t(`${name}`)}</h2>
 
         <Formik
           initialValues={{
@@ -48,7 +49,7 @@ const Reset = ({
             <form className="auth__form">
               {input.map((inputItem) => (
                 <label className="auth__form-label" htmlFor={inputItem.id} key={inputItem.id}>
-                  {inputItem.label}
+                  {t(`${inputItem.label}`)}
                   <input
                     className="auth__form-input"
                     type={inputItem.type}
@@ -57,7 +58,7 @@ const Reset = ({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values[`${inputItem.id}`]}
-                    placeholder={inputItem.placeholder}
+                    placeholder={t(`${inputItem.placeholder}`)}
                   />
                   {touched[`${inputItem.id}`] && errors[`${inputItem.id}`]
                   && <div className="error">{errors[`${inputItem.id}`]}</div>}
@@ -65,19 +66,20 @@ const Reset = ({
               ))}
 
               <ButtonForm
-                name={name}
+                name={t(`${name}`)}
                 addDisabled={!isValid && !dirty}
                 addOnClick={handleSubmit}
               />
             </form>
           )}
         </Formik>
-        <AuthLinks link={link} />
+        <AuthLinks link={link} t={t} />
       </div>
     </div>
   );
 };
 Reset.defaultProps = {
+  t: {},
   reset: {
     input: [],
     name: '',
@@ -86,6 +88,7 @@ Reset.defaultProps = {
 
 };
 Reset.propTypes = {
+  t: PropTypes.func,
   reset: PropTypes.shape({
     input: PropTypes.arrayOf(PropTypes.object),
     name: PropTypes.string,

@@ -5,25 +5,24 @@ const TableCheckbox = ({
   id,
   done,
   onCheckedChange
-}) => {
-  return (
-    <td className="table__td">
-      <input
-        type="checkbox"
-        checked={done}
-        onChange={() => {
-          onCheckedChange(id);
-        }}
-      />
-      {id}
-    </td>
-  );
-};
+}) => (
+  <td className="table__td">
+    <input
+      type="checkbox"
+      checked={done}
+      onChange={() => {
+        onCheckedChange(id);
+      }}
+    />
+    {id}
+  </td>
+);
 
 TableCheckbox.defaultProps = {
   id: 1,
   done: false,
-  onCheckedChange: () => {}
+  onCheckedChange: () => {
+  }
 };
 TableCheckbox.propTypes = {
   id: PropTypes.number,

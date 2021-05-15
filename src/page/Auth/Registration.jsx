@@ -9,6 +9,7 @@ import AuthLinks from './components/AuthLinks';
 import './scss/Auth.scss';
 
 const Registration = ({
+  t,
   registration: {
     input,
     name,
@@ -34,7 +35,7 @@ const Registration = ({
 
         <ButtonClose />
 
-        <h2 className="auth__title">{name}</h2>
+        <h2 className="auth__title">{t(`${name}`)}</h2>
 
         <Formik
           initialValues={{
@@ -55,7 +56,7 @@ const Registration = ({
             <form className="auth__form">
               {input.map((inputItem) => (
                 <label className="auth__form-label" htmlFor={inputItem.id} key={inputItem.id}>
-                  {inputItem.label}
+                  {t(`${inputItem.label}`)}
                   <input
                     className="auth__form-input"
                     type={inputItem.type}
@@ -64,7 +65,7 @@ const Registration = ({
                     onChange={handleChange}
                     onBlur={handleBlur}
                     value={values[`${inputItem.id}`]}
-                    placeholder={inputItem.placeholder}
+                    placeholder={t(`${inputItem.placeholder}`)}
                   />
                   {touched[`${inputItem.id}`] && errors[`${inputItem.id}`]
                   && <div className="error">{errors[`${inputItem.id}`]}</div>}
@@ -72,7 +73,7 @@ const Registration = ({
               ))}
 
               <ButtonForm
-                name={name}
+                name={t(`${name}`)}
                 addDisabled={!isValid && !dirty}
                 addOnClick={handleSubmit}
               />
@@ -80,12 +81,13 @@ const Registration = ({
           )}
         </Formik>
 
-        <AuthLinks link={link} />
+        <AuthLinks link={link} t={t} />
       </div>
     </div>
   );
 };
 Registration.defaultProps = {
+  t: {},
   registration: {
     input: [],
     name: '',
@@ -93,6 +95,7 @@ Registration.defaultProps = {
   }
 };
 Registration.propTypes = {
+  t: PropTypes.func,
   registration: PropTypes.shape({
     input: PropTypes.arrayOf(PropTypes.object),
     name: PropTypes.string,

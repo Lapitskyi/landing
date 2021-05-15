@@ -1,11 +1,9 @@
 import React from 'react';
 import './scss/Portfolio.scss';
 
-const Portfolio = () => {
-  return (
-    <></>
-  );
-};
+const Portfolio = () => (
+  <></>
+);
 
 Portfolio.propTypes = {};
 

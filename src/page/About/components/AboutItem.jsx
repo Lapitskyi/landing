@@ -9,24 +9,22 @@ const AboutItem = ({
     suptitle,
     text
   }
-}) => {
-  return (
-    <div className="about">
-      <div className="about__inner">
-        <h1 className="about__title">{title}</h1>
-        <h2 className="about__suptitle">{suptitle}</h2>
+}) => (
+  <div className="about">
+    <div className="about__inner">
+      <h1 className="about__title">{title}</h1>
+      <h2 className="about__suptitle">{suptitle}</h2>
 
-        <div className="about__text">
-          {text.map((p) => (
-            <p key={p.id}>
-              {p.text}
-            </p>
-          ))}
-        </div>
+      <div className="about__text">
+        {text.map((p) => (
+          <p key={p.id}>
+            {p.text}
+          </p>
+        ))}
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 AboutItem.defaultProps = {
   about: {

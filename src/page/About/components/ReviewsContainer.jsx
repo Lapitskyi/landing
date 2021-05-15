@@ -49,13 +49,11 @@ ReviewsContainer.defaultProps = {
   },
   addReview: () => {
   },
-  // setReviews: () => {
-  // }
+
 };
 ReviewsContainer.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.object),
   reviewText: PropTypes.string,
   newReviewText: PropTypes.func,
   addReview: PropTypes.func,
-  // setReviews: PropTypes.func
 };

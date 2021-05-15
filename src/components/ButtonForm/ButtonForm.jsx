@@ -18,7 +18,7 @@ const ButtonForm = ({
 );
 
 ButtonForm.defaultProps = {
-  name: 'click',
+  name: '',
   addDisabled: true,
   addOnClick: () => {
   }

@@ -7,14 +7,21 @@ import Login from './Login';
 import Registration from './Registration';
 import Reset from './Reset';
 
-const AuthContainer = () => {
+const AuthContainer = ({
+  stateApp: {
+    auth: {
+      login,
+      registration,
+      reset
+    }
+  }
+}) => {
   const { t } = useTranslation();
-  const auth = (t('auth', { returnObjects: true }));
   return (
     <Switch>
-      <Route exact path="/auth/login" render={() => <Login login={auth.login} />} />
-      <Route path="/auth/registration" render={() => <Registration registration={auth.registration} />} />
-      <Route path="/auth/reset" render={() => <Reset reset={auth.reset} />} />
+      <Route exact path="/auth/login" render={() => <Login login={login} t={t} />} />
+      <Route path="/auth/registration" render={() => <Registration registration={registration} t={t} />} />
+      <Route path="/auth/reset" render={() => <Reset reset={reset} t={t} />} />
       <Redirect to="/" />
     </Switch>
   );
@@ -34,9 +41,15 @@ AuthContainer.propTypes = {
   stateApp: PropTypes.shape({
     langT: PropTypes.arrayOf(PropTypes.object),
     auth: PropTypes.shape({
-      login: PropTypes.objectOf(PropTypes.object),
-      registration: PropTypes.objectOf(PropTypes.object),
-      reset: PropTypes.objectOf(PropTypes.object)
+      login: PropTypes.PropTypes.shape({
+        input: PropTypes.arrayOf(PropTypes.object)
+      }),
+      registration: PropTypes.PropTypes.shape({
+        input: PropTypes.arrayOf(PropTypes.object)
+      }),
+      reset: PropTypes.PropTypes.shape({
+        input: PropTypes.arrayOf(PropTypes.object)
+      }),
     })
   })
 };

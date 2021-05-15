@@ -11,17 +11,16 @@ const Reviews = ({
   onNewReviewsText,
   onAddReviews,
   imgReviews
-}) => {
-  return (
-    <div className="reviews">
-      <h2 className="reviews__title">Review</h2>
+}) => (
+  <div className="reviews">
+    <h2 className="reviews__title">Review</h2>
 
-      <ReviewsList reviews={reviews} />
+    <ReviewsList reviews={reviews} />
 
-      <div className="reviews__inner">
-        <img className="reviews__img" src={userPhoto} alt="icon user" ref={imgReviews} />
+    <div className="reviews__inner">
+      <img className="reviews__img" src={userPhoto} alt="icon user" ref={imgReviews} />
 
-        <form className="reviews__form">
+      <form className="reviews__form">
           <textarea
             className="reviews__text"
             onChange={(e) => {
@@ -30,21 +29,20 @@ const Reviews = ({
             value={reviewText}
             placeholder="Leave a review"
           />
-          <button
-            type="submit"
-            className="reviews__btn btn"
-            onClick={onAddReviews}
-          >
-            Add
-          </button>
-        </form>
-      </div>
+        <button
+          type="submit"
+          className="reviews__btn btn"
+          onClick={onAddReviews}
+        >
+          Add
+        </button>
+      </form>
     </div>
-  );
-};
+  </div>
+);
 
 Reviews.defaultProps = {
-  imgReviews: '',
+  imgReviews: {},
   reviewText: '',
   reviews: [],
   onNewReviewsText: () => {
@@ -53,7 +51,7 @@ Reviews.defaultProps = {
   }
 };
 Reviews.propTypes = {
-  imgReviews: PropTypes.string,
+  imgReviews: PropTypes.objectOf(PropTypes.object),
   reviewText: PropTypes.string,
   reviews: PropTypes.arrayOf(PropTypes.object),
   onNewReviewsText: PropTypes.func,

@@ -13,7 +13,8 @@ const Header = ({
   toggleTheme,
   stateApp: {
     social,
-    langT
+    langT,
+    nav
   },
   theme
 
@@ -25,7 +26,7 @@ const Header = ({
           <div className="logo">
             <img className="logo__img" src="https://via.placeholder.com/200x50" alt="logo" />
           </div>
-          <Menu />
+          <Menu nav={nav} />
           <ThemeToggle
             theme={theme}
             toggleTheme={toggleTheme}
@@ -46,7 +47,8 @@ Header.defaultProps = {
   theme: false,
   stateApp: {
     social: [],
-    langT: []
+    langT: [],
+    nav: []
   },
 
   toggleTheme: () => {
@@ -58,6 +60,7 @@ Header.defaultProps = {
 Header.propTypes = {
   theme: PropTypes.bool,
   stateApp: PropTypes.shape({
+    nav: PropTypes.arrayOf(PropTypes.object),
     langT: PropTypes.arrayOf(PropTypes.object),
     social: PropTypes.arrayOf(PropTypes.object),
 
