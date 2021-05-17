@@ -23,8 +23,8 @@ const useToggleLang = () => {
       imgLang: ru
     }
   ]);
-
   const { i18n } = useTranslation();
+
   const toggleLang = (id) => {
     i18n.changeLanguage(id);
 

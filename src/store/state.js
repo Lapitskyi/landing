@@ -92,26 +92,31 @@ const state = {
     },
     {
       id: 2,
+      name: 'nav.pokemon',
+      link: '/pokemon'
+    },
+    {
+      id: 3,
       name: 'nav.aboutMe',
       link: '/about'
     },
     {
-      id: 3,
+      id: 4,
       name: 'nav.order',
       link: '/order'
     },
     {
-      id: 4,
+      id: 5,
       name: 'nav.portfolio',
       link: '/portfolio'
     },
     {
-      id: 5,
+      id: 6,
       name: 'nav.login',
       link: '/auth/login'
     },
     {
-      id: 6,
+      id: 7,
       name: 'nav.registration',
       link: '/auth/registration'
     }

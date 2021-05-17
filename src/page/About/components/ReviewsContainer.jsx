@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Reviews from './Reviews';
-import { addReview, newReviewText, setReviews } from '../../../redux/about-reducer';
+import { addReview, newReviewText, setReviews } from '../../../redux/redusers/about-reducer';
 
 const ReviewsContainer = ({
   reviews,

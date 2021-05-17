@@ -20,6 +20,7 @@ export default {
   },
   nav: {
     home: 'Главная',
+    pokemon: 'Покемон',
     aboutMe: 'Обо мне',
     order: 'Заказы',
     portfolio: 'Портфолио',

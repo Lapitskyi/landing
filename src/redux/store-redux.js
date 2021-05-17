@@ -1,12 +1,15 @@
-import { combineReducers, createStore } from 'redux';
-import aboutReducer from './about-reducer';
-import authReducer from './auth-reducer';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import aboutReducer from './redusers/about-reducer';
+import authReducer from './redusers/auth-reducer';
+import pokemonReducer from './redusers/pokemon-reducer';
 
 const reducers = combineReducers({
   aboutPage: aboutReducer,
-  authPage: authReducer
+  authPage: authReducer,
+  pokemonPage: pokemonReducer
 });
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;

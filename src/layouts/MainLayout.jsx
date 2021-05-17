@@ -7,6 +7,7 @@ import Order from '../page/Order/Order';
 import Portfolio from '../page/Portfolio/Portfolio';
 import Header from './components/Header';
 import AuthContainer from '../page/Auth/AuthContainer';
+import PokemonGroupContainer from '../page/PokemonGroup/PokemonGroupContainer';
 
 const MainLayout = () => (
   <>
@@ -15,6 +16,7 @@ const MainLayout = () => (
       <div className="container">
         <Switch>
           <Route path="/" exact render={() => <Home />} />
+          <Route path="/pokemon" render={() => <PokemonGroupContainer />} />
           <Route path="/about" render={() => <About />} />
           <Route path="/order" render={() => <Order />} />
           <Route path="/portfolio" render={() => <Portfolio />} />
