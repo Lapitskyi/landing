@@ -1,0 +1,28 @@
+.notfound {
+  &__inner {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 30px;
+    margin-bottom: 25px;
+  }
+
+  &__img {
+    display: block;
+    width:100%;
+
+    object-fit: cover;
+    margin: 0 auto;
+  }
+
+  &__link {
+    display: inline-block;
+    margin-top: 25px;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background-color: #b3281a;
+    color: #ffffff;
+  }
+}

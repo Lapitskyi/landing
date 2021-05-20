@@ -14,7 +14,7 @@ const initialState = {
   pokemonGroup: [],
   pokemon: {},
   isLoader: false,
-  pageSize: 20,
+  pageSize: 40,
   totalCount: 0,
   currentPage: 1,
 };
@@ -48,13 +48,13 @@ const pokemonReducer = (state = initialState, action) => {
     case SEARCH_POKEMON:
       return {
         ...state,
-        pokemon: action.pokemon
+        pokemonGroup: [{ name: action.pokemon.name, url: 'https://pokeapi.co/api/v2/pokemon/1/' }],
       };
 
     case ERROR_POKEMON:
       return {
         ...state,
-        pokemon: action.errPokemon,
+        pokemonGroup: action.errPokemon,
       };
 
     case TOGGLE_IS_LOADER:
@@ -126,6 +126,25 @@ export const getPokemon = (pokemon) => {
       .then((data) => {
         dispatch(toggleIsLoader(false));
         dispatch(setPokemon(data));
+      });
+  };
+};
+
+export const getSearch = (pokemon) => {
+  return (dispatch) => {
+    dispatch(toggleIsLoader(true));
+    pokemonApi.getSearchPokemon(pokemon)
+      .then((data) => {
+        dispatch(toggleIsLoader(false));
+        dispatch(searchPokemon(data));
+      })
+      .catch((err) => {
+        if (err.response) {
+          toggleIsLoader(false);
+          errorPokemon(null);
+        } else if (err.request) {
+          // client never received a response, or request never left
+        }
       });
   };
 };

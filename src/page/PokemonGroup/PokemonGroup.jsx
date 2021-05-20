@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Pagination from '../../components/Pagination/Pagination';
-import './scss/PokemonGroup.scss';
-import pokemonBol from '../../assets/images/pokemonBol.svg';
 import SearchPokemon from './components/SearchPokemon';
 import PokemonModal from './components/PokemonModal';
+import PokemonList from './components/PokemonList';
+import Preloader from '../../components/Preloader/Preloader';
+import './scss/PokemonGroup.scss';
 
 const PokemonGroup = ({
-  pokemonGroup,
+  findPokemon,
   pageSize,
   totalCount,
   currentPage,
@@ -15,46 +16,46 @@ const PokemonGroup = ({
   modal,
   setModal,
   showPokemon,
-  onPageChanged
+  onPageChanged,
+  isLoader,
+  val,
+  onChange
 }) => (
   <div className="pokemonGroup">
-    <SearchPokemon />
-    <ul className="pokemonGroup__list">
-      {pokemonGroup.map((pokemonsItem) => (
-        <li
-          className="pokemonGroup__list-item"
-          onClick={() => {
-            setModal(true);
-            showPokemon(pokemonsItem.name);
-          }}
-          role="presentation"
-          key={pokemonsItem.name}
-        >
-          <div className="pokemonGroup__list-photo">
-            <img
-              className="pokemonGroup__list-img"
-              src={pokemonsItem.img ? pokemonsItem.img : pokemonBol}
-              alt="PokemonModal"
-            />
-          </div>
-          <h3 className="pokemonGroup__list-title">{pokemonsItem.name}</h3>
-        </li>
-      ))}
-
-    </ul>
-    <PokemonModal
-      modal={modal}
-      setModal={setModal}
-      pokemon={pokemon}
+    <SearchPokemon
+      val={val}
+      onChange={onChange}
     />
+    <>
+      {(isLoader ? <Preloader /> : null)
+      || (
+        <>
+          <ul className="pokemonGroup__list">
+            {findPokemon.map((pokemonItem) => (
+              <PokemonList
+                setModal={setModal}
+                showPokemon={showPokemon}
+                key={pokemonItem.name}
+                name={pokemonItem.name}
+                img={pokemonItem.img}
+              />
+            ))}
+          </ul>
+          <PokemonModal
+            modal={modal}
+            setModal={setModal}
+            pokemon={pokemon}
+          />
 
-    <Pagination
-      pageSize={pageSize}
-      totalCount={totalCount}
-      currentPage={currentPage}
-      onPageChanged={onPageChanged}
-    />
-
+          <Pagination
+            pageSize={pageSize}
+            totalCount={totalCount}
+            currentPage={currentPage}
+            onPageChanged={onPageChanged}
+          />
+        </>
+      )}
+    </>
   </div>
 
 );
@@ -62,7 +63,7 @@ const PokemonGroup = ({
 export default PokemonGroup;
 
 PokemonGroup.defaultProps = {
-  pokemonGroup: [],
+  findPokemon: [],
   pokemon: {},
   pageSize: 5,
   totalCount: 0,
@@ -74,9 +75,14 @@ PokemonGroup.defaultProps = {
   },
   onPageChanged: () => {
   },
+  isLoader: false,
+  val: '',
+  onChange: () => {
+  }
 };
 PokemonGroup.propTypes = {
-  pokemonGroup: PropTypes.arrayOf(PropTypes.object),
+  isLoader: PropTypes.bool,
+  findPokemon: PropTypes.arrayOf(PropTypes.object),
   pokemon: PropTypes.shape({}),
   pageSize: PropTypes.number,
   totalCount: PropTypes.number,
@@ -85,4 +91,6 @@ PokemonGroup.propTypes = {
   setModal: PropTypes.func,
   showPokemon: PropTypes.func,
   onPageChanged: PropTypes.func,
+  val: PropTypes.string,
+  onChange: PropTypes.func
 };

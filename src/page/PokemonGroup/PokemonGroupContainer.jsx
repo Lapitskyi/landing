@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PokemonGroup from './PokemonGroup';
 import {
-  getCurrentPage, getPokemon, getPokemonGroups, setCurrentPage 
+  getCurrentPage, getPokemon, getPokemonGroups, getSearch, setCurrentPage
 } from '../../redux/redusers/pokemon-reducer';
-import Preloader from '../../components/Preloader/Preloader';
+import useInput from '../../useHook/useInput';
+import useDebounce from '../../useHook/useDebounce';
 
 const PokemonGroupContainer = ({
   pokemonGroup,
@@ -18,40 +19,46 @@ const PokemonGroupContainer = ({
   ...props
 }) => {
   const [modal, setModal] = useState(false);
+  const { val, onChange } = useInput('');
+  const debouncedSearchTerm = useDebounce(val, 500);
 
   const showPokemon = (name) => {
     props.getPokemon(name);
   };
+
+  console.log(pokemonGroup);
+
   const onPageChanged = (pageNumber) => {
     props.setCurrentPage(pageNumber);
     props.getCurrentPage(pageNumber, pageSize);
   };
 
-  useEffect(() => {
-    props.getPokemonGroups(currentPage, pageSize);
-  }, []);
-
-  useState(() => {
-  }, []);
+  useEffect(
+    () => {
+      if (debouncedSearchTerm) {
+        props.getSearch(val);
+      }
+      if (debouncedSearchTerm === '') {
+        props.getPokemonGroups(currentPage, pageSize);
+      }
+    }, [debouncedSearchTerm, currentPage, pageSize]
+  );
 
   return (
-    <>
-      {(isLoader ? <Preloader /> : null)
-      || (
-        <PokemonGroup
-          modal={modal}
-          setModal={setModal}
-          pokemonGroup={pokemonGroup}
-          pokemon={pokemon}
-          pageSize={pageSize}
-          totalCount={totalCount}
-          currentPage={currentPage}
-          showPokemon={showPokemon}
-          onPageChanged={onPageChanged}
-        />
-      )}
-    </>
-
+    <PokemonGroup
+      isLoader={isLoader}
+      modal={modal}
+      setModal={setModal}
+      findPokemon={pokemonGroup}
+      pokemon={pokemon}
+      pageSize={pageSize}
+      totalCount={totalCount}
+      currentPage={currentPage}
+      showPokemon={showPokemon}
+      onPageChanged={onPageChanged}
+      val={val}
+      onChange={onChange}
+    />
   );
 };
 
@@ -70,7 +77,8 @@ export default compose(
       getPokemonGroups,
       getPokemon,
       setCurrentPage,
-      getCurrentPage
+      getCurrentPage,
+      getSearch
     })
 )(PokemonGroupContainer);
 
@@ -89,6 +97,11 @@ PokemonGroupContainer.defaultProps = {
   },
   setCurrentPage: () => {
   },
+  val: '',
+  onChange: () => {
+  },
+  getSearch: () => {
+  }
 };
 PokemonGroupContainer.propTypes = {
   pokemonGroup: PropTypes.arrayOf(PropTypes.object),
@@ -100,5 +113,8 @@ PokemonGroupContainer.propTypes = {
   getPokemon: PropTypes.func,
   setCurrentPage: PropTypes.func,
   getCurrentPage: PropTypes.func,
-  isLoader: PropTypes.bool
+  isLoader: PropTypes.bool,
+  val: PropTypes.string,
+  onChange: PropTypes.func,
+  getSearch: PropTypes.func
 };

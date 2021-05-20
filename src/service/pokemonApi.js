@@ -37,6 +37,19 @@ const pokemonAPI = {
           console.log(err.response);
         }
       });
+  },
+  getSearchPokemon(pokemon) {
+    return instance(`${pokemon}`)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.log(err.response);
+        } else if (err.request) {
+          console.log(err.response);
+        }
+      });
   }
 };
 
