@@ -3,12 +3,8 @@ import PropTypes from 'prop-types';
 import Table from './Table';
 
 const TableContainer = ({
-  state: {
-    tableArray: {
-      tableBody,
-      tableHeadlines
-    }
-  }
+  tableBody,
+  tableHeadlines
 }) => {
   const [tableItem, setTableItem] = useState(tableBody);
   const [editMode, setEditMode] = useState(false);
@@ -159,21 +155,13 @@ const TableContainer = ({
 };
 
 TableContainer.defaultProps = {
-  state: {
-    tableArray: {
-      tableBody: [],
-      tableHeadlines: []
-    }
-  }
+  tableBody: [],
+  tableHeadlines: []
 };
 
 TableContainer.propTypes = {
-  state: PropTypes.shape({
-    tableArray: PropTypes.shape({
-      tableBody: PropTypes.arrayOf(PropTypes.object),
-      tableHeadlines: PropTypes.arrayOf(PropTypes.object)
-    })
-  })
+  tableBody: PropTypes.arrayOf(PropTypes.object),
+  tableHeadlines: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default TableContainer;

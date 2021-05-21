@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import App from './App';
-import MyContext from './store/MyContext';
+import MyContext from './state/MyContext';
 import useToggleTheme from './useHook/useToggleTheme';
 import useToggleLang from './useHook/useToggleLang';
 

@@ -6,9 +6,10 @@ import PokemonModal from './components/PokemonModal';
 import PokemonList from './components/PokemonList';
 import Preloader from '../../components/Preloader/Preloader';
 import './scss/PokemonGroup.scss';
+import NotFound from './components/NotFound';
 
 const PokemonGroup = ({
-  findPokemon,
+  pokemonGroup,
   pageSize,
   totalCount,
   currentPage,
@@ -28,10 +29,11 @@ const PokemonGroup = ({
     />
     <>
       {(isLoader ? <Preloader /> : null)
+      || (pokemonGroup === 1 && <NotFound />)
       || (
         <>
           <ul className="pokemonGroup__list">
-            {findPokemon.map((pokemonItem) => (
+            {pokemonGroup.map((pokemonItem) => (
               <PokemonList
                 setModal={setModal}
                 showPokemon={showPokemon}
@@ -63,7 +65,7 @@ const PokemonGroup = ({
 export default PokemonGroup;
 
 PokemonGroup.defaultProps = {
-  findPokemon: [],
+  pokemonGroup: [],
   pokemon: {},
   pageSize: 5,
   totalCount: 0,
@@ -82,7 +84,7 @@ PokemonGroup.defaultProps = {
 };
 PokemonGroup.propTypes = {
   isLoader: PropTypes.bool,
-  findPokemon: PropTypes.arrayOf(PropTypes.object),
+  pokemonGroup: PropTypes.arrayOf(PropTypes.object),
   pokemon: PropTypes.shape({}),
   pageSize: PropTypes.number,
   totalCount: PropTypes.number,

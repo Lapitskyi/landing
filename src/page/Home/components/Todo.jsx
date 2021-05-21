@@ -5,8 +5,8 @@ import '../scss/Todo.scss';
 const Todo = ({
   t,
   todos,
-  text,
-  setText,
+  val,
+  onChange,
   updateTodos
 }) => (
   <div className="todo">
@@ -15,15 +15,13 @@ const Todo = ({
       <input
         className="todo__form-input"
         type="text"
-        value={text}
-        onChange={(e) => {
-          setText(e.target.value);
-        }}
+        value={val}
+        onChange={onChange}
       />
       <button
         className="todo__form-btn"
         type="submit"
-        onClick={(e) => updateTodos(e, text)}
+        onClick={(e) => updateTodos(e, val)}
       >
         addTodo
       </button>
@@ -35,10 +33,10 @@ const Todo = ({
     )}
 
     <ul className="todo__list">
-      {todos?.map((item, index) => (
-        <li className="todo__list-item" key={index.toString()}>
-          <div>{(index + 1)}</div>
-          <p className="todo__text">{item}</p>
+      {todos?.map((item) => (
+        <li className="todo__list-item" key={item.id}>
+          <div>{item.id}</div>
+          <p className="todo__text">{item.todo}</p>
         </li>
       ))}
     </ul>
@@ -46,20 +44,20 @@ const Todo = ({
 );
 
 Todo.defaultProps = {
-  todos: [],
-  text: '',
+  val: '',
   t: () => {
   },
-  setText: () => {
+  onChange: () => {
   },
+  todos: [],
   updateTodos: () => {
   }
 };
 Todo.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.string),
-  text: PropTypes.string,
+  val: PropTypes.string,
   t: PropTypes.func,
-  setText: PropTypes.func,
+  onChange: PropTypes.func,
+  todos: PropTypes.arrayOf(PropTypes.object),
   updateTodos: PropTypes.func,
 
 };

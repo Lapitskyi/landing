@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import AppContainer from './AppContainer';
 import store from './redux/store-redux';
-import state from './store/state';
+import state from './redux/state';
 import './i18n/index';
 
 import './index.scss';

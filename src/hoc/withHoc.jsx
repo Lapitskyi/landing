@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import MyContext from '../store/MyContext';
+import MyContext from '../state/MyContext';
 
 const withHoc = (Component) => {
   return () => {

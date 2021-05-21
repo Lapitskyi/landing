@@ -6,8 +6,8 @@ const instance = axios.create({
 });
 
 const pokemonAPI = {
-  getPokemonGroup(pageNumber, pageSize) {
-    return instance(`?offset=${pageNumber}&limit=${pageSize}`)
+  getPokemonGroup() {
+    return instance()
       .then((response) => {
         return response.data;
       })

@@ -97,10 +97,10 @@ export const setCurrentPage = (currentPage) => ({
   currentPage
 });
 
-export const getPokemonGroups = (pageNumber, pageSize) => {
+export const getPokemonGroups = () => {
   return (dispatch) => {
     dispatch(toggleIsLoader(true));
-    pokemonApi.getPokemonGroup(pageNumber, pageSize)
+    pokemonApi.getPokemonGroup()
       .then((data) => {
         dispatch(toggleIsLoader(false));
         dispatch(setPokemonsGroup(data.results));
@@ -137,14 +137,6 @@ export const getSearch = (pokemon) => {
       .then((data) => {
         dispatch(toggleIsLoader(false));
         dispatch(searchPokemon(data));
-      })
-      .catch((err) => {
-        if (err.response) {
-          toggleIsLoader(false);
-          errorPokemon(null);
-        } else if (err.request) {
-          // client never received a response, or request never left
-        }
       });
   };
 };

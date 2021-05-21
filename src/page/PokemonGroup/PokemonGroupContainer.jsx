@@ -26,8 +26,6 @@ const PokemonGroupContainer = ({
     props.getPokemon(name);
   };
 
-  console.log(pokemonGroup);
-
   const onPageChanged = (pageNumber) => {
     props.setCurrentPage(pageNumber);
     props.getCurrentPage(pageNumber, pageSize);
@@ -39,9 +37,9 @@ const PokemonGroupContainer = ({
         props.getSearch(val);
       }
       if (debouncedSearchTerm === '') {
-        props.getPokemonGroups(currentPage, pageSize);
+        props.getPokemonGroups();
       }
-    }, [debouncedSearchTerm, currentPage, pageSize]
+    }, [debouncedSearchTerm]
   );
 
   return (
@@ -49,7 +47,7 @@ const PokemonGroupContainer = ({
       isLoader={isLoader}
       modal={modal}
       setModal={setModal}
-      findPokemon={pokemonGroup}
+      pokemonGroup={pokemonGroup}
       pokemon={pokemon}
       pageSize={pageSize}
       totalCount={totalCount}
