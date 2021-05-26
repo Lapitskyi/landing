@@ -97,48 +97,33 @@ export const setCurrentPage = (currentPage) => ({
   currentPage
 });
 
-export const getPokemonGroups = () => {
-  return (dispatch) => {
-    dispatch(toggleIsLoader(true));
-    pokemonApi.getPokemonGroup()
-      .then((data) => {
-        dispatch(toggleIsLoader(false));
-        dispatch(setPokemonsGroup(data.results));
-        dispatch(setPokemonTotalCount(data.count));
-      });
-  };
-};
-export const getCurrentPage = (pageNumber, pageSize) => {
-  return (dispatch) => {
-    dispatch(toggleIsLoader(true));
-    pokemonApi.getCurrentPage(pageNumber, pageSize)
-      .then((data) => {
-        dispatch(toggleIsLoader(false));
-        dispatch(setPokemonsGroup(data.results));
-      });
-  };
+export const getPokemonGroups = () => async (dispatch) => {
+  dispatch(toggleIsLoader(true));
+  const data = await pokemonApi.getPokemonGroup();   
+  dispatch(toggleIsLoader(false));
+  dispatch(setPokemonsGroup(data.results));
+  dispatch(setPokemonTotalCount(data.count));
 };
 
-export const getPokemon = (pokemon) => {
-  return (dispatch) => {
-    dispatch(toggleIsLoader(true));
-    pokemonApi.getPokemon(pokemon)
-      .then((data) => {
-        dispatch(toggleIsLoader(false));
-        dispatch(setPokemon(data));
-      });
-  };
+export const getCurrentPage = (pageNumber, pageSize) => async (dispatch) => {
+  dispatch(toggleIsLoader(true));
+  const data = await pokemonApi.getCurrentPage(pageNumber, pageSize);  
+  dispatch(toggleIsLoader(false));
+  dispatch(setPokemonsGroup(data.results));
 };
 
-export const getSearch = (pokemon) => {
-  return (dispatch) => {
-    dispatch(toggleIsLoader(true));
-    pokemonApi.getSearchPokemon(pokemon)
-      .then((data) => {
-        dispatch(toggleIsLoader(false));
-        dispatch(searchPokemon(data));
-      });
-  };
+export const getPokemon = (pokemon) => async (dispatch) => {
+  dispatch(toggleIsLoader(true));
+  const data = await pokemonApi.getPokemon(pokemon);
+  dispatch(toggleIsLoader(false));
+  dispatch(setPokemon(data));
+};
+
+export const getSearch = (pokemon) => async (dispatch) => {
+  dispatch(toggleIsLoader(true));
+  const data = await pokemonApi.getSearchPokemon(pokemon);
+  dispatch(toggleIsLoader(false));
+  dispatch(searchPokemon(data));
 };
 
 export default pokemonReducer;
