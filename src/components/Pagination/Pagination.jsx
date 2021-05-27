@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './scss/Pagination.scss';
 
@@ -6,18 +6,40 @@ const Pagination = ({
   pageSize,
   totalCount,
   currentPage,
-  onPageChanged
+  onPageChanged,
+  portionSize
 }) => {
+  const [portionNumber, setPortionNumber] = useState(1);
+
   const pageCount = Math.ceil(totalCount / pageSize);
   const pages = [];
   for (let i = 1; i <= pageCount; i += 1) {
     pages.push(i);
   }
+
+  const portionCount = Math.ceil(pageCount / portionSize);
+  const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+  const rigthPortionPageNumber = portionNumber * portionSize;
+
   return (
     <div className="pagination">
       <ul className="pagination__list">
-        {
-          pages.map((page) => (
+
+        {portionNumber > 1 && (
+          <li className="pagination__item">
+            <button
+              type="button"
+              className="pagination__link controlArrows"
+              onClick={() => setPortionNumber(portionNumber - 1)}
+            >
+              Prev
+            </button>
+          </li>
+        )}
+
+        {pages
+          .filter((page) => page >= leftPortionPageNumber && page <= rigthPortionPageNumber)
+          .map((page) => (
             <li className="pagination__item" key={page}>
               <button
                 type="button"
@@ -29,8 +51,18 @@ const Pagination = ({
               </button>
             </li>
 
-          ))
-        }
+          ))}
+        {portionCount > portionNumber && (
+          <li className="pagination__item">
+            <button
+              type="button"
+              className="pagination__link controlArrows"
+              onClick={() => setPortionNumber(portionNumber + 1)}
+            >
+              Next
+            </button>
+          </li>
+        )}
 
       </ul>
     </div>
@@ -41,10 +73,13 @@ Pagination.defaultProps = {
   pageSize: 0,
   totalCount: 0,
   currentPage: 1,
-  onPageChanged: () => {}
+  portionSize: 10,
+  onPageChanged: () => {
+  }
 };
 Pagination.propTypes = {
   pageSize: PropTypes.number,
+  portionSize: PropTypes.number,
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   onPageChanged: PropTypes.func

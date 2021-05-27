@@ -99,17 +99,17 @@ export const setCurrentPage = (currentPage) => ({
 
 export const getPokemonGroups = () => async (dispatch) => {
   dispatch(toggleIsLoader(true));
-  const data = await pokemonApi.getPokemonGroup();   
+  const { results, count } = await pokemonApi.getPokemonGroup();
   dispatch(toggleIsLoader(false));
-  dispatch(setPokemonsGroup(data.results));
-  dispatch(setPokemonTotalCount(data.count));
+  dispatch(setPokemonsGroup(results));
+  dispatch(setPokemonTotalCount(count));
 };
 
 export const getCurrentPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
-  const data = await pokemonApi.getCurrentPage(pageNumber, pageSize);  
+  const { results } = await pokemonApi.getCurrentPage(pageNumber, pageSize);
   dispatch(toggleIsLoader(false));
-  dispatch(setPokemonsGroup(data.results));
+  dispatch(setPokemonsGroup(results));
 };
 
 export const getPokemon = (pokemon) => async (dispatch) => {

@@ -30,6 +30,9 @@ const PokemonGroupContainer = ({
     props.setCurrentPage(pageNumber);
     props.getCurrentPage(pageNumber, pageSize);
   };
+  useEffect(() => {
+    props.getPokemonGroups();
+  }, []);
 
   useEffect(
     () => {

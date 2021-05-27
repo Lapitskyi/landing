@@ -8,7 +8,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import './scss/PokemonGroup.scss';
 import NotFound from './components/NotFound';
 
-const PokemonGroup = ({
+const PokemonGroup = React.memo(({
   pokemonGroup,
   pageSize,
   totalCount,
@@ -60,7 +60,7 @@ const PokemonGroup = ({
     </>
   </div>
 
-);
+));
 
 export default PokemonGroup;
 
