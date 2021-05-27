@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import PokemonGroup from './PokemonGroup';
 import {
   requestCurrentPage, requestPokemon, requestPokemonGroups, requestSearch, setCurrentPage
-} from '../../redux/redusers/pokemon-reducer';
+} from '../../redux/actions';
 import useInput from '../../useHook/useInput';
 import useDebounce from '../../useHook/useDebounce';
 import {
@@ -14,7 +14,7 @@ import {
   getPageSize,
   getPokemonItem,
   getTotalCountPokemon
-} from '../../redux/selector/selector';
+} from '../../redux/selector';
 
 const PokemonGroupContainer = ({
   pokemonGroup,

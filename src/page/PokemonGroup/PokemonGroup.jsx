@@ -33,7 +33,7 @@ const PokemonGroup = ({
       || (
         <>
           <ul className="pokemonGroup__list">
-            {pokemonGroup?.map((pokemonItem) => (
+            {pokemonGroup.map((pokemonItem) => (
               <PokemonList
                 setModal={setModal}
                 showPokemon={showPokemon}
@@ -54,7 +54,6 @@ const PokemonGroup = ({
             totalCount={totalCount}
             currentPage={currentPage}
             onPageChanged={onPageChanged}
-            portionSize={10}
           />
         </>
       )}
