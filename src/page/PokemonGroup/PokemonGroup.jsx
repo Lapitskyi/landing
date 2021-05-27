@@ -8,7 +8,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import './scss/PokemonGroup.scss';
 import NotFound from './components/NotFound';
 
-const PokemonGroup = React.memo(({
+const PokemonGroup = ({
   pokemonGroup,
   pageSize,
   totalCount,
@@ -29,11 +29,11 @@ const PokemonGroup = React.memo(({
     />
     <>
       {(isLoader ? <Preloader /> : null)
-      || (pokemonGroup === 1 && <NotFound />)
+      || (pokemonGroup === null && <NotFound />)
       || (
         <>
           <ul className="pokemonGroup__list">
-            {pokemonGroup.map((pokemonItem) => (
+            {pokemonGroup?.map((pokemonItem) => (
               <PokemonList
                 setModal={setModal}
                 showPokemon={showPokemon}
@@ -54,13 +54,14 @@ const PokemonGroup = React.memo(({
             totalCount={totalCount}
             currentPage={currentPage}
             onPageChanged={onPageChanged}
+            portionSize={10}
           />
         </>
       )}
     </>
   </div>
 
-));
+);
 
 export default PokemonGroup;
 

@@ -4,10 +4,17 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PokemonGroup from './PokemonGroup';
 import {
-  getCurrentPage, getPokemon, getPokemonGroups, getSearch, setCurrentPage
+  requestCurrentPage, requestPokemon, requestPokemonGroups, requestSearch, setCurrentPage
 } from '../../redux/redusers/pokemon-reducer';
 import useInput from '../../useHook/useInput';
 import useDebounce from '../../useHook/useDebounce';
+import {
+  getGroupPokemon,
+  getPageCurrent,
+  getPageSize,
+  getPokemonItem,
+  getTotalCountPokemon
+} from '../../redux/selector/selector';
 
 const PokemonGroupContainer = ({
   pokemonGroup,
@@ -19,30 +26,30 @@ const PokemonGroupContainer = ({
   ...props
 }) => {
   const [modal, setModal] = useState(false);
-  const { val, onChange } = useInput('');
+  const {
+    val,
+    onChange
+  } = useInput('');
   const debouncedSearchTerm = useDebounce(val, 500);
 
   const showPokemon = (name) => {
-    props.getPokemon(name);
+    props.requestPokemon(name);
   };
 
   const onPageChanged = (pageNumber) => {
     props.setCurrentPage(pageNumber);
-    props.getCurrentPage(pageNumber, pageSize);
+    props.requestCurrentPage(pageNumber, pageSize);
   };
-  useEffect(() => {
-    props.getPokemonGroups();
-  }, []);
 
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        props.getSearch(val);
+        props.requestSearch(val);
       }
       if (debouncedSearchTerm === '') {
-        props.getPokemonGroups();
+        props.requestPokemonGroups(currentPage, pageSize);
       }
-    }, [debouncedSearchTerm]
+    }, [debouncedSearchTerm, currentPage, pageSize]
   );
 
   return (
@@ -64,22 +71,22 @@ const PokemonGroupContainer = ({
 };
 
 const mapStateToProps = ({ pokemonPage }) => ({
-  pokemonGroup: pokemonPage.pokemonGroup,
-  pokemon: pokemonPage.pokemon,
-  pageSize: pokemonPage.pageSize,
-  totalCount: pokemonPage.totalCount,
-  currentPage: pokemonPage.currentPage,
+  pokemonGroup: getGroupPokemon(pokemonPage),
+  pokemon: getPokemonItem(pokemonPage),
+  pageSize: getPageSize(pokemonPage),
+  totalCount: getTotalCountPokemon(pokemonPage),
+  currentPage: getPageCurrent(pokemonPage),
   isLoader: pokemonPage.isLoader
 });
 
 export default compose(
   connect(mapStateToProps,
     {
-      getPokemonGroups,
-      getPokemon,
+      requestPokemonGroups,
+      requestPokemon,
       setCurrentPage,
-      getCurrentPage,
-      getSearch
+      requestCurrentPage,
+      requestSearch
     })
 )(PokemonGroupContainer);
 
@@ -90,18 +97,18 @@ PokemonGroupContainer.defaultProps = {
   currentPage: 1,
   isLoader: false,
   pokemon: {},
-  getPokemonGroups: () => {
+  requestPokemonGroups: () => {
   },
-  getPokemon: () => {
+  requestPokemon: () => {
   },
-  getCurrentPage: () => {
+  requestCurrentPage: () => {
   },
   setCurrentPage: () => {
   },
   val: '',
   onChange: () => {
   },
-  getSearch: () => {
+  requestSearch: () => {
   }
 };
 PokemonGroupContainer.propTypes = {
@@ -110,12 +117,12 @@ PokemonGroupContainer.propTypes = {
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   pokemon: PropTypes.shape({}),
-  getPokemonGroups: PropTypes.func,
-  getPokemon: PropTypes.func,
   setCurrentPage: PropTypes.func,
-  getCurrentPage: PropTypes.func,
   isLoader: PropTypes.bool,
   val: PropTypes.string,
   onChange: PropTypes.func,
-  getSearch: PropTypes.func
+  requestSearch: PropTypes.func,
+  requestPokemonGroups: PropTypes.func,
+  requestPokemon: PropTypes.func,
+  requestCurrentPage: PropTypes.func,
 };

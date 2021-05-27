@@ -19,7 +19,7 @@ const Pagination = ({
 
   const portionCount = Math.ceil(pageCount / portionSize);
   const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
-  const rigthPortionPageNumber = portionNumber * portionSize;
+  const rightPortionPageNumber = portionNumber * portionSize;
 
   return (
     <div className="pagination">
@@ -38,7 +38,7 @@ const Pagination = ({
         )}
 
         {pages
-          .filter((page) => page >= leftPortionPageNumber && page <= rigthPortionPageNumber)
+          .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
           .map((page) => (
             <li className="pagination__item" key={page}>
               <button

@@ -14,7 +14,7 @@ const initialState = {
   pokemonGroup: [],
   pokemon: {},
   isLoader: false,
-  pageSize: 40,
+  pageSize: 20,
   totalCount: 0,
   currentPage: 1,
 };
@@ -48,7 +48,10 @@ const pokemonReducer = (state = initialState, action) => {
     case SEARCH_POKEMON:
       return {
         ...state,
-        pokemonGroup: [{ name: action.pokemon.name, url: 'https://pokeapi.co/api/v2/pokemon/1/' }],
+        pokemonGroup: [{
+          name: action.pokemon.name,
+          url: 'https://pokeapi.co/api/v2/pokemon/1/'
+        }],
       };
 
     case ERROR_POKEMON:
@@ -97,29 +100,32 @@ export const setCurrentPage = (currentPage) => ({
   currentPage
 });
 
-export const getPokemonGroups = () => async (dispatch) => {
+export const requestPokemonGroups = (currentPage, pageSize) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
-  const { results, count } = await pokemonApi.getPokemonGroup();
+  const {
+    results,
+    count
+  } = await pokemonApi.getPokemonGroup(currentPage, pageSize);
   dispatch(toggleIsLoader(false));
   dispatch(setPokemonsGroup(results));
   dispatch(setPokemonTotalCount(count));
 };
 
-export const getCurrentPage = (pageNumber, pageSize) => async (dispatch) => {
+export const requestCurrentPage = (pageNumber, pageSize) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
   const { results } = await pokemonApi.getCurrentPage(pageNumber, pageSize);
   dispatch(toggleIsLoader(false));
   dispatch(setPokemonsGroup(results));
 };
 
-export const getPokemon = (pokemon) => async (dispatch) => {
+export const requestPokemon = (pokemon) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
   const data = await pokemonApi.getPokemon(pokemon);
   dispatch(toggleIsLoader(false));
   dispatch(setPokemon(data));
 };
 
-export const getSearch = (pokemon) => async (dispatch) => {
+export const requestSearch = (pokemon) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
   const data = await pokemonApi.getSearchPokemon(pokemon);
   dispatch(toggleIsLoader(false));
