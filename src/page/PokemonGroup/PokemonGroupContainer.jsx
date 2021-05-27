@@ -20,6 +20,7 @@ import {
 const PokemonGroupContainer = ({
   pokemonGroup,
   pageSize,
+  portionSize,
   totalCount,
   currentPage,
   pokemon,
@@ -62,6 +63,7 @@ const PokemonGroupContainer = ({
       pokemonGroup={pokemonGroup}
       pokemon={pokemon}
       pageSize={pageSize}
+      portionSize={portionSize}
       totalCount={totalCount}
       currentPage={currentPage}
       showPokemon={showPokemon}
@@ -76,6 +78,7 @@ const mapStateToProps = ({ pokemonPage }) => ({
   pokemonGroup: getGroupPokemon(pokemonPage),
   pokemon: getPokemonItem(pokemonPage),
   pageSize: getPageSize(pokemonPage),
+  portionSize: getPageSize(pokemonPage),
   totalCount: getTotalCountPokemon(pokemonPage),
   currentPage: getPageCurrent(pokemonPage),
   isLoader: getLoader(pokemonPage)
@@ -95,6 +98,7 @@ export default compose(
 PokemonGroupContainer.defaultProps = {
   pokemonGroup: [],
   pageSize: 5,
+  portionSize: 10,
   totalCount: 0,
   currentPage: 1,
   isLoader: false,
@@ -116,6 +120,7 @@ PokemonGroupContainer.defaultProps = {
 PokemonGroupContainer.propTypes = {
   pokemonGroup: PropTypes.arrayOf(PropTypes.object),
   pageSize: PropTypes.number,
+  portionSize: PropTypes.number,
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   pokemon: PropTypes.shape({}),

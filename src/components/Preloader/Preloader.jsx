@@ -1,5 +1,6 @@
 import React from 'react';
 import preloader from '../../assets/images/pokemon.gif';
+import './scss/Preloader.scss';
 
 const Preloader = () => (
   <div className="preloader">

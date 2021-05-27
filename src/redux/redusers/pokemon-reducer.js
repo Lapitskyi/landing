@@ -13,6 +13,7 @@ const initialState = {
   pokemon: {},
   isLoader: false,
   pageSize: 20,
+  portionSize: 10,
   totalCount: 0,
   currentPage: 1,
 };
@@ -50,6 +51,7 @@ const pokemonReducer = (state = initialState, action) => {
           name: action.pokemon.name,
           url: 'https://pokeapi.co/api/v2/pokemon/1/'
         }],
+
       };
 
     case ERROR_POKEMON:

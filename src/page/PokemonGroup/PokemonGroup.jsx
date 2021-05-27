@@ -4,13 +4,12 @@ import Pagination from '../../components/Pagination/Pagination';
 import SearchPokemon from './components/SearchPokemon';
 import PokemonModal from './components/PokemonModal';
 import PokemonList from './components/PokemonList';
-import Preloader from '../../components/Preloader/Preloader';
 import './scss/PokemonGroup.scss';
-import NotFound from './components/NotFound';
 
 const PokemonGroup = ({
   pokemonGroup,
   pageSize,
+  portionSize,
   totalCount,
   currentPage,
   pokemon,
@@ -28,35 +27,32 @@ const PokemonGroup = ({
       onChange={onChange}
     />
     <>
-      {(isLoader ? <Preloader /> : null)
-      || (pokemonGroup === null && <NotFound />)
-      || (
-        <>
-          <ul className="pokemonGroup__list">
-            {pokemonGroup.map((pokemonItem) => (
-              <PokemonList
-                setModal={setModal}
-                showPokemon={showPokemon}
-                key={pokemonItem.name}
-                name={pokemonItem.name}
-                img={pokemonItem.img}
-              />
-            ))}
-          </ul>
-          <PokemonModal
-            modal={modal}
+      <ul className="pokemonGroup__list">
+        {pokemonGroup?.map((pokemonItem) => (
+          <PokemonList
             setModal={setModal}
-            pokemon={pokemon}
+            showPokemon={showPokemon}
+            key={pokemonItem.name}
+            name={pokemonItem.name}
+            img={pokemonItem.img}
           />
+        ))}
+      </ul>
+      <PokemonModal
+        modal={modal}
+        setModal={setModal}
+        pokemon={pokemon}
+        isLoader={isLoader}
+      />
 
-          <Pagination
-            pageSize={pageSize}
-            totalCount={totalCount}
-            currentPage={currentPage}
-            onPageChanged={onPageChanged}
-          />
-        </>
-      )}
+      <Pagination
+        pageSize={pageSize}
+        portionSize={portionSize}
+        totalCount={totalCount}
+        currentPage={currentPage}
+        onPageChanged={onPageChanged}
+      />
+
     </>
   </div>
 
@@ -68,6 +64,7 @@ PokemonGroup.defaultProps = {
   pokemonGroup: [],
   pokemon: {},
   pageSize: 5,
+  portionSize: 10,
   totalCount: 0,
   currentPage: 1,
   modal: false,
@@ -87,6 +84,7 @@ PokemonGroup.propTypes = {
   pokemonGroup: PropTypes.arrayOf(PropTypes.object),
   pokemon: PropTypes.shape({}),
   pageSize: PropTypes.number,
+  portionSize: PropTypes.number,
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   modal: PropTypes.bool,
