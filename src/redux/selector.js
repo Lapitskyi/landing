@@ -17,3 +17,6 @@ export const getPageSize = (pokemonPage) => (
 export const getTotalCountPokemon = (pokemonPage) => (
   pokemonPage.totalCount
 );
+export const getLoader = (pokemonPage) => (
+  pokemonPage.isLoader
+);

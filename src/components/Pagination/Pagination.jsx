@@ -9,7 +9,7 @@ const Pagination = ({
   onPageChanged,
   portionSize
 }) => {
-  const [portionNumber, setPortionNumber] = useState(1);
+  const [portionNumber, setPortionNumber] = useState(Math.ceil(currentPage / portionSize));
 
   const pageCount = Math.ceil(totalCount / pageSize);
   const pages = [];

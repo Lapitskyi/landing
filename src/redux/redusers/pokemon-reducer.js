@@ -9,7 +9,7 @@ import {
 } from '../type';
 
 const initialState = {
-  pokemonGroup: [],
+  pokemonGroup: null,
   pokemon: {},
   isLoader: false,
   pageSize: 20,

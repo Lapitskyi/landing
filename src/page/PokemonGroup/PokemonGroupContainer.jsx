@@ -10,6 +10,7 @@ import useInput from '../../useHook/useInput';
 import useDebounce from '../../useHook/useDebounce';
 import {
   getGroupPokemon,
+  getLoader,
   getPageCurrent,
   getPageSize,
   getPokemonItem,
@@ -46,13 +47,14 @@ const PokemonGroupContainer = ({
       if (debouncedSearchTerm) {
         props.requestSearch(val);
       }
-      if (debouncedSearchTerm === '') {
+      if (debouncedSearchTerm === '' || !pokemonGroup) {
         props.requestPokemonGroups(currentPage, pageSize);
       }
     }, [debouncedSearchTerm, currentPage, pageSize]
   );
 
   return (
+
     <PokemonGroup
       isLoader={isLoader}
       modal={modal}
@@ -76,7 +78,7 @@ const mapStateToProps = ({ pokemonPage }) => ({
   pageSize: getPageSize(pokemonPage),
   totalCount: getTotalCountPokemon(pokemonPage),
   currentPage: getPageCurrent(pokemonPage),
-  isLoader: pokemonPage.isLoader
+  isLoader: getLoader(pokemonPage)
 });
 
 export default compose(
