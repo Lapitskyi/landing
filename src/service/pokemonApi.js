@@ -46,9 +46,11 @@ const pokemonAPI = {
       .catch((err) => {
         if (err.response) {
           console.log(err.response);
-        } else if (err.request) {
+          return err.response.data;
+        } if (err.request) {
           console.log(err.response);
         }
+        return err;
       });
   }
 };

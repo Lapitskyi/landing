@@ -66,6 +66,7 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonGroup: action.errPokemon,
+
       };
 
     case TOGGLE_IS_LOADER:

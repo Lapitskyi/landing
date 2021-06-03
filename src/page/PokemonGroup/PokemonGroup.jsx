@@ -5,6 +5,7 @@ import SearchPokemon from './components/SearchPokemon';
 import PokemonModal from './components/PokemonModal';
 import PokemonList from './components/PokemonList';
 import './scss/PokemonGroup.scss';
+import NotFound from './components/NotFound';
 
 const PokemonGroup = ({
   pokemonGroup,
@@ -27,6 +28,8 @@ const PokemonGroup = ({
       onChange={onChange}
     />
     <>
+      {(pokemonGroup === 'Not Found' && <NotFound />)
+      || (
       <ul className="pokemonGroup__list">
         {pokemonGroup?.map((pokemonItem) => (
           <PokemonList
@@ -38,6 +41,7 @@ const PokemonGroup = ({
           />
         ))}
       </ul>
+      )}
       <PokemonModal
         modal={modal}
         setModal={setModal}

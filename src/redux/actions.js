@@ -67,5 +67,10 @@ export const requestSearch = (pokemon) => async (dispatch) => {
   dispatch(toggleIsLoader(true));
   const data = await pokemonApi.getSearchPokemon(pokemon);
   dispatch(toggleIsLoader(false));
-  dispatch(searchPokemon(data));
+  if (pokemon === data.name || data.id) {
+    console.log(data);
+    dispatch(searchPokemon(data));
+  } else {
+    dispatch(errorPokemon(data));
+  }
 };
