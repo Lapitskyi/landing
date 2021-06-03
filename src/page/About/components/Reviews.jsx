@@ -21,14 +21,14 @@ const Reviews = ({
       <img className="reviews__img" src={userPhoto} alt="icon user" ref={imgReviews} />
 
       <form className="reviews__form">
-          <textarea
-            className="reviews__text"
-            onChange={(e) => {
-              onNewReviewsText(e.target.value);
-            }}
-            value={reviewText}
-            placeholder="Leave a review"
-          />
+        <textarea
+          className="reviews__text"
+          onChange={(e) => {
+            onNewReviewsText(e.target.value);
+          }}
+          value={reviewText}
+          placeholder="Leave a review"
+        />
         <button
           type="submit"
           className="reviews__btn btn"

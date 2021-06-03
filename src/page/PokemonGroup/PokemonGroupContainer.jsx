@@ -13,7 +13,7 @@ import {
   getLoader,
   getPageCurrent,
   getPageSize,
-  getPokemonItem,
+  getPokemonItem, getPortionSize,
   getTotalCountPokemon
 } from '../../redux/selector';
 
@@ -78,7 +78,7 @@ const mapStateToProps = ({ pokemonPage }) => ({
   pokemonGroup: getGroupPokemon(pokemonPage),
   pokemon: getPokemonItem(pokemonPage),
   pageSize: getPageSize(pokemonPage),
-  portionSize: getPageSize(pokemonPage),
+  portionSize: getPortionSize(pokemonPage),
   totalCount: getTotalCountPokemon(pokemonPage),
   currentPage: getPageCurrent(pokemonPage),
   isLoader: getLoader(pokemonPage)

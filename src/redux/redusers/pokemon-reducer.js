@@ -29,7 +29,14 @@ const pokemonReducer = (state = initialState, action) => {
     case SET_POKEMON:
       return {
         ...state,
-        pokemon: action.pokemon
+        pokemon: action.pokemon,
+        pokemonGroup: state.pokemonGroup.map((item) => {
+          if (item.name === action.pokemon.name) {
+            return { ...item, img: action.pokemon.sprites.other['official-artwork'].front_default };
+          }
+          return item;
+        })
+
       };
 
     case SET_POKEMON_TOTAL_COUNT:
@@ -51,6 +58,7 @@ const pokemonReducer = (state = initialState, action) => {
           name: action.pokemon.name,
           url: 'https://pokeapi.co/api/v2/pokemon/1/'
         }],
+        totalCount: 1
 
       };
 
