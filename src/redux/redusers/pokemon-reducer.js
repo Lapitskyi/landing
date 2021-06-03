@@ -9,7 +9,7 @@ import {
 } from '../type';
 
 const initialState = {
-  pokemonGroup: null,
+  pokemonGroup: undefined,
   pokemon: {},
   isLoader: false,
   pageSize: 20,
@@ -66,7 +66,7 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonGroup: action.errPokemon,
-
+        totalCount: 0
       };
 
     case TOGGLE_IS_LOADER:

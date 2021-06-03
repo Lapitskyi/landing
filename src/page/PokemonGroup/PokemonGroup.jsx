@@ -28,7 +28,7 @@ const PokemonGroup = ({
       onChange={onChange}
     />
     <>
-      {(pokemonGroup === 'Not Found' && <NotFound />)
+      {(pokemonGroup === null && <NotFound />)
       || (
       <ul className="pokemonGroup__list">
         {pokemonGroup?.map((pokemonItem) => (

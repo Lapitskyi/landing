@@ -71,6 +71,6 @@ export const requestSearch = (pokemon) => async (dispatch) => {
     console.log(data);
     dispatch(searchPokemon(data));
   } else {
-    dispatch(errorPokemon(data));
+    dispatch(errorPokemon(null));
   }
 };
