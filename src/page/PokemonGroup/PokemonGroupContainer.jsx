@@ -37,13 +37,17 @@ const PokemonGroupContainer = ({
   const debouncedSearchTerm = useDebounce(val, 500);
 
   const showPokemon = (name) => {
-    pokemonArray?.map((item) => {
+    const pokemonName = pokemonArray.find((item) => {
       if (item.id === name) {
-        props.setShowPokemon(item.pokemonItem);
+        return { ...item };
       }
-      return item;
+      return null;
     });
-    props.requestPokemon(name);
+    if (pokemonName) {
+      props.setShowPokemon(pokemonName);
+    } else {
+      props.requestPokemon(name);
+    }
   };
 
   const onPageChanged = (pageNumber) => {

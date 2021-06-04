@@ -50,7 +50,7 @@ const pokemonReducer = (state = initialState, action) => {
     case SET_SHOW_POKEMON:
       return {
         ...state,
-        pokemon: action.pokemon
+        pokemon: action.pokemon.pokemonItem
       };
 
     case SET_POKEMON_TOTAL_COUNT:
