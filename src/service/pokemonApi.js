@@ -2,12 +2,18 @@ import axios from 'axios';
 
 const instance = axios.create({
   baseURL: 'https://pokeapi.co/api/v2/pokemon/',
-  method: 'get',
+  method: 'get'
 });
 
 const pokemonAPI = {
+  // eslint-disable-next-line no-unused-vars
   getPokemonGroup(currentPage, pageSize) {
-    return instance(`?offset=${currentPage}&limit=${pageSize}`)
+    return instance({
+      params: {
+        offset: currentPage,
+        limit: pageSize
+      }
+    })
       .then((response) => {
         return response.data;
       })
@@ -20,7 +26,12 @@ const pokemonAPI = {
       });
   },
   getCurrentPage(pageNumber, pageSize) {
-    return instance(`?offset=${pageNumber}&limit=${pageSize}`)
+    return instance({
+      params: {
+        offset: pageNumber,
+        limit: pageSize
+      }
+    })
       .then((response) => {
         return response.data;
       });

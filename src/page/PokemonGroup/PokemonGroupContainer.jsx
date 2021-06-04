@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PokemonGroup from './PokemonGroup';
 import {
-  requestCurrentPage, requestPokemon, requestPokemonGroups, requestSearch, setCurrentPage, setShowPokemon
+  requestCurrentPage,
+  requestPokemon,
+  requestPokemonGroups,
+  requestSearch,
+  setCurrentPage,
+  setPokemonsGroup,
+  setShowPokemon
 } from '../../redux/actions';
 import useInput from '../../useHook/useInput';
 import useDebounce from '../../useHook/useDebounce';
@@ -18,7 +24,7 @@ import {
   getTotalCountPokemon
 } from '../../redux/selector';
 
-const PokemonGroupContainer = ({
+const PokemonGroupContainer = React.memo(({
   pokemonGroup,
   pokemonArray,
   pageSize,
@@ -60,7 +66,7 @@ const PokemonGroupContainer = ({
       if (debouncedSearchTerm) {
         props.requestSearch(val);
       }
-      if (debouncedSearchTerm === '' || !pokemonGroup) {
+      if (debouncedSearchTerm === '') {
         props.requestPokemonGroups(currentPage, pageSize);
       }
     }, [debouncedSearchTerm, currentPage, pageSize]
@@ -83,7 +89,7 @@ const PokemonGroupContainer = ({
       onChange={onChange}
     />
   );
-};
+});
 
 const mapStateToProps = ({ pokemonPage }) => ({
   pokemonGroup: getGroupPokemon(pokemonPage),
@@ -104,7 +110,8 @@ export default compose(
       setCurrentPage,
       requestCurrentPage,
       requestSearch,
-      setShowPokemon
+      setShowPokemon,
+      setPokemonsGroup
     })
 )(PokemonGroupContainer);
 
@@ -126,6 +133,8 @@ PokemonGroupContainer.defaultProps = {
   requestCurrentPage: () => {
   },
   setCurrentPage: () => {
+  },
+  setPokemonsGroup: () => {
   },
   val: '',
   onChange: () => {
@@ -150,4 +159,5 @@ PokemonGroupContainer.propTypes = {
   requestPokemon: PropTypes.func,
   requestCurrentPage: PropTypes.func,
   setShowPokemon: PropTypes.func,
+  setPokemonsGroup: PropTypes.func,
 };

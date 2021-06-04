@@ -12,7 +12,7 @@ import {
 const initialState = {
   pokemonGroup: undefined,
   pokemon: undefined,
-  pokemonArray: [],
+  pokemonArray: undefined,
   isLoader: false,
   pageSize: 20,
   portionSize: 10,
@@ -25,7 +25,8 @@ const pokemonReducer = (state = initialState, action) => {
     case SET_POKEMON_GROUP:
       return {
         ...state,
-        pokemonGroup: action.pokemonGroup
+        pokemonGroup: action.pokemonGroup,
+        pokemonArray: []
       };
 
     case SET_POKEMON:
