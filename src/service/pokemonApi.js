@@ -6,14 +6,8 @@ const instance = axios.create({
 });
 
 const pokemonAPI = {
-  // eslint-disable-next-line no-unused-vars
-  getPokemonGroup(currentPage, pageSize) {
-    return instance({
-      params: {
-        offset: currentPage,
-        limit: pageSize
-      }
-    })
+  getPokemonGroup() {
+    return instance()
       .then((response) => {
         return response.data;
       })

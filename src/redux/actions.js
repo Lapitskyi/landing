@@ -45,12 +45,12 @@ export const setCurrentPage = (currentPage) => ({
   currentPage
 });
 
-export const requestPokemonGroups = (currentPage, pageSize) => async (dispatch) => {
+export const requestPokemonGroups = () => async (dispatch) => {
   dispatch(toggleIsLoader(true));
   const {
     results,
     count
-  } = await pokemonApi.getPokemonGroup(currentPage, pageSize);
+  } = await pokemonApi.getPokemonGroup();
   dispatch(toggleIsLoader(false));
   dispatch(setPokemonsGroup(results));
   dispatch(setPokemonTotalCount(count));

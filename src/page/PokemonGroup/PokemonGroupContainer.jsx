@@ -60,16 +60,18 @@ const PokemonGroupContainer = React.memo(({
     props.setCurrentPage(pageNumber);
     props.requestCurrentPage(pageNumber, pageSize);
   };
-
+  // useEffect(() => {
+  //   props.requestPokemonGroups();
+  // }, []);
   useEffect(
     () => {
       if (debouncedSearchTerm) {
         props.requestSearch(val);
       }
-      if (debouncedSearchTerm === '') {
-        props.requestPokemonGroups(currentPage, pageSize);
+      if (debouncedSearchTerm === '' || !pokemonGroup) {
+        props.requestPokemonGroups();
       }
-    }, [debouncedSearchTerm, currentPage, pageSize]
+    }, [debouncedSearchTerm]
   );
 
   return (
