@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import PokemonGroup from './PokemonGroup';
 import {
-  requestCurrentPage, requestPokemon, requestPokemonGroups, requestSearch, setCurrentPage
+  requestCurrentPage, requestPokemon, requestPokemonGroups, requestSearch, setCurrentPage, setShowPokemon
 } from '../../redux/actions';
 import useInput from '../../useHook/useInput';
 import useDebounce from '../../useHook/useDebounce';
@@ -13,12 +13,14 @@ import {
   getLoader,
   getPageCurrent,
   getPageSize,
+  getPokemonArray,
   getPokemonItem, getPortionSize,
   getTotalCountPokemon
 } from '../../redux/selector';
 
 const PokemonGroupContainer = ({
   pokemonGroup,
+  pokemonArray,
   pageSize,
   portionSize,
   totalCount,
@@ -35,6 +37,12 @@ const PokemonGroupContainer = ({
   const debouncedSearchTerm = useDebounce(val, 500);
 
   const showPokemon = (name) => {
+    pokemonArray?.map((item) => {
+      if (item.id === name) {
+        props.setShowPokemon(item.pokemonItem);
+      }
+      return item;
+    });
     props.requestPokemon(name);
   };
 
@@ -55,7 +63,6 @@ const PokemonGroupContainer = ({
   );
 
   return (
-
     <PokemonGroup
       isLoader={isLoader}
       modal={modal}
@@ -77,6 +84,7 @@ const PokemonGroupContainer = ({
 const mapStateToProps = ({ pokemonPage }) => ({
   pokemonGroup: getGroupPokemon(pokemonPage),
   pokemon: getPokemonItem(pokemonPage),
+  pokemonArray: getPokemonArray(pokemonPage),
   pageSize: getPageSize(pokemonPage),
   portionSize: getPortionSize(pokemonPage),
   totalCount: getTotalCountPokemon(pokemonPage),
@@ -91,7 +99,8 @@ export default compose(
       requestPokemon,
       setCurrentPage,
       requestCurrentPage,
-      requestSearch
+      requestSearch,
+      setShowPokemon
     })
 )(PokemonGroupContainer);
 
@@ -103,7 +112,10 @@ PokemonGroupContainer.defaultProps = {
   currentPage: 1,
   isLoader: false,
   pokemon: {},
+  pokemonArray: [],
   requestPokemonGroups: () => {
+  },
+  setShowPokemon: () => {
   },
   requestPokemon: () => {
   },
@@ -124,6 +136,7 @@ PokemonGroupContainer.propTypes = {
   totalCount: PropTypes.number,
   currentPage: PropTypes.number,
   pokemon: PropTypes.shape({}),
+  pokemonArray: PropTypes.arrayOf(PropTypes.object),
   setCurrentPage: PropTypes.func,
   isLoader: PropTypes.bool,
   val: PropTypes.string,
@@ -132,4 +145,5 @@ PokemonGroupContainer.propTypes = {
   requestPokemonGroups: PropTypes.func,
   requestPokemon: PropTypes.func,
   requestCurrentPage: PropTypes.func,
+  setShowPokemon: PropTypes.func,
 };

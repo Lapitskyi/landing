@@ -5,6 +5,9 @@ export const getGroupPokemon = (pokemonPage) => (
 export const getPokemonItem = (pokemonPage) => (
   pokemonPage.pokemon
 );
+export const getPokemonArray = (pokemonPage) => (
+  pokemonPage.pokemonArray
+);
 
 export const getPageCurrent = (pokemonPage) => (
   pokemonPage.currentPage

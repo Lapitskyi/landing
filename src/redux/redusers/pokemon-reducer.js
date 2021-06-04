@@ -5,12 +5,14 @@ import {
   SET_POKEMON_TOTAL_COUNT,
   SET_POKEMON,
   SET_CURRENT_PAGE,
-  TOGGLE_IS_LOADER
+  TOGGLE_IS_LOADER,
+  SET_SHOW_POKEMON
 } from '../type';
 
 const initialState = {
   pokemonGroup: undefined,
-  pokemon: {},
+  pokemon: undefined,
+  pokemonArray: [],
   isLoader: false,
   pageSize: 20,
   portionSize: 10,
@@ -30,13 +32,25 @@ const pokemonReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemon: action.pokemon,
+        pokemonArray: [...state.pokemonArray, {
+          id: action.pokemon.name,
+          pokemonItem: action.pokemon
+        }],
         pokemonGroup: state.pokemonGroup.map((item) => {
           if (item.name === action.pokemon.name) {
-            return { ...item, img: action.pokemon.sprites.other['official-artwork'].front_default };
+            return {
+              ...item,
+              img: action.pokemon.sprites.other['official-artwork'].front_default
+            };
           }
           return item;
         })
 
+      };
+    case SET_SHOW_POKEMON:
+      return {
+        ...state,
+        pokemon: action.pokemon
       };
 
     case SET_POKEMON_TOTAL_COUNT:

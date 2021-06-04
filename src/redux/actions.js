@@ -6,7 +6,8 @@ import {
   SET_POKEMON_TOTAL_COUNT,
   SET_POKEMON,
   SET_CURRENT_PAGE,
-  TOGGLE_IS_LOADER
+  TOGGLE_IS_LOADER,
+  SET_SHOW_POKEMON
 } from './type';
 
 export const setPokemonsGroup = (pokemonGroup) => ({
@@ -17,6 +18,12 @@ export const setPokemon = (pokemon) => ({
   type: SET_POKEMON,
   pokemon
 });
+
+export const setShowPokemon = (pokemon) => ({
+  type: SET_SHOW_POKEMON,
+  pokemon
+});
+
 export const searchPokemon = (pokemon) => ({
   type: SEARCH_POKEMON,
   pokemon
@@ -68,7 +75,6 @@ export const requestSearch = (pokemon) => async (dispatch) => {
   const data = await pokemonApi.getSearchPokemon(pokemon);
   dispatch(toggleIsLoader(false));
   if (pokemon === data.name || data.id) {
-    console.log(data);
     dispatch(searchPokemon(data));
   } else {
     dispatch(errorPokemon(null));
